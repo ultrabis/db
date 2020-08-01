@@ -1,0 +1,41 @@
+{
+  "name": "@ultrabis/db",
+  "version": "0.0.1",
+  "scripts": {
+    "wowhead:download": "ts-node -T wowhead-download.ts",
+    "test:gzip": "ts-node -T test-gzip.ts"
+  },
+  "prettier": {
+    "semi": false,
+    "trailingComma": "none",
+    "singleQuote": true,
+    "printWidth": 120,
+    "tabWidth": 2
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "cheerio": "^1.0.0-rc.3",
+    "csvtojson": "^2.0.10",
+    "libclassic": "^0.2.9",
+    "request": "^2.88.2",
+    "requestretry": "^4.1.1",
+    "ts-loader": "^8.0.1",
+    "xml2js": "^0.4.23"
+  },
+  "devDependencies": {
+    "@types/cheerio": "^0.22.21",
+    "@types/node": "^14.0.27",
+    "@types/request": "^2.48.5",
+    "@types/requestretry": "^1.12.7",
+    "@types/xml2js": "^0.4.5",
+    "@typescript-eslint/eslint-plugin": "^3.7.1",
+    "@typescript-eslint/parser": "^3.7.1",
+    "eslint": "^7.3.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "prettier": "^2.0.5",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7"
+  }
+}
