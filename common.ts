@@ -44,13 +44,13 @@ interface ItemKeftenk {
 }
 
 /**
- * 
+ *
  * download `url` to `dest`. by default we request and write as gzip. if opts.unzip
  * is true and it's indeed gzipped, we'll unzip it first.
- * 
- * @param url 
- * @param dest 
- * @param opts 
+ *
+ * @param url
+ * @param dest
+ * @param opts
  */
 const download = async (url: string, dest: string, opts?: { unzip?: boolean }) => {
   if (fs.existsSync(dest)) {
@@ -62,15 +62,15 @@ const download = async (url: string, dest: string, opts?: { unzip?: boolean }) =
   const headers = { 'Accept-Encoding': 'gzip' }
   const outputPathResolved = path.resolve(dest)
   const writer = fs.createWriteStream(outputPathResolved)
-  
-  request({url:url, 'headers': headers}).on('response', function (response) {
+
+  request({ url: url, headers: headers }).on('response', function (response) {
     if (opts && opts.unzip && response.headers['content-encoding'] === 'gzip') {
       response.pipe(zlib.createGunzip()).pipe(writer)
     } else {
       response.pipe(writer)
     }
   })
-  
+
   return new Promise((resolve, reject) => {
     writer.on('finish', resolve)
     writer.on('error', reject)
@@ -80,7 +80,7 @@ const download = async (url: string, dest: string, opts?: { unzip?: boolean }) =
 const wowheadDownloadIcon = async (iconName: string) => {
   const filePath = `${iconOutputDir}/${iconName.toLowerCase()}.jpg`
   const url = `https://wow.zamimg.com/images/wow/icons/large/${iconName.toLowerCase()}.jpg`
-  return download(url, filePath, { unzip: true})
+  return download(url, filePath, { unzip: true })
 }
 
 const wowheadDownloadHTML = async (itemId: number, itemName: string) => {
@@ -125,7 +125,7 @@ const wowheadDownloadItems = async () => {
 
     console.log(`- ${item.name} (${item.id})`)
     await wowheadDownloadXML(item.id, item.name)
-    const itemWowhead = await wowheadReadXML(item.id, item.name)
+    const itemWowhead = await wowheadParseXML(item.id, item.name)
     if (itemWowhead === null) {
       console.error(`-- error parsing wowhead xml`)
       continue
@@ -136,7 +136,7 @@ const wowheadDownloadItems = async () => {
 
     // download icon
     await wowheadDownloadIcon(itemWowhead.icon[0]._)
-    
+
     /* FIXME: move this stuff to 'scraping' section
     const itemJSONFilePath = `${outputDir}/${x}.json`
     if (!fs.existsSync(itemJSONFilePath)) {
@@ -146,7 +146,6 @@ const wowheadDownloadItems = async () => {
       fs.writeFileSync(itemJSONFilePath, JSON.stringify(obj))
     }
     */
-
   }
 }
 
@@ -192,7 +191,7 @@ const wowheadScrapeList = async () => {
   return items
 }
 
-const wowheadReadXML = async (itemId: number, itemName: string) => {
+const wowheadParseXML = async (itemId: number, itemName: string) => {
   const filePath = `${xmlOutputDir}/${itemId}-${wowheadItemName(itemName)}.xml.gz`
   const xmlString = stringFromGzipFile(filePath)
   const result = await xml2js.parseStringPromise(xmlString)
@@ -213,7 +212,7 @@ const wowheadParseXML = async (itemKey: string) => {
 }
 */
 
-const wowheadScrapeHTML = async (itemId: number, isRandomEnchant: boolean) => {
+const wowheadParseHTML = async (itemId: number, isRandomEnchant: boolean) => {
   const req = await request({
     url: `https://classic.wowhead.com/item=${itemId}`,
     json: true
@@ -292,6 +291,10 @@ const wowheadScrapeHTML = async (itemId: number, isRandomEnchant: boolean) => {
   }
 }
 
+const wowheadParseItemList = () => {
+  return JSON.parse(stringFromFile(itemListFilePath))
+}
+
 /**
  *
  * convert itemName to the format wowhead uses on url
@@ -301,7 +304,36 @@ const wowheadScrapeHTML = async (itemId: number, isRandomEnchant: boolean) => {
 const wowheadItemName = (itemName: string): string => {
   // const itemBaseName = (itemName: string): string => {
   // return lc.common.itemBaseName(itemName).toLowerCase().replace(/,/g, '').replace(/-/g, '').replace(/  /g, ' ').replace(/ /g, '-').replace(/\'/g, '').replace(/\"/g, '')
-  return lc.common.itemBaseName(itemName).toLowerCase().replace(/\'/g, '').replace(/\"/g, '').replace(/,/g, '').replace(/ - /g,'-').replace(/ /g, '-')
+  return lc.common
+    .itemBaseName(itemName)
+    .toLowerCase()
+    .replace(/\'/g, '')
+    .replace(/\"/g, '')
+    .replace(/,/g, '')
+    .replace(/ - /g, '-')
+    .replace(/ /g, '-')
+}
+
+/**
+ *
+ * Return array of itemId's matching itemName. Most itemNames are unique, but
+ * there are a handful that aren't.
+ *
+ * @param itemName
+ */
+const itemIdsFromName = (itemName: string): number[] => {
+  const ids: number[] = []
+
+  const itemList = wowheadParseItemList()
+  const itemCount = itemList.length
+  for (let i = 0; i < itemCount; i++) {
+    const item = itemList[i]
+    if (wowheadItemName(itemName) === wowheadItemName(item.name)) {
+      ids.push(item.id)
+    }
+  }
+
+  return ids
 }
 
 const stringFromGzipFile = (filePath: string): string => {
@@ -317,7 +349,6 @@ const readFileAsString = async (filePath: string) => {
   return await fsPromises.readFile(filePath, 'utf8')
 }
 */
-
 
 const isEnchant = (keftenkEquipmentType: string) => {
   switch (keftenkEquipmentType) {
@@ -463,12 +494,14 @@ export default {
   download,
   stringFromFile,
   stringFromGzipFile,
+  itemIdsFromName,
   wowheadDownloadItems,
   wowheadDownloadItemList,
   wowheadDownloadHTML,
   wowheadDownloadXML,
   wowheadDownloadIcon,
-  wowheadReadXML,
-  wowheadScrapeHTML,
+  wowheadParseXML,
+  wowheadParseHTML,
+  wowheadParseItemList,
   wowheadItemName
 }
