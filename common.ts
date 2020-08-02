@@ -57,7 +57,7 @@ const download = async (url: string, dest: string, opts?: { unzip?: boolean }) =
     return
   }
 
-  console.log(`-- downloading ${url}`)
+  console.log(`-- downloading ${url} -> ${dest}`)
 
   const headers = { 'Accept-Encoding': 'gzip' }
   const outputPathResolved = path.resolve(dest)
@@ -77,31 +77,21 @@ const download = async (url: string, dest: string, opts?: { unzip?: boolean }) =
   })
 }
 
-// download item icon
 const wowheadDownloadIcon = async (iconName: string) => {
-    const filePath = `${iconOutputDir}/${iconName.toLowerCase()}.jpg`
-    const url = `https://wow.zamimg.com/images/wow/icons/large/${iconName.toLowerCase()}.jpg`
-    return download(url, filePath, { unzip: true})
+  const filePath = `${iconOutputDir}/${iconName.toLowerCase()}.jpg`
+  const url = `https://wow.zamimg.com/images/wow/icons/large/${iconName.toLowerCase()}.jpg`
+  return download(url, filePath, { unzip: true})
 }
 
-// downloads item html by itemId, optionally writing it as itemName
-// this will download and store as gzip
-const wowheadDownloadHTML = async (itemId: number, itemName?: string) => {
-  const filePath = `${xmlOutputDir}/${itemName ? lc.common.itemNameWowhead(itemName) : itemId}.html.gz`
+const wowheadDownloadHTML = async (itemId: number, itemName: string) => {
+  const filePath = `${xmlOutputDir}/${itemId}-${lc.common.itemNameWowhead(itemName)}.html.gz`
   const url = `https://classic.wowhead.com/item=${itemId}`
   return download(url, filePath, { unzip: false })
 }
 
-// download item xml by name
-// this will download and store as plain text (gzip not supported on server side)
-const wowheadDownloadXML = async (itemName: string) => {
-  const itemNameWowhead = lc.common.itemNameWowhead(itemName)
-  const filePath = `${xmlOutputDir}/${itemNameWowhead}.xml.gz`
-  
-  const itemBaseName = lc.common.itemBaseName(itemName)
-  const encodedName = encodeURIComponent(itemBaseName)
-  const url = `https://classic.wowhead.com/item=${encodedName}&xml`
-
+const wowheadDownloadXML = async (itemId: number, itemName: string) => {
+  const filePath = `${xmlOutputDir}/${itemId}-${lc.common.itemNameWowhead(itemName)}.xml.gz`
+  const url = `https://classic.wowhead.com/item=${itemId}&xml`
   return download(url, filePath, { unzip: false })
 }
 
@@ -123,46 +113,26 @@ const wowheadDownloadItemList = async (outputPath: string) => {
  *
  * @param items Comma seperated listed of item id's or names. If undefined all items.
  */
-const wowheadDownloadItems = async (items: string | undefined) => {
-  let itemList: string[] = []
-
-  if (items) {
-    // we passed in a list a item id's / names
-    if (lc.utils.isNum(items) || !items.includes(',')) {
-      itemList[0] = `${items}`
-    } else {
-      itemList = items.split(',')
-    }
-  } else {
-    // no list provided...we're doing everything
-    // first we need a list of all item id's / names
-    // we of course cache this list
-    console.warn(`No items provided, doing ALL items`)
-    await wowheadDownloadItemList(itemListFilePath)
-    const data = JSON.parse(stringFromFile(itemListFilePath))
-    for (let i = 0; i < data.length; i++) {
-      itemList.push(data[i].name)
-    }
-  }
+const wowheadDownloadItems = async () => {
+  await wowheadDownloadItemList(itemListFilePath)
+  const itemList = JSON.parse(stringFromFile(itemListFilePath))
   const itemCount = itemList.length
 
   console.log(`Processing ${itemCount} item(s)`)
 
   for (let i = 0; i < itemCount; i++) {
-    const itemKey = itemList[i].trim()
+    const item = itemList[i]
 
-    console.log(`- ${itemKey}`)
-    await wowheadDownloadXML(itemKey)
-    const itemWowhead = await wowheadReadXML(itemKey)
+    console.log(`- ${item.name} (${item.id})`)
+    await wowheadDownloadXML(item.id, item.name)
+    const itemWowhead = await wowheadReadXML(item.id, item.name)
     if (itemWowhead === null) {
       console.error(`-- error parsing wowhead xml`)
       continue
     }
-    const itemId = Number(itemWowhead['$'].id)
-    const itemName = JSON.parse(`{ ${itemWowhead['json'][0]} }`).name
 
     // download the html page
-    await wowheadDownloadHTML(itemId, itemName)
+    await wowheadDownloadHTML(item.id, item.name)
 
     // download icon
     await wowheadDownloadIcon(itemWowhead.icon[0]._)
@@ -222,9 +192,8 @@ const wowheadScrapeList = async () => {
   return items
 }
 
-const wowheadReadXML = async (itemKey: string) => {
-  const filePath =
-    `${xmlOutputDir}/${lc.utils.isNum(itemKey) ? itemKey : lc.common.itemNameWowhead(itemKey)}.xml.gz`
+const wowheadReadXML = async (itemId: number, itemName: string) => {
+  const filePath = `${xmlOutputDir}/${itemId}-${lc.common.itemNameWowhead(itemName)}.xml.gz`
   const xmlString = stringFromGzipFile(filePath)
   const result = await xml2js.parseStringPromise(xmlString)
   return result.wowhead.error ? null : result.wowhead.item[0]
