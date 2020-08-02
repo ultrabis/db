@@ -84,13 +84,13 @@ const wowheadDownloadIcon = async (iconName: string) => {
 }
 
 const wowheadDownloadHTML = async (itemId: number, itemName: string) => {
-  const filePath = `${xmlOutputDir}/${itemId}-${lc.common.itemNameWowhead(itemName)}.html.gz`
+  const filePath = `${xmlOutputDir}/${itemId}-${wowheadItemName(itemName)}.html.gz`
   const url = `https://classic.wowhead.com/item=${itemId}`
   return download(url, filePath, { unzip: false })
 }
 
 const wowheadDownloadXML = async (itemId: number, itemName: string) => {
-  const filePath = `${xmlOutputDir}/${itemId}-${lc.common.itemNameWowhead(itemName)}.xml.gz`
+  const filePath = `${xmlOutputDir}/${itemId}-${wowheadItemName(itemName)}.xml.gz`
   const url = `https://classic.wowhead.com/item=${itemId}&xml`
   return download(url, filePath, { unzip: false })
 }
@@ -193,7 +193,7 @@ const wowheadScrapeList = async () => {
 }
 
 const wowheadReadXML = async (itemId: number, itemName: string) => {
-  const filePath = `${xmlOutputDir}/${itemId}-${lc.common.itemNameWowhead(itemName)}.xml.gz`
+  const filePath = `${xmlOutputDir}/${itemId}-${wowheadItemName(itemName)}.xml.gz`
   const xmlString = stringFromGzipFile(filePath)
   const result = await xml2js.parseStringPromise(xmlString)
   return result.wowhead.error ? null : result.wowhead.item[0]
@@ -290,6 +290,18 @@ const wowheadScrapeHTML = async (itemId: number, isRandomEnchant: boolean) => {
     phase: phase,
     validSuffixIds: validSuffixIds
   }
+}
+
+/**
+ *
+ * convert itemName to the format wowhead uses on url
+ *
+ * @param itemName
+ */
+const wowheadItemName = (itemName: string): string => {
+  // const itemBaseName = (itemName: string): string => {
+  // return lc.common.itemBaseName(itemName).toLowerCase().replace(/,/g, '').replace(/-/g, '').replace(/  /g, ' ').replace(/ /g, '-').replace(/\'/g, '').replace(/\"/g, '')
+  return lc.common.itemBaseName(itemName).toLowerCase().replace(/\'/g, '').replace(/\"/g, '').replace(/,/g, '').replace(/ - /g,'-').replace(/ /g, '-')
 }
 
 const stringFromGzipFile = (filePath: string): string => {
@@ -457,5 +469,6 @@ export default {
   wowheadDownloadXML,
   wowheadDownloadIcon,
   wowheadReadXML,
-  wowheadScrapeHTML
+  wowheadScrapeHTML,
+  wowheadItemName
 }

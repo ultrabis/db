@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "scripts": {
     "wowhead:download": "ts-node -T wowhead-download.ts",
-    "test:gzip": "ts-node -T test-gzip.ts"
+    "wowhead:prune": "./prune-wowhead.sh",
+    "test": "ts-node -T test.ts"
   },
   "prettier": {
     "semi": false,
