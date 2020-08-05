@@ -90,10 +90,17 @@ const testItemJSONFromId = () => {
   //const itemJSON = common.itemJSONFromId(10250) // masters hat (random enchant)
 }
 
+const testItemJSONArrayFromItemListFile = () => {
+  const outputFile = `item.json`
+  const itemJSONArray = common.itemJSONArrayFromItemListFile(`wowhead/itemList.json`, outputFile)
+  console.log(`succesfully wrote ${itemJSONArray.length} items to ${outputFile}`)
+}
+
 const doIt = async () => {
   // testWowheadItemName()
   // testItemIdsFromName()
-  testItemJSONFromId()
+  // testItemJSONFromId()
+  testItemJSONArrayFromItemListFile()
 }
 
 doIt()

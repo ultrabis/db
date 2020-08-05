@@ -9,7 +9,6 @@ import cheerio from 'cheerio'
 import request from 'requestretry'
 import lc from 'libclassic'
 import ItemJSON from './ItemJSON'
-import TargetType from 'libclassic/dist/enum/TargetType'
 
 const xmlOutputDir = 'wowhead/items'
 const iconOutputDir = 'wowhead/icons'
@@ -509,6 +508,28 @@ const itemJSONFromId = (itemId: number, suffixId?: number): ItemJSON | undefined
   return JSON.parse(JSON.stringify(itemJSON))
 }
 
+const itemJSONArrayFromItemListFile = (itemListFilePath: string, outputFile?: string): ItemJSON[] => {
+  const itemJSONArray: ItemJSON[] = []
+
+  const itemList = itemListFromFile(itemListFilePath)
+  const itemCount = itemList.length
+  for (let i = 0; i < itemCount; i++) {
+    const item = itemList[i]
+
+    console.log(`-- ${item.name} (${item.id})`)
+    const itemJSON = itemJSONFromId(item.id)
+    if (itemJSON) {
+      itemJSONArray.push(itemJSON)
+    }
+  }
+
+  if (outputFile) {
+    fs.writeFileSync(outputFile, JSON.stringify(itemJSONArray))
+  }
+
+  return itemJSONArray
+}
+
 export default {
   stringFromFile,
   stringFromGzipFile,
@@ -526,5 +547,6 @@ export default {
   wowheadDownloadHTML,
   wowheadDownloadXML,
   wowheadDownloadIcon,
-  itemJSONFromId
+  itemJSONFromId,
+  itemJSONArrayFromItemListFile
 }
