@@ -3,44 +3,161 @@
  */
 
 import fs from 'fs'
-import fsPromises from 'fs/promises'
 import path from 'path'
 import zlib from 'zlib'
 import cheerio from 'cheerio'
 import request from 'requestretry'
-import xml2js from 'xml2js'
 import lc from 'libclassic'
-import ItemJSON from 'libclassic/src/interface/ItemJSONNew'
-
-const csvToJSON = require('csvtojson')
-const axios = require('axios').default
+import ItemJSON from './ItemJSON'
 
 const xmlOutputDir = 'wowhead/items'
 const iconOutputDir = 'wowhead/icons'
 const itemListFilePath = `wowhead/itemList.json`
 
-/* parsed item object from keftenk balance druid spreadsheet */
-interface ItemKeftenk {
-  'Equipment Type': string
-  Slot: string
-  Name: string
-  Phase: string
-  Location: string
-  Boss: string
-  Stamina: string
-  Intellect: string
-  Spirit: string
-  'Spell Damage': string
-  'Spell Critical %': string
-  'Spell Hit %': string
-  MP5: string
-  'Spell Penetration': string
-  Score: string
-  field16: string
-  Alliance: string
-  Horde: string
-  Starfire: string
-  Wrath: string
+// number to number. if value is undefined, null, or NaN return undefined
+// optionally return undefined for 0 value
+const itoi = (value: number | null | undefined, noZeros?: boolean): number | undefined => {
+  if (value === undefined || value === null || value === NaN || (noZeros && value === 0)) {
+    return undefined
+  }
+
+  return value
+}
+
+// string to number. if value is undefined, null, or NaN return undefined
+// optionally return undefined for 0 value
+const atoi = (value: string | undefined, noZeros?: boolean): number | undefined => {
+  if (value === undefined || value === null) {
+    return undefined
+  }
+
+  return itoi(Number(value), noZeros)
+}
+
+// string to string. if value is undefined, null, or empty return undefined
+const atoa = (value: string | undefined): string | undefined => {
+  if (value === undefined || value === null || value.length === 0) {
+    return undefined
+  }
+  return value
+}
+
+// bool to bool. false is undefined
+const btob = (value: boolean): boolean | undefined => {
+  return value ? value : undefined
+}
+
+const stringFromComment = (haystack: string, commentName: string): string => {
+  const comment = `<!--${commentName}-->`
+  const n = haystack.search(comment) + comment.length
+  const x = haystack.substr(n)
+  const n2 = x.search('<')
+  return x.substr(0, n2)
+}
+
+/**
+ *
+ * convert itemName to the format wowhead uses on url
+ *
+ * @param itemName
+ */
+const wowheadItemName = (itemName: string): string => {
+  return lc.common
+    .itemBaseName(itemName)
+    .toLowerCase()
+    .replace(/\'/g, '')
+    .replace(/\"/g, '')
+    .replace(/,/g, '')
+    .replace(/ - /g, '-')
+    .replace(/ /g, '-')
+}
+
+/**
+ *
+ * read gzip file as plain text string
+ *
+ * @param filePath
+ */
+const stringFromGzipFile = (filePath: string): string => {
+  return zlib.gunzipSync(fs.readFileSync(filePath)).toString()
+}
+
+/**
+ *
+ * read file as plain text string
+ *
+ * @param filePath
+ */
+const stringFromFile = (filePath: string): string => {
+  return fs.readFileSync(filePath).toString()
+}
+
+/**
+ *
+ * get itemList from file as JSON object
+ *
+ * @param filePath
+ */
+const itemListFromFile = (filePath: string): any => {
+  return JSON.parse(stringFromFile(filePath))
+}
+
+/**
+ *
+ * read itemList file and return array of matching items based on the name
+ * we must return an array becaue itemName is not unique
+ *
+ * @param itemName
+ */
+const itemIdsFromName = (itemName: string): number[] => {
+  const ids: number[] = []
+
+  const itemList = itemListFromFile(itemListFilePath)
+  const itemCount = itemList.length
+  for (let i = 0; i < itemCount; i++) {
+    const item = itemList[i]
+    if (wowheadItemName(itemName) === wowheadItemName(item.name)) {
+      ids.push(item.id)
+    }
+  }
+
+  return ids
+}
+
+/**
+ *
+ * read itemList file and return the itemName based on itemId
+ *
+ * @param itemId
+ */
+const itemNameFromId = (itemId: number): string => {
+  const itemList = itemListFromFile(itemListFilePath)
+  const itemCount = itemList.length
+  for (let i = 0; i < itemCount; i++) {
+    const item = itemList[i]
+    if (item.id === itemId) {
+      return item.name
+    }
+  }
+
+  return ``
+}
+
+/**
+ *
+ * read XML file and return the icon name.
+ * we need the icon name during downloading and don't want to parse the entire thing
+ *
+ * @param itemId
+ * @param _itemName
+ */
+const itemIconFromXML = (itemId: number, _itemName?: string): string => {
+  const itemName = _itemName ? _itemName : itemNameFromId(itemId)
+  const filePath = `${xmlOutputDir}/${itemId}-${wowheadItemName(itemName)}.xml.gz`
+  const xmlString = stringFromGzipFile(filePath)
+
+  const $ = cheerio.load(xmlString, { xmlMode: true })
+  return $('icon').text()
 }
 
 /**
@@ -77,26 +194,30 @@ const download = async (url: string, dest: string, opts?: { unzip?: boolean }) =
   })
 }
 
-const wowheadDownloadIcon = async (iconName: string) => {
+// download icon. must have xml downloaded.
+const wowheadDownloadIcon = async (itemId: number, _itemName?: string) => {
+  const iconName = itemIconFromXML(itemId, _itemName)
   const filePath = `${iconOutputDir}/${iconName.toLowerCase()}.jpg`
   const url = `https://wow.zamimg.com/images/wow/icons/large/${iconName.toLowerCase()}.jpg`
   return download(url, filePath, { unzip: true })
 }
 
-const wowheadDownloadHTML = async (itemId: number, itemName: string) => {
+const wowheadDownloadHTML = async (itemId: number, _itemName?: string) => {
+  const itemName = _itemName ? _itemName : itemNameFromId(itemId)
   const filePath = `${xmlOutputDir}/${itemId}-${wowheadItemName(itemName)}.html.gz`
   const url = `https://classic.wowhead.com/item=${itemId}`
   return download(url, filePath, { unzip: false })
 }
 
-const wowheadDownloadXML = async (itemId: number, itemName: string) => {
+const wowheadDownloadXML = async (itemId: number, _itemName?: string) => {
+  const itemName = _itemName ? _itemName : itemNameFromId(itemId)
   const filePath = `${xmlOutputDir}/${itemId}-${wowheadItemName(itemName)}.xml.gz`
   const url = `https://classic.wowhead.com/item=${itemId}&xml`
   return download(url, filePath, { unzip: false })
 }
 
 /**
- * scrapes all item id's / names from wowhead and writes them as JSON to `outputPath`
+ * download all item id's / names from wowhead and write as JSON to `outputPath`
  *
  * @param outputPath write to file
  */
@@ -104,48 +225,6 @@ const wowheadDownloadItemList = async (outputPath: string) => {
   if (!fs.existsSync(outputPath)) {
     const data = await wowheadScrapeList()
     fs.writeFileSync(outputPath, JSON.stringify(data))
-  }
-}
-
-/**
- *
- * Downloads / caches everything we need from wowhead for `items`
- *
- * @param items Comma seperated listed of item id's or names. If undefined all items.
- */
-const wowheadDownloadItems = async () => {
-  await wowheadDownloadItemList(itemListFilePath)
-  const itemList = JSON.parse(stringFromFile(itemListFilePath))
-  const itemCount = itemList.length
-
-  console.log(`Processing ${itemCount} item(s)`)
-
-  for (let i = 0; i < itemCount; i++) {
-    const item = itemList[i]
-
-    console.log(`- ${item.name} (${item.id})`)
-    await wowheadDownloadXML(item.id, item.name)
-    const itemWowhead = await wowheadParseXML(item.id, item.name)
-    if (itemWowhead === null) {
-      console.error(`-- error parsing wowhead xml`)
-      continue
-    }
-
-    // download the html page
-    await wowheadDownloadHTML(item.id, item.name)
-
-    // download icon
-    await wowheadDownloadIcon(itemWowhead.icon[0]._)
-
-    /* FIXME: move this stuff to 'scraping' section
-    const itemJSONFilePath = `${outputDir}/${x}.json`
-    if (!fs.existsSync(itemJSONFilePath)) {
-      console.log(`-- scraping html`)
-      const isRandomEnchant = itemWowhead['htmlTooltip'][0].includes('Random enchantment')
-      const obj = await common.wowheadScrapeHTML(itemId, isRandomEnchant)
-      fs.writeFileSync(itemJSONFilePath, JSON.stringify(obj))
-    }
-    */
   }
 }
 
@@ -191,71 +270,129 @@ const wowheadScrapeList = async () => {
   return items
 }
 
-const wowheadParseXML = async (itemId: number, itemName: string) => {
-  const filePath = `${xmlOutputDir}/${itemId}-${wowheadItemName(itemName)}.xml.gz`
-  const xmlString = stringFromGzipFile(filePath)
-  const result = await xml2js.parseStringPromise(xmlString)
-  return result.wowhead.error ? null : result.wowhead.item[0]
+/**
+ *
+ * Downloads / caches everything we need from wowhead for `items`
+ *
+ */
+const wowheadDownloadItems = async (): Promise<void> => {
+  // download list of items if necessary
+  await wowheadDownloadItemList(itemListFilePath)
+
+  // read in itemList
+  const itemList = itemListFromFile(itemListFilePath)
+  const itemCount = itemList.length
+
+  // iterate itemList and download XML, HTML, and icon for each item
+  console.log(`Processing ${itemCount} item(s)`)
+  for (let i = 0; i < itemCount; i++) {
+    const item = itemList[i]
+    console.log(`- ${item.name} (${item.id})`)
+    await wowheadDownloadXML(item.id, item.name)
+    await wowheadDownloadHTML(item.id, item.name)
+    await wowheadDownloadIcon(item.id, item.name)
+  }
 }
 
-/*
-const wowheadParseXMLFile = async (filePath: string) => {
-  const xmlString = await readFileAsString(filePath)
-  const result = await xml2js.parseStringPromise(xmlString)
-  return result.wowhead.error ? null : result.wowhead.item[0]
-}
+/**
+ *
+ * Parse XML and HTML and return ItemJSON object
+ *
+ * @param itemId
+ * @param suffixId
+ */
+const itemJSONFromId = (itemId: number, suffixId?: number): ItemJSON | undefined => {
+  // get contents of xml and html files as strings
+  const itemName = itemNameFromId(itemId)
+  const baseFilePath = `${xmlOutputDir}/${itemId}-${wowheadItemName(itemName)}`
+  const xmlString = stringFromGzipFile(`${baseFilePath}.xml.gz`)
+  const htmlString = stringFromGzipFile(`${baseFilePath}.html.gz`)
 
-const wowheadParseXML = async (itemKey: string) => {
-  const filePath =
-    `${xmlOutputDir}/${lc.utils.isNum(itemKey) ? itemKey : lc.common.itemNameWowhead(itemKey)}.xml`
-  return wowheadParseXMLFile(filePath)
-}
-*/
+  // init itemJSON object
+  const itemJSON = {} as ItemJSON
+  itemJSON.id = itemId
+  if (suffixId) {
+    itemJSON.suffixId = suffixId
+  }
 
-const wowheadParseHTML = async (itemId: number, isRandomEnchant: boolean) => {
-  const req = await request({
-    url: `https://classic.wowhead.com/item=${itemId}`,
-    json: true
+  // parse xml root
+  const xml$ = cheerio.load(xmlString, { xmlMode: true })
+  itemJSON.name = xml$('name').text()
+  itemJSON.icon = xml$('icon').text()
+  itemJSON.class = atoi(xml$('class').attr('id'))
+  itemJSON.subclass = atoi(xml$('subclass').attr('id'))
+  itemJSON.level = atoi(xml$('level').attr('id'))
+  itemJSON.quality = atoi(xml$('quality').attr('id'))
+
+  // parse xml jsonEquip object
+  const jsonEquipText = xml$('jsonEquip').text()
+  const jsonEquip = JSON.parse(`{ ${jsonEquipText} }`)
+  itemJSON.slot = jsonEquip.slotbak
+  itemJSON.reqLevel = itoi(jsonEquip.reqlevel, true)
+  itemJSON.spellHit = itoi(jsonEquip.splhitpct, true)
+  itemJSON.spellDamage = itoi(jsonEquip.splpwr, true)
+
+  // parse xml tooltip
+  const ttText = xml$('htmlTooltip').text()
+  const isRandomEnchant = ttText.includes('Random enchant')
+  itemJSON.unique = btob(ttText.includes(`>Unique<`))
+  itemJSON.bop = btob(stringFromComment(ttText, 'bo') === `Binds when picked up`)
+  const tt = cheerio.load(ttText, { xmlMode: true })
+  const droppedBy = tt('.whtt-droppedby').text()
+  if (droppedBy && droppedBy.length > 0) {
+    const n = droppedBy.search(':')
+    itemJSON.boss = droppedBy.substr(n + 2)
+  }
+  const classes = tt('.wowhead-tooltip-item-classes').text()
+  if (classes && classes.length > 0) {
+    itemJSON.allowableClasses = lc.common.playableClassesFromText(classes)
+  }
+  tt('span').each(function (i: number, elem: any) {
+    const text = tt(elem).text()
+    if (text[0] === `"` && text[text.length - 1] === `"`) {
+      itemJSON.flavor = text
+    }
   })
 
-  const validSuffixIds: number[] = []
-  const $ = cheerio.load(req.body)
+  // parse xml json object
+  const jsonText = xml$('json').text()
+  const json = JSON.parse(`{ ${jsonText} }`)
 
-  // first we need 'phase available'. it's not in the XML.
-  // the text is generated by javascript.
-  // it's annoying, just do a stupid text search
-  const n = req.body.search('WH.markup.printHtml')
-  const x = req.body.substr(n)
+  // parse html
+  const html$ = cheerio.load(htmlString)
+  const n = htmlString.search('WH.markup.printHtml')
+  const x = htmlString.substr(n)
   const n2 = x.search('Added in content phase')
-  const phase = Number(x.substr(n2 + 23, 1))
+  itemJSON.phase = Number(x.substr(n2 + 23, 1))
 
-  // if it's a random enchant, we need to scrape the the valid suffix id's
+  // parse html suffix id's
   if (isRandomEnchant) {
-    const div = $('div[class=random-enchantments]')
-    const ul = $('ul')
-    const root = $(div).text() !== `` ? div : ul
+    const div = html$('div[class=random-enchantments]')
+    const ul = html$('ul')
+    const root = html$(div).text() !== `` ? div : ul
+    const validSuffixIds: number[] = []
 
-    $(root)
+    html$(root)
       .find('li')
       .find('div')
       .each(function (i: number, elem: any) {
-        const span = $(elem).find('span')
-        const small = $(elem).find('small')
+        const span = html$(elem).find('span')
+        const small = html$(elem).find('small')
 
         // the suffix type e.g. "of the Bear"
-        const suffixTypeText = $(span).text().replace(/\./g, '')
+        const suffixTypeText = html$(span).text().replace(/\./g, '')
 
-        // drop chance...not doing anything with it for now
-        const dropChanceText = $(small).text()
+        // drop chance
+        itemJSON.dropChance = atoi(html$(small).text(), true)
 
         // rip out junk so we can grab bonus text
-        $(span).remove()
-        $(small).remove()
-        $(elem).find('br').remove()
+        html$(span).remove()
+        html$(small).remove()
+        html$(elem).find('br').remove()
 
         // we only care about the first bonus type e.g. the stamina bonus of 'the bear'
         // this is enough to find the itemSuffix record, which has all the bonuses
-        const bonusText = $(elem).text().trim().split(',')[0]
+        const bonusText = html$(elem).text().trim().split(',')[0]
 
         // sometimes there are two versions of an item with different bonus values
         // e.g. "+(6 - 7) Stamina"
@@ -283,225 +420,31 @@ const wowheadParseHTML = async (itemId: number, isRandomEnchant: boolean) => {
           }
         }
       })
-  }
-
-  return {
-    phase: phase,
-    validSuffixIds: validSuffixIds
-  }
-}
-
-const wowheadParseItemList = () => {
-  return JSON.parse(stringFromFile(itemListFilePath))
-}
-
-/**
- *
- * convert itemName to the format wowhead uses on url
- *
- * @param itemName
- */
-const wowheadItemName = (itemName: string): string => {
-  // const itemBaseName = (itemName: string): string => {
-  // return lc.common.itemBaseName(itemName).toLowerCase().replace(/,/g, '').replace(/-/g, '').replace(/  /g, ' ').replace(/ /g, '-').replace(/\'/g, '').replace(/\"/g, '')
-  return lc.common
-    .itemBaseName(itemName)
-    .toLowerCase()
-    .replace(/\'/g, '')
-    .replace(/\"/g, '')
-    .replace(/,/g, '')
-    .replace(/ - /g, '-')
-    .replace(/ /g, '-')
-}
-
-/**
- *
- * Return array of itemId's matching itemName. Most itemNames are unique, but
- * there are a handful that aren't.
- *
- * @param itemName
- */
-const itemIdsFromName = (itemName: string): number[] => {
-  const ids: number[] = []
-
-  const itemList = wowheadParseItemList()
-  const itemCount = itemList.length
-  for (let i = 0; i < itemCount; i++) {
-    const item = itemList[i]
-    if (wowheadItemName(itemName) === wowheadItemName(item.name)) {
-      ids.push(item.id)
+    if (validSuffixIds.length > 0) {
+      itemJSON.validSuffixIds = validSuffixIds
     }
   }
 
-  return ids
+  // finally return the object. we're stringify'ing and parsing to strip out any undefined's
+  return JSON.parse(JSON.stringify(itemJSON))
 }
-
-const stringFromGzipFile = (filePath: string): string => {
-  return zlib.gunzipSync(fs.readFileSync(filePath)).toString()
-}
-
-const stringFromFile = (filePath: string): string => {
-  return fs.readFileSync(filePath).toString()
-}
-
-/*
-const readFileAsString = async (filePath: string) => {
-  return await fsPromises.readFile(filePath, 'utf8')
-}
-*/
-
-const isEnchant = (keftenkEquipmentType: string) => {
-  switch (keftenkEquipmentType) {
-    case 'Back Enchant':
-    case 'Chest Enchant':
-    case 'Feet Enchant':
-    case 'Hands Enchant':
-    case 'Head Enchant':
-    case 'Legs Enchant':
-    case 'Shoulder Enchant':
-    case 'Weapon Enchant':
-    case 'Wrist Enchant':
-      return 1
-    default:
-      return 0
-  }
-}
-
-/*
-const itemJSONArrayFromKeftenk = async (csvFilePath: string) => {
-  const itemJSONArray: ItemJSON[] = []
-
-  // parse the csv
-  console.warn('Parsing CSV: ' + csvFilePath)
-  const csvJSON = await csvToJSON().fromFile(csvFilePath)
-
-  // iterate all items in csv
-  for (const csvItem of csvJSON) {
-    const itemJSON = {} as ItemJSON
-
-    // skip empty names
-    if (csvItem.Name === '') {
-      continue
-    }
-
-    console.warn(`- ${csvItem.Name}`)
-
-    // skip enchants
-    if (isEnchant(csvItem['Equipment Type'])) {
-      console.warn(`-- skipping because enchant`)
-      continue
-    }
-
-    // download and parse the wowhead xml (downloads are cached in contrib/)
-    const itemBaseName = lc.common.itemBaseName(csvItem.Name)
-    await wowheadDownloadXML(itemBaseName)
-    const itemWowhead = await wowheadParseXML(itemBaseName)
-    if (itemWowhead === null) {
-      console.error(`-- error parsing wowhead xml`)
-      continue
-    }
-
-    // set the item id
-    itemJSON.id = parseInt(itemWowhead['$'].id, 10)
-    if (!itemJSON.id) {
-      console.error(`-- error item id can't be 0`)
-      continue
-    }
-
-    const itemSuffixType = lc.common.itemSuffixTypeFromText(csvItem.Name)
-    let bonusValue: number
-    switch (itemSuffixType) {
-      case lc.common.ItemSuffixType.ArcaneWrath:
-      case lc.common.ItemSuffixType.NaturesWrath:
-      case lc.common.ItemSuffixType.Sorcery:
-        bonusValue = Number(csvItem['Spell Damage'])
-        break
-      default:
-        bonusValue = 0
-        break
-    }
-
-    if (bonusValue) {
-      // this is a random enchant we will support
-      const itemSuffix = lc.itemSuffix.fromItemNameAndBonusValue(csvItem.Name, bonusValue)
-      itemJSON.suffixId = itemSuffix ? itemSuffix.id : undefined
-    }
-
-    // set the name
-    itemJSON.name = csvItem.Name
-
-    // set icon and download if necessary
-    itemJSON.icon = itemWowhead.icon[0]._.toLowerCase()
-    await wowheadDownloadIcon(itemJSON.icon ? itemJSON.icon : 'classic_temp')
-
-    // fill in the static stuff
-    itemJSON.class = parseInt(itemWowhead['class'][0].$.id, 10)
-    itemJSON.subclass = parseInt(itemWowhead['subclass'][0].$.id, 10)
-    itemJSON.phase = parseInt(csvItem.Phase, 10)
-    itemJSON.location = csvItem.Location
-    itemJSON.slot = parseInt(itemWowhead['inventorySlot'][0].$.id, 10)
-    if (csvItem.Boss !== '') {
-      itemJSON.boss = csvItem.Boss
-    }
-
-    // handle stats
-    itemJSON.stats = {}
-    const stamina = Number(csvItem.Stamina)
-    const intellect = Number(csvItem.Intellect)
-    const spirit = Number(csvItem.Spirit)
-    const spellCrit = Number(csvItem['Spell Critical %'])
-    const spellHit = Number(csvItem['Spell Hit %'])
-    const spellPenetration = Number(csvItem['Spell Penetration'])
-    const spellHealing = 0 // todo
-    const spellDamage = Number(csvItem['Spell Damage'])
-
-    itemJSON.stats.stamina = stamina > 0 ? stamina : undefined
-    itemJSON.stats.intellect = intellect > 0 ? intellect : undefined
-    itemJSON.stats.spirit = spirit > 0 ? spirit : undefined
-    itemJSON.stats.spellHit = spellHit > 0 ? spellHit : undefined
-    itemJSON.stats.spellCrit = spellCrit > 0 ? spellCrit : undefined
-    itemJSON.stats.spellPenetration = spellPenetration > 0 ? spellPenetration : undefined
-    itemJSON.stats.spellHealing = spellHealing > 0 ? spellHealing : undefined
-    if (spellDamage > 0) {
-      if (itemSuffixType === lc.common.ItemSuffixType.ArcaneWrath) {
-        itemJSON.stats.spellDamage = {
-          arcaneDamage: spellDamage
-        }
-      } else if (itemSuffixType === lc.common.ItemSuffixType.NaturesWrath) {
-        itemJSON.stats.spellDamage = {
-          natureDamage: spellDamage
-        }
-      } else {
-        itemJSON.stats.spellDamage = {
-          spellDamage: spellDamage
-        }
-      }
-    }
-
-    if (lc.utils.isEmpty(itemJSON.stats)) {
-      itemJSON.stats = undefined
-    }
-
-    // we made it. add item to array
-    itemJSONArray.push(itemJSON)
-  }
-
-  return itemJSONArray
-}
-*/
 
 export default {
-  download,
   stringFromFile,
   stringFromGzipFile,
+  stringFromComment,
+  atoi,
+  atoa,
   itemIdsFromName,
+  itemIconFromXML,
+  itemNameFromId,
+  itemListFromFile,
+  download,
+  wowheadItemName,
   wowheadDownloadItems,
   wowheadDownloadItemList,
   wowheadDownloadHTML,
   wowheadDownloadXML,
   wowheadDownloadIcon,
-  wowheadParseXML,
-  wowheadParseHTML,
-  wowheadParseItemList,
-  wowheadItemName
+  itemJSONFromId
 }

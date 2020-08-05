@@ -1,5 +1,8 @@
 import common from './common'
 import lc from 'libclassic'
+import cheerio from 'cheerio'
+
+import ItemJSON from 'libclassic/src/interface/ItemJSONNew'
 
 const testItems = [
   `Monster - Spear, Broad Notched`,
@@ -26,9 +29,27 @@ const testItemIdsFromName = () => {
   console.log(``)
 }
 
+const testItemJSONFromId = () => {
+  console.log(`-- rune of perfection`)
+  console.log(common.itemJSONFromId(21565))
+  console.log(`-- neltharions tear`)
+  console.log(common.itemJSONFromId(19379))
+  /*
+  console.log(`-- masters hat`)
+  console.log(common.itemJSONFromId(10250))
+  console.log(`-- masters hat of arcane wrath (+40)`)
+  console.log(common.itemJSONFromId(10250, 1826))
+  console.log(`-- grand marshals demolisher`)
+  console.log(common.itemJSONFromId(23455))
+  */
+
+  //const itemJSON = common.itemJSONFromId(10250) // masters hat (random enchant)
+}
+
 const doIt = async () => {
-  testWowheadItemName()
-  testItemIdsFromName()
+  // testWowheadItemName()
+  // testItemIdsFromName()
+  testItemJSONFromId()
 }
 
 doIt()
