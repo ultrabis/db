@@ -33,9 +33,7 @@ export default interface ItemJSON {
   stamina?: number
   intellect?: number
   spirit?: number
-  health?: number
   hp5?: number
-  mana?: number
   mp5?: number
 
   // defensive stats
@@ -47,12 +45,14 @@ export default interface ItemJSON {
   blockValue?: number
 
   // offensive stats
-  hit?: number
-  crit?: number
+  meleeHit?: number
+  rangedHit?: number
   spellHit?: number
+  meleeCrit?: number
+  rangedCrit?: number
   spellCrit?: number
+
   spellPenetration?: number
-  attackPower?: number
   feralAttackPower?: number
   meleeAttackPower?: number
   rangedAttackPower?: number
@@ -66,13 +66,16 @@ export default interface ItemJSON {
   holyDamage?: number
 
   // weapon statistics
-  dps?: number
-  speed?: number
-  minDmg?: number
-  maxDmg?: number
+  rangedDps?: number
+  meleeDps?: number
+  rangedSpeed?: number
+  meleeSpeed?: number
+  rangedMinDmg?: number
+  meleeMinDmg?: number
+  rangedMaxDmg?: number
+  meleeMaxDmg?: number
 
   // resistances
-  spellResistance?: number
   arcaneResistance?: number
   fireResistance?: number
   frostResistance?: number

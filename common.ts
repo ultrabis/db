@@ -9,6 +9,7 @@ import cheerio from 'cheerio'
 import request from 'requestretry'
 import lc from 'libclassic'
 import ItemJSON from './ItemJSON'
+import TargetType from 'libclassic/dist/enum/TargetType'
 
 const xmlOutputDir = 'wowhead/items'
 const iconOutputDir = 'wowhead/icons'
@@ -293,6 +294,11 @@ const wowheadDownloadItems = async (): Promise<void> => {
     await wowheadDownloadIcon(item.id, item.name)
   }
 }
+/*
+  dropChance?: number
+  faction?: number
+}
+*/
 
 /**
  *
@@ -315,28 +321,82 @@ const itemJSONFromId = (itemId: number, suffixId?: number): ItemJSON | undefined
     itemJSON.suffixId = suffixId
   }
 
-  // parse xml root
+  // parse xml
   const xml$ = cheerio.load(xmlString, { xmlMode: true })
+  const jsonEquipText = xml$('jsonEquip').text()
+  const jsonEquip = JSON.parse(`{ ${jsonEquipText} }`)
   itemJSON.name = xml$('name').text()
   itemJSON.icon = xml$('icon').text()
   itemJSON.class = atoi(xml$('class').attr('id'))
   itemJSON.subclass = atoi(xml$('subclass').attr('id'))
   itemJSON.level = atoi(xml$('level').attr('id'))
   itemJSON.quality = atoi(xml$('quality').attr('id'))
+  //const droppedBy = tt('.whtt-droppedby').text()
 
   // parse xml jsonEquip object
-  const jsonEquipText = xml$('jsonEquip').text()
-  const jsonEquip = JSON.parse(`{ ${jsonEquipText} }`)
   itemJSON.slot = jsonEquip.slotbak
   itemJSON.reqLevel = itoi(jsonEquip.reqlevel, true)
+  itemJSON.durability = itoi(jsonEquip.dura, true)
+
+  itemJSON.strength = itoi(jsonEquip.str, true)
+  itemJSON.agility = itoi(jsonEquip.agi, true)
+  itemJSON.stamina = itoi(jsonEquip.sta, true)
+  itemJSON.intellect = itoi(jsonEquip.int, true)
+  itemJSON.spirit = itoi(jsonEquip.spi, true)
+  itemJSON.hp5 = itoi(jsonEquip.healthrgn, true)
+  itemJSON.mp5 = itoi(jsonEquip.manargn, true)
+
+  itemJSON.armor = itoi(jsonEquip.armor, true)
+  itemJSON.defense = itoi(jsonEquip.def, true)
+  itemJSON.dodge = itoi(jsonEquip.dodgepct, true)
+  itemJSON.parry = itoi(jsonEquip.parrypct, true)
+  itemJSON.blockChance = itoi(jsonEquip.blockpct, true)
+  itemJSON.blockValue = itoi(jsonEquip.blockamount, true)
+
+  itemJSON.meleeHit = itoi(jsonEquip.mlehitpct, true)
+  itemJSON.rangedHit = itoi(jsonEquip.rgdhitpct, true)
   itemJSON.spellHit = itoi(jsonEquip.splhitpct, true)
+  itemJSON.meleeCrit = itoi(jsonEquip.mlecritstrkpct, true)
+  itemJSON.rangedCrit = itoi(jsonEquip.rgdcritstrkpct, true)
+  itemJSON.spellCrit = itoi(jsonEquip.splcritstrkpct, true)
+  itemJSON.feralAttackPower = itoi(jsonEquip.feratkpwr, true)
+  itemJSON.meleeAttackPower = itoi(jsonEquip.mleatkpwr, true)
+  itemJSON.rangedAttackPower = itoi(jsonEquip.rgdatkpwr)
+  itemJSON.spellPenetration = itoi(jsonEquip.splpen, true)
+  itemJSON.spellHealing = itoi(jsonEquip.splheal, true)
   itemJSON.spellDamage = itoi(jsonEquip.splpwr, true)
+  itemJSON.arcaneDamage = itoi(jsonEquip.arcsplpwr, true)
+  itemJSON.fireDamage = itoi(jsonEquip.firsplpwr, true)
+  itemJSON.frostDamage = itoi(jsonEquip.frosplpwr, true)
+  itemJSON.natureDamage = itoi(jsonEquip.natsplpwr, true)
+  itemJSON.shadowDamage = itoi(jsonEquip.shasplpwr, true)
+  itemJSON.holyDamage = itoi(jsonEquip.holsplpwr, true)
+
+  itemJSON.rangedDps = itoi(jsonEquip.rgddps, true)
+  itemJSON.meleeDps = itoi(jsonEquip.mledps, true)
+  itemJSON.rangedSpeed = itoi(jsonEquip.rgdspeed, true)
+  itemJSON.meleeSpeed = itoi(jsonEquip.mlespeed, true)
+  itemJSON.rangedMinDmg = itoi(jsonEquip.rgddmgmin, true)
+  itemJSON.meleeMinDmg = itoi(jsonEquip.mledmgmin, true)
+  itemJSON.rangedMaxDmg = itoi(jsonEquip.rgddmgmax, true)
+  itemJSON.meleeMaxDmg = itoi(jsonEquip.mledmgmax, true)
+
+  itemJSON.arcaneResistance = itoi(jsonEquip.arcres, true)
+  itemJSON.fireResistance = itoi(jsonEquip.firres, true)
+  itemJSON.frostResistance = itoi(jsonEquip.frores, true)
+  itemJSON.natureResistance = itoi(jsonEquip.natres, true)
+  itemJSON.shadowResistance = itoi(jsonEquip.shares, true)
 
   // parse xml tooltip
   const ttText = xml$('htmlTooltip').text()
   const isRandomEnchant = ttText.includes('Random enchant')
   itemJSON.unique = btob(ttText.includes(`>Unique<`))
   itemJSON.bop = btob(stringFromComment(ttText, 'bo') === `Binds when picked up`)
+  if (ttText.includes('Undead and Demons')) {
+    itemJSON.targetMask = lc.common.TargetType.Undead | lc.common.TargetType.Demon
+  } else if (ttText.includes('Increases damage done to Undead')) {
+    itemJSON.targetMask = lc.common.TargetType.Undead
+  }
   const tt = cheerio.load(ttText, { xmlMode: true })
   const droppedBy = tt('.whtt-droppedby').text()
   if (droppedBy && droppedBy.length > 0) {
@@ -353,6 +413,13 @@ const itemJSONFromId = (itemId: number, suffixId?: number): ItemJSON | undefined
       itemJSON.flavor = text
     }
   })
+  const iconHorde = atoa(tt('.icon-horde').text())
+  const iconAlliance = atoa(tt('.icon-alliance').text())
+  if (iconHorde) {
+    itemJSON.pvpRank = lc.common.pvpRankFromText(iconHorde)
+  } else if (iconAlliance) {
+    itemJSON.pvpRank = lc.common.pvpRankFromText(iconAlliance)
+  }
 
   // parse xml json object
   const jsonText = xml$('json').text()
@@ -365,8 +432,19 @@ const itemJSONFromId = (itemId: number, suffixId?: number): ItemJSON | undefined
   const n2 = x.search('Added in content phase')
   itemJSON.phase = Number(x.substr(n2 + 23, 1))
 
+  // faction requirement...grr
+  //const listView = $('script[type="text/javascript"]').get()[0].children[0].data.split('\n')[1].slice(26, -2)
+  //const listView = html$('script[type="text/javascript"]').get()[5].children[0].data
+  // console.log(listView)
+  //const react = listView.substr(listView.search(`"react":`))
+  //const reactArray = JSON.parse(react.substr(0, react.search(`,"`)).split(`:`)[1])
+  // console.log(reactArray)
+  //.children[0].data.split('\n')[1].slice(26, -2)
+
   // parse html suffix id's
-  if (isRandomEnchant) {
+  // - if no suffixId passed in, this is a base item and we need the valid suffixId's
+  // - if suffixId passed in, this is one individual item and we don't need the valid suffixId's
+  if (isRandomEnchant && itemJSON.suffixId) {
     const div = html$('div[class=random-enchantments]')
     const ul = html$('ul')
     const root = html$(div).text() !== `` ? div : ul
@@ -382,8 +460,10 @@ const itemJSONFromId = (itemId: number, suffixId?: number): ItemJSON | undefined
         // the suffix type e.g. "of the Bear"
         const suffixTypeText = html$(span).text().replace(/\./g, '')
 
-        // drop chance
-        itemJSON.dropChance = atoi(html$(small).text(), true)
+        // drop chance of each individual suffix. just ignore it.
+        //const dropChance = html$(small).text()
+        //console.log(`dropChance: ${dropChance}`)
+        //itemJSON.dropChance = atoi(html$(small).text(), true)
 
         // rip out junk so we can grab bonus text
         html$(span).remove()
