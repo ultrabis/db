@@ -30,6 +30,12 @@ const testItemIdsFromName = () => {
 }
 
 const testItemJSONFromId = () => {
+  console.log(`-- masters hat`)
+  console.log(common.itemJSONFromId(10250))
+
+  console.log(`-- masters hat of arcane wrath (+40)`)
+  console.log(common.itemJSONFromId(10250, 1826))
+
   console.log(`-- mark of the champion`)
   console.log(common.itemJSONFromId(23207))
 
@@ -81,12 +87,6 @@ const testItemJSONFromId = () => {
   console.log(`-- grand marshals demolisher`)
   console.log(common.itemJSONFromId(23455))
 
-  console.log(`-- masters hat`)
-  console.log(common.itemJSONFromId(10250))
-
-  console.log(`-- masters hat of arcane wrath (+40)`)
-  console.log(common.itemJSONFromId(10250, 1826))
-
   //const itemJSON = common.itemJSONFromId(10250) // masters hat (random enchant)
 }
 
@@ -99,8 +99,8 @@ const testItemJSONArrayFromItemListFile = () => {
 const doIt = async () => {
   // testWowheadItemName()
   // testItemIdsFromName()
-  // testItemJSONFromId()
-  testItemJSONArrayFromItemListFile()
+  testItemJSONFromId()
+  // testItemJSONArrayFromItemListFile()
 }
 
 doIt()

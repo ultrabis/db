@@ -53,6 +53,7 @@ export default interface ItemJSON {
   spellCrit?: number
 
   spellPenetration?: number
+  attackPower?: number
   feralAttackPower?: number
   meleeAttackPower?: number
   rangedAttackPower?: number
@@ -65,6 +66,9 @@ export default interface ItemJSON {
   shadowDamage?: number
   holyDamage?: number
 
+  // offensive misc
+  beastSlaying?: number
+
   // weapon statistics
   rangedDps?: number
   meleeDps?: number
@@ -74,6 +78,17 @@ export default interface ItemJSON {
   meleeMinDmg?: number
   rangedMaxDmg?: number
   meleeMaxDmg?: number
+
+  // weapon skill
+  axeSkill?: number
+  bowSkill?: number
+  daggerSkill?: number
+  gunSkill?: number
+  maceSkill?: number
+  swordSkill?: number
+  twoHandedAxeSkill?: number
+  twoHandedMaceSkill?: number
+  twoHandedSwordSkill?: number
 
   // resistances
   arcaneResistance?: number
