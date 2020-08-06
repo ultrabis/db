@@ -796,7 +796,11 @@ const itemJSONFromId = (itemId: number, suffixId?: number): ItemJSON | undefined
   return JSON.parse(JSON.stringify(itemJSON))
 }
 
-const itemJSONArrayFromItemListFile = (itemListFilePath: string, outputFile?: string): ItemJSON[] => {
+// const itemJSONArrayFromItemListFile = (itemListFilePath: string, outputFile?: string): ItemJSON[] => {
+const itemJSONArrayFromItemListFile = (
+  itemListFilePath: string,
+  opts?: { outputFile?: string; createSuffixes?: boolean }
+): ItemJSON[] => {
   const itemJSONArray: ItemJSON[] = []
 
   const itemList = jsonFromFile(itemListFilePath)
@@ -807,12 +811,24 @@ const itemJSONArrayFromItemListFile = (itemListFilePath: string, outputFile?: st
     console.log(`-- ${item.name} (${item.id})`)
     const itemJSON = itemJSONFromId(item.id)
     if (itemJSON) {
-      itemJSONArray.push(itemJSON)
+      if (opts && opts.createSuffixes && itemJSON.validSuffixIds && itemJSON.validSuffixIds.length > 0) {
+        // this is a 'base item' for a random enchant, and we opted to create suffix items
+        // instead of adding this item, we'll create and add an item for each of it's valid
+        // suffix id's
+        for (let i = 0; i < itemJSON.validSuffixIds.length; i++) {
+          const _itemJSON = itemJSONFromId(item.id, itemJSON.validSuffixIds[i])
+          if (_itemJSON) {
+            itemJSONArray.push(_itemJSON)
+          }
+        }
+      } else {
+        itemJSONArray.push(itemJSON)
+      }
     }
   }
 
-  if (outputFile) {
-    fs.writeFileSync(outputFile, JSON.stringify(itemJSONArray))
+  if (opts && opts.outputFile) {
+    fs.writeFileSync(opts.outputFile, JSON.stringify(itemJSONArray))
   }
 
   return itemJSONArray
