@@ -1,0 +1,682 @@
+﻿Equipment Type,Slot,Name,Phase,Location,Boss,Stamina,Intellect,Spirit,Spell Damage,Spell Critical %,Spell Hit %,MP5,Spell Penetration,Score,,Alliance,Horde,Starfire,Wrath
+Weapon,,,,,,,,,,,,,,,,,,,
+Weapon,Staff,Amberseal Keeper,2,Blasted Lands,Lord Kazzak,,20,,44,,,12,,47.46,,Yes,Yes,Yes,Yes
+Weapon,Staff,Amethyst War Staff,4,Silithus,Azure Templar,6,9,,34,,,,,35.56,,Yes,Yes,Yes,Yes
+Weapon,1H Mace,Aurastone Hammer,1,Molten Core,Garr,10,10,,25,,,5,,26.73,,Yes,Yes,Yes,Yes
+Weapon,Dagger,Blade of Eternal Darkness,1,Maraudon,Princess Theradras,,,,,,,,,0.00,,Yes,Yes,Yes,Yes
+Weapon,Staff,Blessed Qiraji Acolyte Staff,5,Temple of Ahn'Qiraj,Quest: Imperial Qiraji Regalia,32,33,,76,1,2,,,121.52,,Yes,Yes,Yes,Yes
+Weapon,1H Mace,Blesswind Hammer of Arcane Wrath,1,World Drop,,,,,14,,,,,14.00,,Yes,Yes,Yes,No
+Weapon,1H Mace,Blesswind Hammer of Nature's Wrath,1,World Drop,,,,,14,,,,,14.00,,Yes,Yes,No,Yes
+Weapon,Dagger,Blood-etched Blade,1,Blackrock Depths,Doom'rel,12,,,6,,,,,6.00,,Yes,Yes,Yes,Yes
+Weapon,Dagger,Bloodstrike Dagger of Arcane Wrath,1,Sunken Temple,Shade of Eranikus,,,,17,,,,,17.00,,Yes,Yes,Yes,No
+Weapon,Dagger,Bloodstrike Dagger of Nature's Wrath,1,Sunken Temple,Shade of Eranikus,,,,17,,,,,17.00,,Yes,Yes,No,Yes
+Weapon,Staff,Brimstone Staff,6,Naxxramas,Loatheb,31,30,,113,1,2,,,158.00,,Yes,Yes,Yes,Yes
+Weapon,Dagger,Claw of Chromaggus,3,Blackwing Lair,Chromaggus,7,17,,64,,,4,,66.94,,Yes,Yes,Yes,Yes
+Weapon,Staff,Corrupted Blackwood Staff,4,Silithus,Quest: Into The Maw of Madness,11,,,26,,,,,26.00,,Yes,Yes,Yes,Yes
+Weapon,Staff,Crackling Staff,2,Alterac Valley,,25,16,,15,,,,,17.77,,Yes,Yes,Yes,Yes
+Weapon,Dagger,Dark Whisper Blade,4,Silithus,Chest of Spoils,6,,,19,,,,,19.00,,Yes,Yes,Yes,Yes
+Weapon,Dagger,Demon Blade of Arcane Wrath,1,Sunken Temple,Shade of Eranikus,,,,17,,,,,17.00,,Yes,Yes,Yes,No
+Weapon,Dagger,Demon Blade of Nature's Wrath,1,Sunken Temple,Shade of Eranikus,,,,17,,,,,17.00,,Yes,Yes,No,Yes
+Weapon,Dagger,Dire Nail of Arcane Wrath,1,Sunken Temple,Shade of Eranikus,,,,17,,,,,17.00,,Yes,Yes,Yes,No
+Weapon,Dagger,Dire Nail of Nature's Wrath,1,Sunken Temple,Shade of Eranikus,,,,17,,,,,17.00,,Yes,Yes,No,Yes
+Weapon,1H Mace,Energetic Rod,1,Dire Maul: East,Alzzin the Wildshaper,,5,,14,,,,,14.87,,Yes,Yes,Yes,Yes
+Weapon,Dagger,Fang of the Mystics,2,Azshara,Azuregos,,10,,40,1,,4,,52.11,,Yes,Yes,Yes,Yes
+Weapon,Dagger,Fang of Venoxis,4,Zul'Gurub,High Priest Venoxis,,8,6,24,,,6,,25.38,,Yes,Yes,Yes,Yes
+Weapon,2H Mace,Fist of Cenarius,5,Silithus,Quest: Champion's Battlegear,,,,40,2,,,,60.76,,Yes,Yes,Yes,Yes
+Weapon,2H Mace,Gavel of Qiraji Authority,5,Ruins of Ahn'Qiraj,,15,16,,19,,,6,,21.77,,Yes,Yes,Yes,Yes
+Weapon,2H Mace,Grand Marshal's Demolisher,2,Requires Grand Marshal,,28,27,,27,,,7,,31.67,,Yes,No,Yes,Yes
+Weapon,Dagger,Grand Marshal's Mageblade,2,Requires Grand Marshal,,14,8,,72,1,,,,83.76,,Yes,No,Yes,Yes
+Weapon,Staff,Grand Marshal's Stave,2,Requires Grand Marshal,,41,23,17,71,,,,,74.98,,Yes,No,Yes,Yes
+Weapon,2H Mace,Hammer of Divine Might,6,Scholomance,Kormok,13,15,,27,,,,,29.60,,Yes,Yes,Yes,Yes
+Weapon,2H Mace,Hammer of Ji'Zhi,5,Temple of Ahn'Qiraj,The Prophet Skeram,26,22,,30,,,,,33.81,,Yes,Yes,Yes,Yes
+Weapon,2H Mace,High Warlord's Destroyer,2,Requires High Warlord,,28,27,,27,,,7,,31.67,,No,Yes,Yes,Yes
+Weapon,Dagger,High Warlord's Spellblade,2,Requires High Warlord,,14,8,,72,1,,,,83.76,,No,Yes,Yes,Yes
+Weapon,Staff,High Warlord's War Staff,2,Requires High Warlord,,41,23,17,71,,,,,74.98,,No,Yes,Yes,Yes
+Weapon,Staff,Ironbark Staff,3,Requires The League of Arathor - Exalted,,19,10,,41,2,,,,63.49,,Yes,Yes,Yes,Yes
+Weapon,1H Mace,Jin'do's Hexxer,4,Zul'Gurub,Jin'do the Hexxer,6,9,,,1,,,,11.94,,Yes,Yes,Yes,Yes
+Weapon,Staff,Jin'do's Judgement,4,Zul'Gurub,Jin'do the Hexxer,10,10,,27,,2,14,,58.16,,Yes,Yes,Yes,Yes
+Weapon,2H Mace,Lavastone Hammer,5,Blackrock Depths,Magmus,14,12,,20,,,,,22.08,,Yes,Yes,Yes,Yes
+Weapon,1H Mace,Lok'amir il Romathis,3,Blackwing Lair,Nefarian,10,18,8,84,,,,,87.11,,Yes,Yes,Yes,Yes
+Weapon,Staff,Lord Valthalak's Staff of Command,5,Blackrock Spire,Lord Valthalak,11,10,,30,,1,,,46.45,,Yes,Yes,Yes,Yes
+Weapon,1H Mace,Mace of Unending Life,5,Temple of Ahn'Qiraj,Quest: Mace of Unending Life,10,11,,40,,,,,41.90,,Yes,Yes,Yes,Yes
+Weapon,Staff,Magus Long Staff of Arcane Wrath,1,World Drop,,,,,37,,,,,37.00,,Yes,Yes,Yes,No
+Weapon,Staff,Magus Long Staff of Nature's Wrath,1,World Drop,,,,,37,,,,,37.00,,Yes,Yes,No,Yes
+Weapon,1H Mace,Mastersmith's Hammer,1,Blackrock Spire,Goraluk Anvilcrack,,5,,14,,,,,14.87,,Yes,Yes,Yes,Yes
+Weapon,2H Mace,Maul of the Redeemed Crusader,6,Naxxramas,Four Horsemen,29,24,,35,,,8,,39.15,,Yes,Yes,Yes,Yes
+Weapon,Dagger,Midnight Haze,6,Naxxramas,Grobbulus,20,12,,85,,,,,87.08,,Yes,Yes,Yes,Yes
+Weapon,Dagger,Mindfang,3,Requires The Defilers - Exalted,,8,,,30,1,,,,40.38,,No,Yes,Yes,Yes
+Weapon,Staff,Moonshadow Stave,3,Un'goro Crater,Quest: A Better Ingredient,,,,18,1,,7,,28.38,,Yes,Yes,Yes,Yes
+Weapon,Staff,Rod of the Ogre Magi,1,Dire Maul: North (Tribute),Gordok Tribute,11,14,7,23,1,,,,35.80,,Yes,Yes,Yes,Yes
+Weapon,Dagger,Sageclaw,3,Requires The League of Arathor - Exalted,,8,,,30,1,,,,40.38,,Yes,No,Yes,Yes
+Weapon,Staff,Shadow Wing Focus Staff,3,Blackwing Lair,"Ebonroc, Flamegor, Firemaw",22,40,17,56,,,,,62.92,,Yes,Yes,Yes,Yes
+Weapon,Dagger,Shivsprocket's Shiv,5,Silithus,Quest: The Perfect Poison,13,,,13,,,,,13.00,,Yes,Yes,Yes,Yes
+Weapon,Staff,Solstice Staff of Arcane Wrath,1,World Drop,,,,,37,,,,,37.00,,Yes,Yes,Yes,No
+Weapon,Staff,Solstice Staff of Nature's Wrath,1,World Drop,,,,,37,,,,,37.00,,Yes,Yes,No,Yes
+Weapon,Dagger,Sorcerous Dagger,1,Molten Core,"Sulfuron Harbinger, Lucifron, Gehennas, Shazzrah",8,17,,20,,,,,22.94,,Yes,Yes,Yes,Yes
+Weapon,Staff,Soulseeker,6,Naxxramas,Kel'Thuzad,30,31,,126,2,,,25,152.12,,Yes,Yes,Yes,Yes
+Weapon,Staff,Staff of Balzaphon,6,Stratholme (Scourge Invasion),Balzaphon,8,10,7,29,1,,,,41.11,,Yes,Yes,Yes,Yes
+Weapon,Staff,Staff of Dominance,1,Molten Core,Golemagg the Incinerator,16,37,14,40,1,,,,56.78,,Yes,Yes,Yes,Yes
+Weapon,Staff,Staff of the Qiraji Prophets,5,Temple of Ahn'Qiraj,The Prophet Skeram,21,26,8,56,,,,,60.50,,Yes,Yes,Yes,Yes
+Weapon,Staff,Staff of the Ruins,5,Ruins of Ahn'Qiraj,Ossirian the Unscarred,24,23,14,60,1,1,,,89.08,,Yes,Yes,Yes,Yes
+Weapon,Staff,Staff of the Shadow Flame,3,Blackwing Lair,Nefarian,24,29,18,84,2,,,,109.78,,Yes,Yes,Yes,Yes
+Weapon,1H Mace,Stinger of Ayamiss,5,Ruins of Ahn'Qiraj,Ayamiss the Hunter,9,7,,36,1,,,,47.59,,Yes,Yes,Yes,Yes
+Weapon,Staff,Stoneflower Staff,1,Dire Maul: West,Tendris Warpwood,,24,,,1,,,,14.53,,Yes,Yes,Yes,Yes
+Weapon,1H Mace,The End of Dreams,6,Naxxramas,Grobbulus,18,18,,95,,,7,,98.11,,Yes,Yes,Yes,Yes
+Weapon,Dagger,The Lost Kris of Zedd,5,World Drop,,6,,,14,1,,,,24.38,,Yes,Yes,Yes,Yes
+Weapon,Staff,Trindlehaven Staff,1,Blackrock Spire,Overlord Wyrmthalak,12,25,,14,,,,,18.33,,Yes,Yes,Yes,Yes
+Weapon,Dagger,Verimonde's Last Resort,6,Eastern Plaguelands,Quest: Superior Armaments of Battle,7,8,,19,,,,,20.38,,Yes,Yes,Yes,Yes
+Weapon,Staff,Whiteout Staff,2,Alterac Valley,,25,16,,15,,,,,17.77,,Yes,Yes,Yes,Yes
+Weapon,Dagger,Witchblade,1,Scholomance,Darkmaster Gandling,,8,,14,,,,,15.38,,Yes,Yes,Yes,Yes
+Weapon,Staff,Zulian Ceremonial Staff,4,Zul'Gurub,,13,16,,32,,,,,34.77,,Yes,Yes,Yes,Yes
+,,,,,,,,,,,,,,,,,,,
+Weapon Enchant,,,,,,,,,,,,,,,,,,,
+Weapon Enchant,Enchant,Enchant Weapon - Spell Power,1,,,,,,30,,,,,30.00,,Yes,Yes,Yes,Yes
+Weapon Enchant,Enchant,Enchant Weapon - Mighty Intellect,1,,,,22,,,,,,,3.81,,Yes,Yes,Yes,Yes
+,,,,,,,,,,,,,,,,,,,
+Weapon Attachment,,,,,,,,,,,,,,,,,,,
+Weapon Attachment,Enchant,Blessed Wizard Oil,6,,,,,,60,,,,,60.00,,Yes,Yes,Yes,Yes
+Weapon Attachment,Enchant,Brilliant Wizard Oil,5,,,,,,36,1,,,,46.38,,Yes,Yes,Yes,Yes
+Weapon Attachment,Enchant,Wizard Oil,5,,,,,,24,,,,,24.00,,Yes,Yes,Yes,Yes
+Weapon Attachment,Enchant,Lesser Wizard Oil,5,,,,,,16,,,,,16.00,,Yes,Yes,Yes,Yes
+Weapon Attachment,Enchant,Minor Wizard Oil,5,,,,,,8,,,,,8.00,,Yes,Yes,Yes,Yes
+,,,,,,,,,,,,,,,,,,,
+Off-Hand,,,,,,,,,,,,,,,,,,,
+Off-Hand,Off-Hand,Arachnidian Branch of Arcane Wrath,1,World Drop,,,,,20,,,,,20.00,,Yes,Yes,Yes,No
+Off-Hand,Off-Hand,Arlokk's Hoodoo Stick,4,Zul'Gurub,High Priestess Arlokk,8,,,,1,,,,10.38,,Yes,Yes,Yes,Yes
+Off-Hand,Off-Hand,Astral Orb of Arcane Wrath,1,World Drop,,,,,21,,,,,21.00,,Yes,Yes,Yes,No
+Off-Hand,Off-Hand,Blackwood's Thigh,6,Scholomance (Scourge Invasion),Lord Blackwood,12,13,,9,,,,,11.25,,Yes,Yes,Yes,Yes
+Off-Hand,Off-Hand,Bonecaster's Star of Arcane Wrath,1,World Drop,,,,,21,,,,,21.00,,Yes,Yes,Yes,No
+Off-Hand,Off-Hand,Councillor's Scepter of Arcane Wrath,1,World Drop,,,,,21,,,,,21.00,,Yes,Yes,Yes,No
+Off-Hand,Off-Hand,Drakestone of Arcane Wrath,1,Sunken Temple,"Hazzas, Morphaz, Weaver, Dreamscythe",,,,28,,,,,28.00,,Yes,Yes,Yes,No
+Off-Hand,Off-Hand,Duskwoven Branch of Arcane Wrath,1,World Drop,,,,,20,,,,,20.00,,Yes,Yes,Yes,No
+Off-Hand,Off-Hand,Elegant Scepter of Arcane Wrath,1,World Drop,,,,,21,,,,,21.00,,Yes,Yes,Yes,No
+Off-Hand,Off-Hand,Eternal Rod of Arcane Wrath,1,World Drop,,,,,23,,,,,23.00,,Yes,Yes,Yes,No
+Off-Hand,Off-Hand,Fire Runed Grimoire,1,Molten Core,"Golemagg the Incinerator, Magmadar, Garr, Baron Geddon",12,21,,11,,,,,14.63,,Yes,Yes,Yes,Yes
+Off-Hand,Off-Hand,Flask of Forest Mojo,1,The Hinterlands,Quest: Return to Primal Torntusk,,8,,9,,,,,10.38,,Yes,Yes,Yes,Yes
+Off-Hand,Off-Hand,Gem of Nerubis,6,Naxxramas,Anub'Rekhan,14,10,,25,,,,10,26.73,,Yes,Yes,Yes,Yes
+Off-Hand,Off-Hand,Glowing Black Orb,4,Silithus,Quest: Abyssal Contacts / Abyssal Crests,,10,,12,,,,,13.73,,Yes,Yes,Yes,Yes
+Off-Hand,Off-Hand,Grand Marshal's Tome of Power,2,Requires Grand Marshal,,17,16,,20,,,,,22.77,,Yes,No,Yes,Yes
+Off-Hand,Off-Hand,High Councillor's Scepter of Arcane Wrath,1,World Drop,,,,,23,,,,,23.00,,Yes,Yes,Yes,No
+Off-Hand,Off-Hand,High Warlord's Tome of Destruction,2,Requires High Warlord,,17,16,,20,,,,,22.77,,No,Yes,Yes,Yes
+Off-Hand,Off-Hand,Jin'do's Bag of Whammies,4,Zul'Gurub,Jin'do the Hexxer,8,11,,18,,1,,,34.62,,Yes,Yes,Yes,Yes
+Off-Hand,Off-Hand,Master Dragonslayer's Orb,3,Stormwind City / Ogrimmar,Quest: The Lord of Blackrock,10,14,,28,,,,,30.42,,Yes,Yes,Yes,Yes
+Off-Hand,Off-Hand,Master's Rod of Arcane Wrath,1,World Drop,,,,,23,,,,,23.00,,Yes,Yes,Yes,No
+Off-Hand,Off-Hand,Mystical Orb of Arcane Wrath,1,World Drop,,,,,21,,,,,21.00,,Yes,Yes,Yes,No
+Off-Hand,Off-Hand,Omega Orb,1,Scarlet Monastery,Quest: Compendium of the Fallen,,,,11,,,,,11.00,,Yes,Yes,Yes,Yes
+Off-Hand,Off-Hand,Opulent Scepter of Arcane Wrath,1,World Drop,,,,,20,,,,,20.00,,Yes,Yes,Yes,No
+Off-Hand,Off-Hand,Resplendent Orb of Arcane Wrath,1,World Drop,,,,,21,,,,,21.00,,Yes,Yes,Yes,No
+Off-Hand,Off-Hand,Royal Scepter of Vek'lor,5,Temple of Ahn'Qiraj,Emperor Vek'lor,10,9,,20,1,1,,,46.65,,Yes,Yes,Yes,Yes
+Off-Hand,Off-Hand,Sapphiron's Left Eye,6,Naxxramas,Sapphiron,12,8,,26,1,1,,,52.48,,Yes,Yes,Yes,Yes
+Off-Hand,Off-Hand,Scepter of Interminable Focus,6,Stratholme,Sothos and Jarien's Herilooms,,,,9,1,1,,,34.10,,Yes,Yes,Yes,Yes
+Off-Hand,Off-Hand,Spirit of Aquementas,1,Un'goro Crater,Quest: It's Dangerous to Go Alone,,,,20,,,,,20.00,,Yes,Yes,Yes,Yes
+Off-Hand,Off-Hand,Talon of Furious Concentration,5,Ruins of Ahn'Qiraj,Moam,8,8,,21,1,,,,32.76,,Yes,Yes,Yes,Yes
+Off-Hand,Off-Hand,Therazane's Touch,2,Alterac Valley,,,,,33,,,,,33.00,,Yes,Yes,Yes,Yes
+Off-Hand,Off-Hand,Tome of Arcane Domination,2,Alterac Valley,,,,,34,,,3,,34.00,,Yes,Yes,Yes,No
+Off-Hand,Off-Hand,Tome of the Lost,6,Blackrock Spire,General Drakkisath,6,7,,18,,,,,19.21,,Yes,Yes,Yes,Yes
+Off-Hand,Off-Hand,Trance Stone,4,,"Emeriss, Taerar, Lethon, Ysondre",9,8,8,25,,,,,26.38,,Yes,Yes,Yes,Yes
+,,,,,,,,,,,,,,,,,,,
+Idol,,,,,,,,,,,,,,,,,,,
+Idol,Idol,Idol of the Moon,6,World Drop,,,,,,,,,,0.00,,Yes,Yes,Yes,Yes
+,,,,,,,,,,,,,,,,,,,
+Head,,,,,,,,,,,,,,,,,,,
+Head,Head,Adventurer's Bandana of Arcane Wrath,1,World Drop,,,,,40,,,,,40.00,,Yes,Yes,Yes,No
+Head,Head,Adventurer's Bandana of Nature's Wrath,1,World Drop,,,,,40,,,,,40.00,,Yes,Yes,No,Yes
+Head,Head,Arachnidian Circlet of Arcane Wrath,1,World Drop,,,,,36,,,,,36.00,,Yes,Yes,Yes,No
+Head,Head,Bloodvine Goggles,4,Engineering (300),,,,,,1,2,9,,39.81,,Yes,Yes,Yes,Yes
+Head,Head,Bonecaster's Crown of Arcane Wrath,1,World Drop,,,,,37,,,,,37.00,,Yes,Yes,Yes,No
+Head,Head,Cap of the Scarlet Savant,1,Winterspring,Quest: Cap of the Scarlet Savant,17,20,,,2,,,,24.22,,Yes,Yes,Yes,Yes
+Head,Head,Celestial Crown of Arcane Wrath,1,World Drop,,,,,40,,,,,40.00,,Yes,Yes,Yes,No
+Head,Head,Cenarion Helm,1,Molten Core,Garr,26,28,13,12,,,,,16.84,,Yes,Yes,Yes,Yes
+Head,Head,Champion's Dragonhide Headguard,2,Requires Champion,,16,16,8,18,,,,,20.77,,No,Yes,Yes,Yes
+Head,Head,Crimson Felt Hat,1,Stratholme,Magistrate Barthilas,8,8,8,30,,,,,31.38,,Yes,Yes,Yes,Yes
+Head,Head,Crown of the Ogre King,1,Dire Maul: North,King Gordok,16,18,11,,1,,,,13.49,,Yes,Yes,Yes,Yes
+Head,Head,Deviate Growth Cap,4,World Drop,Lethon,16,14,,,1,,8,,12.80,,Yes,Yes,Yes,Yes
+Head,Head,Dragonskin Cowl,5,Blackrock Spire,Gyth,12,15,,18,,,,,20.60,,Yes,Yes,Yes,Yes
+Head,Head,Dreamweave Circlet,1,Tailoring (250),,,10,,21,,,,,22.73,,Yes,Yes,Yes,Yes
+Head,Head,Duskwoven Turban of Arcane Wrath,1,World Drop,,,,,31,,,,,31.00,,Yes,Yes,Yes,No
+Head,Head,Dustwind Turban,5,Ruins of Ahn'Qiraj,Moam,18,29,15,,1,,,,15.40,,Yes,Yes,Yes,Yes
+Head,Head,Elegant Circlet of Arcane Wrath,1,World Drop,,,,,37,,,,,37.00,,Yes,Yes,Yes,No
+Head,Head,Eternal Crown of Arcane Wrath,1,World Drop,,,,,41,,,,,41.00,,Yes,Yes,Yes,No
+Head,Head,Feralheart Cowl,5,Ironforge / Ogrimmar,Quest: Saving the Best for Last,17,17,16,16,,,,,18.94,,Yes,Yes,Yes,Yes
+Head,Head,Field Marshal's Dragonhide Helmet,2,Requires Field Marshal,,19,15,7,18,1,,,,30.98,,Yes,No,Yes,Yes
+Head,Head,Genesis Helm,5,Temple of Ahn'Qiraj,Quest: Genesis Helm,22,22,12,27,,,,,30.81,,Yes,Yes,Yes,Yes
+Head,Head,Glacial Headdress,6,Naxxramas,Gothik the Harvester,20,21,,18,,,,,21.63,,Yes,Yes,Yes,Yes
+Head,Head,Grand Crown of Arcane Wrath,1,World Drop,,,,,40,,,,,40.00,,Yes,Yes,Yes,No
+Head,Head,Grand Crown of Nature's Wrath,1,World Drop,,,,,40,,,,,40.00,,Yes,Yes,No,Yes
+Head,Head,Helm of the New Moon,5,Stratholme,Canon Master Willey,14,13,12,23,,,,,25.25,,Yes,Yes,Yes,Yes
+Head,Head,High Councillor's Circlet of Arcane Wrath,1,World Drop,,,,,40,,,,,40.00,,Yes,Yes,Yes,No
+Head,Head,Insightful Hood,1,Dire Maul: North,Cho'Rush the Observer,12,15,9,,1,,,,12.98,,Yes,Yes,Yes,Yes
+Head,Head,Jadefire Cap of Arcane Wrath,1,World Drop,,,,,36,,,,,36.00,,Yes,Yes,Yes,No
+Head,Head,Jadefire Cap of Nature's Wrath,1,World Drop,,,,,36,,,,,36.00,,Yes,Yes,No,Yes
+Head,Head,Lieutenant Commander's Dragonhide Headguard,2,Requires Lieutenant Commander,,16,16,8,18,,,,,20.77,,Yes,No,Yes,Yes
+Head,Head,Master's Hat of Arcane Wrath,1,World Drop,,,,,40,,,,,40.00,,Yes,Yes,Yes,No
+Head,Head,Mighty Helmet of Arcane Wrath,1,World Drop,,,,,40,,,,,40.00,,Yes,Yes,Yes,No
+Head,Head,Mighty Helmet of Nature's Wrath,1,World Drop,,,,,40,,,,,40.00,,Yes,Yes,No,Yes
+Head,Head,"Mish'undare, Circlet of the Mind Flayer",3,Blackwing Lair,Nefarian,15,24,9,35,2,,,,59.91,,Yes,Yes,Yes,Yes
+Head,Head,Mystical Headwrap of Arcane Wrath,1,World Drop,,,,,36,,,,,36.00,,Yes,Yes,Yes,No
+Head,Head,Nightshade Helmet of Arcane Wrath,1,World Drop,,,,,40,,,,,40.00,,Yes,Yes,Yes,No
+Head,Head,Nightshade Helmet of Nature's Wrath,1,World Drop,,,,,40,,,,,40.00,,Yes,Yes,No,Yes
+Head,Head,Peerless Headband of Arcane Wrath,1,World Drop,,,,,37,,,,,37.00,,Yes,Yes,Yes,No
+Head,Head,Peerless Headband of Nature's Wrath,1,World Drop,,,,,37,,,,,37.00,,Yes,Yes,No,Yes
+Head,Head,Praetorian Coif of Arcane Wrath,1,World Drop,,,,,36,,,,,36.00,,Yes,Yes,Yes,No
+Head,Head,Praetorian Coif of Nature's Wrath,1,World Drop,,,,,36,,,,,36.00,,Yes,Yes,No,Yes
+Head,Head,Preceptor's Hat,6,Naxxramas,Heigan the Unclean,18,24,,51,,,,,55.15,,Yes,Yes,Yes,Yes
+Head,Head,Resplendent Circlet of Arcane Wrath,1,World Drop,,,,,40,,,,,40.00,,Yes,Yes,Yes,No
+Head,Head,Spellpower Goggles Xtreme,1,Engineering (215),,,,,21,,,,,21.00,,Yes,Yes,Yes,Yes
+Head,Head,Spellpower Goggles Xtreme Plus,1,Engineering (270),,,,,27,,,,,27.00,,Yes,Yes,Yes,Yes
+Head,Head,Spellweaver's Turban,5,Blackrock Spire,General Drakkisath,,9,,36,,1,,,52.27,,Yes,Yes,Yes,Yes
+Head,Head,Stormrage Cover,1,Onyxia's Lair,Onyxia,20,31,12,,,,6,,5.36,,Yes,Yes,Yes,Yes
+Head,Head,Supreme Crown of Arcane Wrath,1,World Drop,,,,,41,,,,,41.00,,Yes,Yes,Yes,No
+Head,Head,Supreme Crown of Nature's Wrath,1,World Drop,,,,,41,,,,,41.00,,Yes,Yes,No,Yes
+Head,Head,Swashbuckler's Eyepatch of Arcane Wrath,1,World Drop,,,,,36,,,,,36.00,,Yes,Yes,Yes,No
+Head,Head,Swashbuckler's Eyepatch of Nature's Wrath,1,World Drop,,,,,36,,,,,36.00,,Yes,Yes,No,Yes
+Head,Head,Sylvan Crown,6,Tailoring,,10,,,18,,,,,18.00,,Yes,Yes,Yes,Yes
+Head,Head,The Hexxer's Cover,4,Zul'Gurub,Jin'do the Hexxer,10,10,,41,,,,,42.73,,Yes,Yes,Yes,Yes
+Head,Head,Wanderer's Hat of Arcane Wrath,1,World Drop,,,,,36,,,,,36.00,,Yes,Yes,Yes,No
+Head,Head,Wanderer's Hat of Nature's Wrath,1,World Drop,,,,,36,,,,,36.00,,Yes,Yes,No,Yes
+Head,Head,Warlord's Dragonhide Helmet,2,Requires Warlord,,19,15,7,18,1,,,,30.98,,No,Yes,Yes,Yes
+,,,,,,,,,,,,,,,,,,,
+Head Enchant,,,,,,,,,,,,,,,,,,,
+Head Enchant,Enchant,Arcanum of Focus,1,,,,,,8,,,,,8.00,,Yes,Yes,Yes,Yes
+Head Enchant,Enchant,Animists's Caress,4,,,,10,,,,,,,1.73,,Yes,Yes,Yes,Yes
+Head Enchant,Enchant,Lesser Arcanum of Voracity,1,,,,8,,,,,,,1.38,,Yes,Yes,Yes,Yes
+,,,,,,,,,,,,,,,,,,,
+Neck,,,,,,,,,,,,,,,,,,,
+Neck,Neck,Amulet of the Dawn,6,Eastern Plaguelands,Quest: Epic Armaments of Battle,13,13,,15,,,,,17.25,,Yes,Yes,Yes,Yes
+Neck,Neck,Amulet of Vek'nilash,5,Temple of Ahn'Qiraj,Emperor Vek'nilash,9,5,,27,1,,,,38.25,,Yes,Yes,Yes,Yes
+Neck,Neck,Barbed Thorn Necklace,1,Dire Maul,"Warpwood Crusher, Guardian, Treant, Stomper, Tangler",7,6,,17,,,,,18.04,,Yes,Yes,No,Yes
+Neck,Neck,Beads of Ogre Mojo,5,Dire Maul: North,Quest: Falrin's Vendetta,12,7,,13,,,,,14.21,,Yes,Yes,Yes,Yes
+Neck,Neck,Chains of the Lich,6,Stratholme (Scourge Invasion),Balzaphon,,,,22,,,,,22.00,,Yes,Yes,Yes,Yes
+Neck,Neck,Charm of the Shifting Sands,5,Ruins of Ahn'Qiraj,Quest: The Fall of Ossirian,9,12,,25,,,,,27.08,,Yes,Yes,Yes,Yes
+Neck,Neck,Choker of Enlightenment,1,Molten Core,Lucifron,9,10,10,18,,,,,19.73,,Yes,Yes,Yes,Yes
+Neck,Neck,Choker of the Fire Lord,1,Molten Core,Ragnaros,7,7,,34,,,,,35.21,,Yes,Yes,Yes,Yes
+Neck,Neck,Diana's Pearl Necklace,5,Stratholme,Cannon Master Willey,8,8,,9,,1,,,25.10,,Yes,Yes,Yes,Yes
+Neck,Neck,Gem of Trapped Innocents,6,Naxxramas,Kel'Thuzad,9,7,,15,2,,,,36.97,,Yes,Yes,Yes,Yes
+Neck,Neck,Jeklik's Opaline Talisman,4,Zul'Gurub,High Priestess Jeklik,,,,22,,,3,,22.00,,Yes,Yes,Yes,Yes
+Neck,Neck,Malice Stone Pendant,6,Naxxramas,Grand Widow Faerlina,9,8,,28,,,,13,29.38,,Yes,Yes,Yes,Yes
+Neck,Neck,Necklace of Purity,5,Temple of Ahn'Qiraj,Battleguard Sartura,9,13,,8,,,,,10.25,,Yes,Yes,Yes,Yes
+Neck,Neck,Orb of the Darkmoon,3,Darkmoon Faire,Quest: 1200 Tickets - Orb of the Darkmoon,11,,8,22,,,,,22.00,,Yes,Yes,Yes,Yes
+Neck,Neck,Pristine Enchanted South Seas Kelp,4,Stranglethorn Vale,Quest: Pristine Enchanted South Seas Kelp,10,10,9,,2,,,,22.49,,Yes,Yes,Yes,Yes
+Neck,Neck,Scorn's Icy Choker,6,Scarlet Monastery Graveyard (Scourge Invasion),Scorn,5,6,,7,,,,,8.04,,Yes,Yes,Yes,Yes
+Neck,Neck,Soul Corrupter's Necklace,4,Zul'Gurub,Hakkar,10,16,8,,,1,,,17.48,,Yes,Yes,Yes,Yes
+Neck,Neck,Star of Mystaria,1,Stratholme,Balnazzar,9,9,8,,,1,,,16.27,,Yes,Yes,Yes,Yes
+Neck,Neck,Tempest Talisman,1,Dire Maul: East,Hydrospawn,,7,6,,1,,,,11.59,,Yes,Yes,Yes,Yes
+,,,,,,,,,,,,,,,,,,,
+Shoulders,,,,,,,,,,,,,,,,,,,
+Shoulders,Shoulders,Abyssal Cloth Amice of Restoration,4,Silithus,Baron Kazum,13,,,,,1,5,,14.72,,Yes,Yes,Yes,Yes
+Shoulders,Shoulders,Abyssal Cloth Amice of Sorcery,4,Silithus,Baron Kazum,13,13,,15,,1,,,31.96,,Yes,Yes,Yes,Yes
+Shoulders,Shoulders,Abyssal Leather Shoulders of Sorcery,4,Silithus,High Marshal Whirlaxis,13,13,,15,,,,,17.25,,Yes,Yes,Yes,Yes
+Shoulders,Shoulders,Adventurer's Shoulders of Nature's Wrath,1,World Drop,,,,,30,,,,,30.00,,Yes,Yes,No,Yes
+Shoulders,Shoulders,Arachnidian Pauldrons of Arcane Wrath,1,World Drop,,,,,24,,,,,24.00,,Yes,Yes,Yes,No
+Shoulders,Shoulders,Atal'ai Spaulders of Nature's Wrath,1,Sunken Temple,"Zolo, Gasher, Mijan, Hukku, Loro, Zul'Lor",,,,29,,,,,29.00,,Yes,Yes,No,Yes
+Shoulders,Shoulders,Bonecaster's Spaulders of Arcane Wrath,1,World Drop,,,,,26,,,,,26.00,,Yes,Yes,Yes,No
+Shoulders,Shoulders,Burial Shawl,1,Scholomance,,,16,,20,,,,,22.77,,Yes,Yes,Yes,Yes
+Shoulders,Shoulders,Celestial Pauldrons of Arcane Wrath,1,World Drop,,,,,29,,,,,29.00,,Yes,Yes,Yes,No
+Shoulders,Shoulders,Cenarion Spaulders,1,Molten Core,Baron Geddon,13,20,10,,,,4,,3.46,,Yes,Yes,Yes,Yes
+Shoulders,Shoulders,Champion's Dragonhide Shoulders,2,Requires Champion,,12,12,6,14,,,,,16.08,,No,Yes,Yes,Yes
+Shoulders,Shoulders,Councillor's Shoulders of Arcane Wrath,1,World Drop,,,,,26,,,,,26.00,,Yes,Yes,Yes,No
+Shoulders,Shoulders,Cyclone Spaulders,1,Dire Maul: North (Tribute),Gordok Mastiff,11,11,9,14,,,,,15.90,,Yes,Yes,Yes,Yes
+Shoulders,Shoulders,Duskwoven Amice of Arcane Wrath,1,World Drop,,,,,23,,,,,23.00,,Yes,Yes,Yes,No
+Shoulders,Shoulders,Elder Wizard's Mantle,1,World Drop,,,20,,11,,,,,14.46,,Yes,Yes,Yes,Yes
+Shoulders,Shoulders,Elegant Mantle of Arcane Wrath,1,World Drop,,,,,29,,,,,29.00,,Yes,Yes,Yes,No
+Shoulders,Shoulders,Eternal Spaulders of Arcane Wrath,1,World Drop,,,,,30,,,,,30.00,,Yes,Yes,Yes,No
+Shoulders,Shoulders,Feralheart Spaulders,5,Ironforge / Ogrimmar,Quest: Anthion's Parting Words,9,16,8,6,,,2,,8.77,,Yes,Yes,Yes,Yes
+Shoulders,Shoulders,Field Marshal's Dragonhide Spaulders,2,Requires Field Marshal,,13,11,11,18,,,,,19.90,,Yes,No,Yes,Yes
+Shoulders,Shoulders,Genesis Shoulderpads,5,Temple of Ahn'Qiraj,Quest: Genesis Shoulderpads,15,13,6,20,,,3,,22.25,,Yes,Yes,Yes,Yes
+Shoulders,Shoulders,Glacial Mantle,6,Naxxramas,Grobbulus,18,,,16,,,,,16.00,,Yes,Yes,Yes,Yes
+Shoulders,Shoulders,Grand Shoulders of Nature's Wrath,1,World Drop,,,,,29,,,,,29.00,,Yes,Yes,No,Yes
+Shoulders,Shoulders,High Councillor's Mantle of Arcane Wrath,1,World Drop,,,,,30,,,,,30.00,,Yes,Yes,Yes,No
+Shoulders,Shoulders,Jadefire Epaulets of Nature's Wrath,1,World Drop,,,,,24,,,,,24.00,,Yes,Yes,No,Yes
+Shoulders,Shoulders,Kentic Amice,1,Blackrock Depths,High Interrogator Gerstahn,5,13,6,14,,,,,16.25,,Yes,Yes,Yes,Yes
+Shoulders,Shoulders,Lieutenant Commander's Dragonhide Shoulders,2,Requires Lieutenant Commander,,12,12,6,14,,,,,16.08,,Yes,No,Yes,Yes
+Shoulders,Shoulders,Mantle of Maz'Nadir,5,Ruins of Ahn'Qiraj,Moam,11,15,7,21,,,,,23.60,,Yes,Yes,Yes,Yes
+Shoulders,Shoulders,Mantle of the Blackwing Cabal,3,Blackwing Lair,Razorgore the Untamed,12,16,,34,,,,,36.77,,Yes,Yes,Yes,Yes
+Shoulders,Shoulders,Master's Mantle of Arcane Wrath,1,World Drop,,,,,30,,,,,30.00,,Yes,Yes,Yes,No
+Shoulders,Shoulders,Mighty Spaulders of Nature's Wrath,1,World Drop,,,,,30,,,,,30.00,,Yes,Yes,No,Yes
+Shoulders,Shoulders,Mystical Mantle of Arcane Wrath,1,World Drop,,,,,26,,,,,26.00,,Yes,Yes,Yes,No
+Shoulders,Shoulders,Nightshade Spaulders of Nature's Wrath,1,World Drop,,,,,29,,,,,29.00,,Yes,Yes,No,Yes
+Shoulders,Shoulders,Peerless Shoulders of Nature's Wrath,1,World Drop,,,,,29,,,,,29.00,,Yes,Yes,No,Yes
+Shoulders,Shoulders,Praetorian Pauldrons of Nature's Wrath,1,World Drop,,,,,24,,,,,24.00,,Yes,Yes,No,Yes
+Shoulders,Shoulders,Resplendent Epaulets of Arcane Wrath,1,World Drop,,,,,30,,,,,30.00,,Yes,Yes,Yes,No
+Shoulders,Shoulders,Rime Covered Mantle,6,Naxxramas,Gluth,12,12,,39,1,,,,51.46,,Yes,Yes,Yes,Yes
+Shoulders,Shoulders,Shroud of the Nathrezim,1,Stratholme,Balnazaar,,16,10,,1,,,,13.15,,Yes,Yes,Yes,Yes
+Shoulders,Shoulders,Splinthide Shoulders,1,Blackrock Depths,Eviscerator,10,10,,9,,,,,10.73,,Yes,Yes,Yes,Yes
+Shoulders,Shoulders,Stormrage Pauldrons,3,Blackwing Lair,Chromaggus,14,21,10,,,,4,,3.63,,Yes,Yes,Yes,Yes
+Shoulders,Shoulders,Sunderseer Mantle,1,Blackrock Spire,Crystal Fang,4,17,11,8,,,,,10.94,,Yes,Yes,Yes,Yes
+Shoulders,Shoulders,Supreme Shoulders of Nature's Wrath,1,World Drop,,,,,30,,,,,30.00,,Yes,Yes,No,Yes
+Shoulders,Shoulders,Swashbuckler's Shoulderpads of Nature's Wrath,1,World Drop,,,,,26,,,,,26.00,,Yes,Yes,No,Yes
+Shoulders,Shoulders,Sylvan Shoulders,6,Tailoring,,18,,,7,,,,,7.00,,Yes,Yes,Yes,Yes
+Shoulders,Shoulders,Thuzadin Mantle,5,Stratholme,Baron Rivendare,11,18,,12,,,,,15.11,,Yes,Yes,Yes,Yes
+Shoulders,Shoulders,Wanderer's Shoulders of Nature's Wrath,1,World Drop,,,,,26,,,,,26.00,,Yes,Yes,No,Yes
+Shoulders,Shoulders,Warlord's Dragonhide Epaulets,2,Requires Warlord,,13,11,11,18,,,,,19.90,,No,Yes,Yes,Yes
+,,,,,,,,,,,,,,,,,,,
+Shoulder Enchant,,,,,,,,,,,,,,,,,,,
+Shoulder Enchant,Enchant,Power of the Scourge,6,,,,,,15,1,,,,25.38,,Yes,Yes,Yes,Yes
+Shoulder Enchant,Enchant,Zandalar Signet of Mojo,4,,,,,,18,,,,,18.00,,Yes,Yes,Yes,Yes
+Shoulder Enchant,Enchant,Resilience of the Scourge,6,,,,,,11,,,,,11.00,,Yes,Yes,Yes,Yes
+,,,,,,,,,,,,,,,,,,,
+Chest,,,,,,,,,,,,,,,,,,,
+Chest,Chest,Adventurer's Tunic of Nature's Wrath,1,World Drop,,,,,41,,,,,41.00,,Yes,Yes,No,Yes
+Chest,Chest,Alanna's Embrace,1,Scholomance,Ras Frostwhisper,20,20,20,20,,,,,23.46,,Yes,Yes,Yes,Yes
+Chest,Chest,Arachnidian Armor of Arcane Wrath,1,World Drop,,,,,36,,,,,36.00,,Yes,Yes,Yes,No
+Chest,Chest,Arachnidian Robes of Arcane Wrath,1,World Drop,,,,,36,,,,,36.00,,Yes,Yes,Yes,No
+Chest,Chest,Bloodvine Vest,4,Tailoring,,,13,,27,,2,,,58.68,,Yes,Yes,Yes,Yes
+Chest,Chest,Bonecaster's Shroud of Arcane Wrath,1,World Drop,,,,,37,,,,,37.00,,Yes,Yes,Yes,No
+Chest,Chest,Bonecaster's Vest of Arcane Wrath,1,World Drop,,,,,37,,,,,37.00,,Yes,Yes,Yes,No
+Chest,Chest,Celestial Silk Robes of Arcane Wrath,1,World Drop,,,,,40,,,,,40.00,,Yes,Yes,Yes,No
+Chest,Chest,Celestial Tunic of Arcane Wrath,1,World Drop,,,,,40,,,,,40.00,,Yes,Yes,Yes,No
+Chest,Chest,Cenarion Vestments,1,Molten Core,Golemagg the Incinerator,23,24,16,,,,3,,4.15,,Yes,Yes,Yes,Yes
+Chest,Chest,Chestplate of Tranquility,1,Dire Maul: North,Prince Tortheldrin,10,20,6,23,,,,,26.46,,Yes,Yes,Yes,Yes
+Chest,Chest,Councillor's Robes of Arcane Wrath,1,World Drop,,,,,37,,,,,37.00,,Yes,Yes,Yes,No
+Chest,Chest,Councillor's Tunic of Arcane Wrath,1,World Drop,,,,,37,,,,,37.00,,Yes,Yes,Yes,No
+Chest,Chest,Crystal Webbed Robe,6,Naxxramas,Maexxna,25,19,,53,,,,,56.29,,Yes,Yes,Yes,Yes
+Chest,Head,Dreamweave Vest,1,Tailoring (225),,,9,,18,,,,,19.56,,Yes,Yes,Yes,Yes
+Chest,Chest,Duskwoven Robe of Arcane Wrath,1,World Drop,,,,,36,,,,,36.00,,Yes,Yes,Yes,No
+Chest,Chest,Duskwoven Tunic of Arcane Wrath,1,World Drop,,,,,36,,,,,36.00,,Yes,Yes,Yes,No
+Chest,Chest,Earthpower Vest,5,Silithus,Quest: Veteran's Battlegear,,22,,25,1,,,,39.19,,Yes,Yes,Yes,Yes
+Chest,Chest,Elegant Robes of Arcane Wrath,1,World Drop,,,,,40,,,,,40.00,,Yes,Yes,Yes,No
+Chest,Chest,Elegant Tunic of Arcane Wrath,1,World Drop,,,,,40,,,,,40.00,,Yes,Yes,Yes,No
+Chest,Chest,Eternal Chestguard of Arcane Wrath,1,World Drop,,,,,41,,,,,41.00,,Yes,Yes,Yes,No
+Chest,Chest,Eternal Wraps of Arcane Wrath,1,World Drop,,,,,41,,,,,41.00,,Yes,Yes,Yes,No
+Chest,Chest,Feralheart Vest,5,Ironforge / Ogrimmar,Quest: Saving the Best for Last,17,17,14,12,,,4,,14.94,,Yes,Yes,Yes,Yes
+Chest,Chest,Field Marshal's Dragonhide Breastplate,2,Requires Field Marshal,,19,13,,21,1,,,,33.63,,Yes,No,Yes,Yes
+Chest,Chest,Flarecore Robe,3,Tailoring,,35,,,25,,,,,25.00,,Yes,Yes,Yes,Yes
+Chest,Chest,Flowing Ritual Robes,4,Zul'Gurub,High Priestess Mar'li,15,23,24,22,,,,,25.98,,Yes,Yes,Yes,Yes
+Chest,Chest,Garb of Royal Ascension,5,Temple of Ahn'Qiraj,Trash Drop,21,,,30,,2,,,59.43,,Yes,Yes,Yes,Yes
+Chest,Chest,Genesis Vest,5,Temple of Ahn'Qiraj,Quest: Genesis Vest,24,24,11,28,1,,,,42.53,,Yes,Yes,Yes,Yes
+Chest,Chest,Glacial Vest,6,Naxxramas,Quest: Glacial Vest,26,,,21,,,,,21.00,,Yes,Yes,Yes,Yes
+Chest,Chest,Grand Breastplate of Nature's Wrath,1,World Drop,,,,,40,,,,,40.00,,Yes,Yes,No,Yes
+Chest,Chest,High Councillor's Robe of Arcane Wrath,1,World Drop,,,,,41,,,,,41.00,,Yes,Yes,Yes,No
+Chest,Chest,High Councillor's Tunic of Arcane Wrath,1,World Drop,,,,,41,,,,,41.00,,Yes,Yes,Yes,No
+Chest,Chest,Jade Inlaid Vestments,4,World Drop,Ysondre,16,18,8,44,,,,,47.11,,Yes,Yes,Yes,Yes
+Chest,Chest,Jadefire Chestguard of Nature's Wrath,1,World Drop,,,,,36,,,,,36.00,,Yes,Yes,No,Yes
+Chest,Chest,Knight-Captain's Dragonhide Chestpiece,2,Requires Knight-Captain,,13,12,,15,,,,,17.08,,Yes,No,Yes,Yes
+Chest,Chest,Legionnaire's Dragonhide Chestpiece,2,Requires Legionnaire,,13,12,,15,,,,,17.08,,No,Yes,Yes,Yes
+Chest,Chest,Master's Robe of Arcane Wrath,1,World Drop,,,,,41,,,,,41.00,,Yes,Yes,Yes,No
+Chest,Chest,Master's Vest of Arcane Wrath,1,World Drop,,,,,41,,,,,41.00,,Yes,Yes,Yes,No
+Chest,Chest,Mighty Tunic of Nature's Wrath,1,World Drop,,,,,41,,,,,41.00,,Yes,Yes,No,Yes
+Chest,Chest,Mystical Armor of Arcane Wrath,1,World Drop,,,,,37,,,,,37.00,,Yes,Yes,Yes,No
+Chest,Chest,Mystical Robe of Arcane Wrath,1,World Drop,,,,,37,,,,,37.00,,Yes,Yes,Yes,No
+Chest,Chest,Necropile Robe,1,Scholomance,,22,12,12,8,,,,,10.08,,Yes,Yes,Yes,Yes
+Chest,Chest,Nightshade Tunic of Nature's Wrath,1,World Drop,,,,,40,,,,,40.00,,Yes,Yes,No,Yes
+Chest,Chest,Peerless Armor of Nature's Wrath,1,World Drop,,,,,40,,,,,40.00,,Yes,Yes,No,Yes
+Chest,Chest,Praetorian Padded Armor of Nature's Wrath,1,World Drop,,,,,36,,,,,36.00,,Yes,Yes,No,Yes
+Chest,Chest,Resplendent Robes of Arcane Wrath,1,World Drop,,,,,40,,,,,40.00,,Yes,Yes,Yes,No
+Chest,Chest,Resplendent Tunic of Arcane Wrath,1,World Drop,,,,,40,,,,,40.00,,Yes,Yes,Yes,No
+Chest,Chest,Robe of Everlasting Night,1,Dire Maul: West,Immol'thar,11,13,5,27,,,,,29.25,,Yes,Yes,Yes,Yes
+Chest,Chest,Robe of the Magi,1,World Drop,,,6,5,22,,,,,23.04,,Yes,Yes,Yes,Yes
+Chest,Chest,Robe of Undead Cleansing,6,World Drop (Scourge Invasion),Shadow of Doom,12,13,,48,,,,,50.25,,Yes,Yes,Yes,Yes
+Chest,Chest,Robe of Volatile Power,1,Molten Core,"Sulfuron Harbinger, Lucifron, Gehennas, Shazzrah",10,15,10,23,2,,,,46.36,,Yes,Yes,Yes,Yes
+Chest,Chest,Robes of the Battleguard,5,Temple of Ahn'Qiraj,Battleguard Sartura,23,17,8,36,,,,20,38.94,,Yes,Yes,Yes,Yes
+Chest,Chest,Robes of the Royal Crown,1,Blackrock Depths,Emperor Dagran Thaurissan,19,12,10,18,,,,,20.08,,Yes,Yes,Yes,Yes
+Chest,Chest,Stormrage Chestguard,3,Blackwing Lair,Nefarian,20,25,17,,1,,,,14.71,,Yes,Yes,Yes,Yes
+Chest,Chest,Supreme Breastplate of Nature's Wrath,1,World Drop,,,,,41,,,,,41.00,,Yes,Yes,No,Yes
+Chest,Chest,Swashbuckler's Breastplate of Nature's Wrath,1,World Drop,,,,,37,,,,,37.00,,Yes,Yes,No,Yes
+Chest,Chest,Sylvan Vest,6,Tailoring,,15,,,12,,,,,12.00,,Yes,Yes,Yes,Yes
+Chest,Chest,The Postmaster's Tunic,1,Stratholme,Postmaster Malown,13,20,10,15,,,,,18.46,,Yes,Yes,Yes,Yes
+Chest,Chest,Tunic of the Crescent Moon,5,Stratholme,Baron Rivendare,14,12,11,15,1,,,,27.46,,Yes,Yes,Yes,Yes
+Chest,Chest,Vestments of the Shifting Sands,5,Ruins of Ahn'Qiraj,Kurinnaxx,20,14,8,32,1,,,,44.80,,Yes,Yes,Yes,Yes
+Chest,Chest,Wanderer's Armor of Nature's Wrath,1,World Drop,,,,,37,,,,,37.00,,Yes,Yes,No,Yes
+Chest,Chest,Warlord's Dragonhide Hauberk,2,Requires Warlord,,19,13,,21,1,,,,33.63,,No,Yes,Yes,Yes
+,,,,,,,,,,,,,,,,,,,
+Chest Enchant,,,,,,,,,,,,,,,,,,,
+Chest Enchant,Enchant,Enchant Chest - Greater Stats,1,,,4,4,4,,,,,,0.69,,Yes,Yes,Yes,Yes
+Chest Enchant,Enchant,Enchant Chest - Stats,1,,,3,3,3,,,,,,0.52,,Yes,Yes,Yes,Yes
+Chest Enchant,Enchant,Enchant Chest - Lesser Stats,1,,,2,2,2,,,,,,0.35,,Yes,Yes,Yes,Yes
+Chest Enchant,Enchant,Enchant Chest - Minor Stats,1,,,1,1,1,,,,,,0.17,,Yes,Yes,Yes,Yes
+,,,,,,,,,,,,,,,,,,,
+Back,,,,,,,,,,,,,,,,,,,
+Back,Back,Adventurer's Cape of Arcane Wrath,1,World Drop,,,,,21,,,,,21.00,,Yes,Yes,Yes,No
+Back,Back,Adventurer's Cape of Nature's Wrath,1,World Drop,,,,,21,,,,,21.00,,Yes,Yes,No,Yes
+Back,Back,Amplifying Cloak,1,Dire Maul: West,Magister Kalendris,,,,18,,,,,18.00,,Yes,Yes,Yes,Yes
+Back,Back,Arachnidian Cape of Arcane Wrath,1,World Drop,,,,,17,,,,,17.00,,Yes,Yes,Yes,No
+Back,Back,Archivist Cape of Arcane Wrath,1,Stratholme,Archivist Galford,,,,21,,,4,,21.00,,Yes,Yes,Yes,No
+Back,Back,Bonecaster's Cape of Arcane Wrath,1,World Drop,,,,,19,,,,,19.00,,Yes,Yes,Yes,No
+Back,Back,Cape of the Trinity,5,Temple of Ahn'Qiraj,"Lord Kri, Princess Yauj, Vem",17,12,,21,,,,,23.08,,Yes,Yes,Yes,Yes
+Back,Back,Celestial Cape of Arcane Wrath,1,World Drop,,,,,19,,,,,19.00,,Yes,Yes,Yes,No
+Back,Back,Chromatic Cloak,1,Leatherworking,,10,,,,1,,,,10.38,,Yes,Yes,Yes,Yes
+Back,Back,Cloak of Consumption,4,Zul'Gurub,Hakkar,,10,,23,,1,,,39.45,,Yes,Yes,Yes,Yes
+Back,Back,Cloak of the Brood Lord,3,Blackwing Lair,Nefarian,10,14,,28,,,,,30.42,,Yes,Yes,Yes,Yes
+Back,Back,Cloak of the Devoured,5,Temple of Ahn'Qiraj,C'Thun,11,10,,30,,1,,,46.45,,Yes,Yes,Yes,Yes
+Back,Back,Cloak of the Hakkari Worshipers,4,Zul'Gurub,,6,6,,23,,,,,24.04,,Yes,Yes,Yes,Yes
+Back,Back,Cloak of the Necropolis,6,Naxxramas,Sapphiron,12,11,,26,1,1,,,53.00,,Yes,Yes,Yes,Yes
+Back,Back,Cloak of Unending Life,5,Temple of Ahn'Qiraj,Quest: Cloak of Unedning Life,10,10,7,11,,,,,12.73,,Yes,Yes,Yes,Yes
+Back,Back,Councillor's Cloak of Arcane Wrath,1,World Drop,,,,,19,,,,,19.00,,Yes,Yes,Yes,No
+Back,Back,Crystalline Threaded Cape,1,Winterspring,Chillwind Ravager,5,4,,20,,,,,20.69,,Yes,Yes,Yes,Yes
+Back,Back,Deep Woodlands Cloak,1,The Hinterlands,Quest: Wanted: Vile Priestess Hexx and Her Minions,6,9,,12,,,,,13.56,,Yes,Yes,Yes,Yes
+Back,Back,Duskwoven Cape of Arcane Wrath,1,World Drop,,,,,17,,,,,17.00,,Yes,Yes,Yes,No
+Back,Back,Elegant Cloak of Arcane Wrath,1,World Drop,,,,,20,,,,,20.00,,Yes,Yes,Yes,No
+Back,Back,Engraved Cape of Arcane Wrath,1,World Drop,,,,,20,,,,,20.00,,Yes,Yes,Yes,No
+Back,Back,Engraved Cape of Nature's Wrath,1,World Drop,,,,,20,,,,,20.00,,Yes,Yes,No,Yes
+Back,Back,Eternal Cloak of Arcane Wrath,1,World Drop,,,,,21,,,,,21.00,,Yes,Yes,Yes,No
+Back,Back,Frostwolf Advisor's Cloak,2,Alterac Valley,,11,,,14,,,,,14.00,,Yes,Yes,Yes,Yes
+Back,Back,Grand Cloak of Arcane Wrath,1,World Drop,,,,,20,,,,,20.00,,Yes,Yes,Yes,No
+Back,Back,Grand Cloak of Nature's Wrath,1,World Drop,,,,,20,,,,,20.00,,Yes,Yes,No,Yes
+Back,Back,Heliotrope Cloak,1,Dire Maul: North,"Guard Mol'dar, Guard Slip'kik",,10,,,1,,,,12.11,,Yes,Yes,Yes,Yes
+Back,Back,High Councillor's Cloak of Arcane Wrath,1,World Drop,,,,,21,,,,,21.00,,Yes,Yes,Yes,No
+Back,Back,Jadefire Cloak of Arcane Wrath,1,World Drop,,,,,17,,,,,17.00,,Yes,Yes,Yes,No
+Back,Back,Jadefire Cloak of Nature's Wrath,1,World Drop,,,,,17,,,,,17.00,,Yes,Yes,No,Yes
+Back,Back,Magnificent Cloak of Arcane Wrath,1,World Drop,,,,,20,,,,,20.00,,Yes,Yes,Yes,No
+Back,Back,Magnificent Cloak of Nature's Wrath,1,World Drop,,,,,20,,,,,20.00,,Yes,Yes,No,Yes
+Back,Back,Master's Cloak of Arcane Wrath,1,World Drop,,,,,21,,,,,21.00,,Yes,Yes,Yes,No
+Back,Back,Masterwork Cape of Nature's Wrath,1,World Drop,,,,,21,,,,,21.00,,Yes,Yes,No,Yes
+Back,Back,Mercurial Cloak of Nature's Wrath,1,World Drop,,,,,21,,,,,21.00,,Yes,Yes,No,Yes
+Back,Back,Mighty Cloak of Arcane Wrath,1,World Drop,,,,,21,,,,,21.00,,Yes,Yes,Yes,No
+Back,Back,Mighty Cloak of Nature's Wrath,1,World Drop,,,,,21,,,,,21.00,,Yes,Yes,No,Yes
+Back,Back,Mystical Cape of Arcane Wrath,1,World Drop,,,,,19,,,,,19.00,,Yes,Yes,Yes,No
+Back,Back,Nightshade Cloak of Arcane Wrath,1,World Drop,,,,,20,,,,,20.00,,Yes,Yes,Yes,No
+Back,Back,Nightshade Cloak of Nature's Wrath,1,World Drop,,,,,20,,,,,20.00,,Yes,Yes,No,Yes
+Back,Back,Peerless Cloak of Arcane Wrath,1,World Drop,,,,,19,,,,,19.00,,Yes,Yes,Yes,No
+Back,Back,Peerless Cloak of Nature's Wrath,1,World Drop,,,,,19,,,,,19.00,,Yes,Yes,No,Yes
+Back,Back,Praetorian Cloak of Arcane Wrath,1,World Drop,,,,,17,,,,,17.00,,Yes,Yes,Yes,No
+Back,Back,Praetorian Cloak of Nature's Wrath,1,World Drop,,,,,17,,,,,17.00,,Yes,Yes,No,Yes
+Back,Back,Resplendent Cloak of Arcane Wrath,1,World Drop,,,,,20,,,,,20.00,,Yes,Yes,Yes,No
+Back,Back,Sapphiron Drape,1,Onyxia's Lair,Onyxia,10,17,,14,,,,,16.94,,Yes,Yes,Yes,Yes
+Back,Back,Shroud of Arcane Mastery,5,Blackrock Depths,Arena Spoils,10,11,,,,1,,,16.62,,Yes,Yes,Yes,Yes
+Back,Back,Spritecaster Cape,1,Blackrock Depths,Houndmaster Grebar,4,4,5,14,,,,,14.69,,Yes,Yes,Yes,Yes
+Back,Back,Stormpike Sage's Cloak,2,Alterac Valley,,11,,,14,,,,,14.00,,Yes,Yes,Yes,Yes
+Back,Back,Supreme Cape of Arcane Wrath,1,World Drop,,,,,21,,,,,21.00,,Yes,Yes,Yes,No
+Back,Back,Supreme Cape of Nature's Wrath,1,World Drop,,,,,21,,,,,21.00,,Yes,Yes,No,Yes
+Back,Back,Swashbuckler's Cape of Arcane Wrath,1,World Drop,,,,,17,,,,,17.00,,Yes,Yes,Yes,No
+Back,Back,Swashbuckler's Cape of Nature's Wrath,1,World Drop,,,,,17,,,,,17.00,,Yes,Yes,Yes,No
+Back,Back,Triumphant Cloak of Nature's Wrath,1,World Drop,,,,,21,,,,,21.00,,Yes,Yes,No,Yes
+Back,Back,Veil of Eclipse,6,Naxxramas,Instructor Razuvious,10,10,,28,,,,10,29.73,,Yes,Yes,Yes,Yes
+Back,Back,Wanderer's Cloak of Arcane Wrath,1,World Drop,,,,,19,,,,,19.00,,Yes,Yes,Yes,No
+Back,Back,Wanderer's Cloak of Nature's Wrath,1,World Drop,,,,,19,,,,,19.00,,Yes,Yes,No,Yes
+,,,,,,,,,,,,,,,,,,,
+Back Enchant,,,,,,,,,,,,,,,,,,,
+Back Enchant,Enchant,Enchant Cloak - Subtlety,5,,,,,,,,,,,0.00,,Yes,Yes,Yes,Yes
+,,,,,,,,,,,,,,,,,,,
+Wrists,,,,,,,,,,,,,,,,,,,
+Wrists,Wrists,Abyssal Cloth Wristbands of Sorcery,4,Silithus,High Marshal Whirlaxis,11,11,,14,,,,,15.90,,Yes,Yes,Yes,Yes
+Wrists,Wrists,Abyssal Leather Bracers of Sorcery,4,Silithus,Prince Skaldrenox,11,11,,14,,,,,15.90,,Yes,Yes,Yes,Yes
+Wrists,Wrists,Adventurer's Bracers of Arcane Wrath,1,World Drop,,,,,21,,,,,21.00,,Yes,Yes,Yes,No
+Wrists,Wrists,Adventurer's Bracers of Nature's Wrath,1,World Drop,,,,,21,,,,,21.00,,Yes,Yes,No,Yes
+Wrists,Wrists,Arachnidian Bracelets of Arcane Wrath,1,World Drop,,,,,17,,,,,17.00,,Yes,Yes,Yes,No
+Wrists,Wrists,Black Bark Wristbands,4,,Lethon,15,4,4,25,,,,,25.69,,Yes,Yes,Yes,Yes
+Wrists,Wrists,Blacklight Bracer,2,Blasted Lands,Lord Kazzak,11,13,8,,1,,,,12.63,,Yes,Yes,Yes,Yes
+Wrists,Wrists,Bonecaster's Bindings of Arcane Wrath,1,World Drop,,,,,19,,,,,19.00,,Yes,Yes,Yes,No
+Wrists,Wrists,Bracers of Arcane Accuracy,3,Blackwing Lair,Broodlord Lashlayer,9,12,,21,,1,,,37.79,,Yes,Yes,Yes,Yes
+Wrists,Wrists,Bracers of Undead Cleansing,6,,Scourge Invasion,6,7,,26,,,,,27.21,,Yes,Yes,Yes,Yes
+Wrists,Wrists,Burrower Bracers,5,Temple of Ahn'Qiraj,Ouro,10,13,,28,,,,,30.25,,Yes,Yes,Yes,Yes
+Wrists,Wrists,Celestial Bindings of Arcane Wrath,1,World Drop,,,,,20,,,,,20.00,,Yes,Yes,Yes,No
+Wrists,Wrists,Cenarion Bracers,1,Molten Core,,13,14,13,6,,,,,8.42,,Yes,Yes,Yes,Yes
+Wrists,Wrists,Cinderhide Armsplints of Arcane Wrath,1,Blackrock Depths,Lord Incendius,,,,21,,,,,21.00,,Yes,Yes,Yes,No
+Wrists,Wrists,Cinderhide Armsplints of Nature's Wrath,1,Blackrock Depths,Lord Incendius,,,,21,,,,,21.00,,Yes,Yes,No,Yes
+Wrists,Wrists,Councillor's Cuffs of Arcane Wrath,1,World Drop,,,,,19,,,,,19.00,,Yes,Yes,Yes,No
+Wrists,Wrists,Dryad's Wrist Bindings,3,Ashenvale,"Illiyana Moonblaze, Kelm Hargunth",8,8,7,22,,,,,23.38,,Yes,Yes,Yes,Yes
+Wrists,Wrists,Duskwoven Bracers of Arcane Wrath,1,World Drop,,,,,17,,,,,17.00,,Yes,Yes,Yes,No
+Wrists,Wrists,Elegant Bracers of Arcane Wrath,1,World Drop,,,,,21,,,,,21.00,,Yes,Yes,Yes,No
+Wrists,Wrists,Eternal Bindings of Arcane Wrath,1,World Drop,,,,,21,,,,,21.00,,Yes,Yes,Yes,No
+Wrists,Wrists,Feralheart Bracers,5,Ironforge / Ogrimmar,Quest: An Earnest Proposition,6,12,5,5,,,,,7.08,,Yes,Yes,Yes,Yes
+Wrists,Wrists,Flameweave Cuffs of Arcane Wrath,1,Blackrock Depths,Lord Incendius,,,,21,,,,,21.00,,Yes,Yes,Yes,No
+Wrists,Wrists,Glacial Wrists,6,Naxxramas,Quest: Glacial Wrists,20,,,12,,,,,12.00,,Yes,Yes,Yes,Yes
+Wrists,Wrists,Grand Armguards of Arcane Wrath,1,World Drop,,,,,20,,,,,20.00,,Yes,Yes,Yes,No
+Wrists,Wrists,Grand Armguards of Nature's Wrath,1,World Drop,,,,,20,,,,,20.00,,Yes,Yes,No,Yes
+Wrists,Wrists,High Councillor's Bracers of Arcane Wrath,1,World Drop,,,,,21,,,,,21.00,,Yes,Yes,Yes,No
+Wrists,Wrists,Jadefire Bracelets of Arcane Wrath,1,World Drop,,,,,17,,,,,17.00,,Yes,Yes,Yes,No
+Wrists,Wrists,Jadefire Bracelets of Nature's Wrath,1,World Drop,,,,,17,,,,,17.00,,Yes,Yes,No,Yes
+Wrists,Wrists,Magiskull Cuffs,1,World Drop,,,17,,,,,,,2.94,,Yes,Yes,Yes,No
+Wrists,Wrists,Master's Bracers of Arcane Wrath,1,World Drop,,,,,21,,,,,21.00,,Yes,Yes,Yes,No
+Wrists,Wrists,Mighty Armsplints of Arcane Wrath,1,World Drop,,,,,21,,,,,21.00,,Yes,Yes,Yes,No
+Wrists,Wrists,Mighty Armsplints of Nature's Wrath,1,World Drop,,,,,21,,,,,21.00,,Yes,Yes,No,Yes
+Wrists,Wrists,Mystical Bracers of Arcane Wrath,1,World Drop,,,,,19,,,,,19.00,,Yes,Yes,Yes,No
+Wrists,Wrists,Nightshade Armguards of Arcane Wrath,1,World Drop,,,,,21,,,,,21.00,,Yes,Yes,Yes,No
+Wrists,Wrists,Nightshade Armguards of Nature's Wrath,1,World Drop,,,,,21,,,,,21.00,,Yes,Yes,No,Yes
+Wrists,Wrists,Orphic Bracers,2,World Drop,,,7,7,11,,,,,12.21,,Yes,Yes,Yes,Yes
+Wrists,Wrists,Peerless Bracers of Arcane Wrath,1,World Drop,,,,,20,,,,,20.00,,Yes,Yes,Yes,No
+Wrists,Wrists,Peerless Bracers of Nature's Wrath,1,World Drop,,,,,20,,,,,20.00,,Yes,Yes,No,Yes
+Wrists,Wrists,Praetorian Wristbands of Arcane Wrath,1,World Drop,,,,,17,,,,,17.00,,Yes,Yes,Yes,No
+Wrists,Wrists,Praetorian Wristbands of Nature's Wrath,1,World Drop,,,,,18,,,,,18.00,,Yes,Yes,No,Yes
+Wrists,Wrists,Resplendent Bracelets of Arcane Wrath,1,World Drop,,,,,20,,,,,20.00,,Yes,Yes,Yes,No
+Wrists,Wrists,Rockfury Bracers,5,Silithus,Quest: Stalwart's Battlegear,7,,,27,,1,,,41.72,,Yes,Yes,Yes,Yes
+Wrists,Wrists,Shackles of the Unscarred,5,Ruins of Ahn'Qiraj,Ossirian the Unscarred,9,12,,21,,,,10,23.08,,Yes,Yes,Yes,Yes
+Wrists,Wrists,Stormrage Bracers,3,Blackwing Lair,Razorgore the Untamed,11,15,12,,,,,,2.60,,Yes,Yes,Yes,Yes
+Wrists,Wrists,Sublime Wristguards,1,Dire Maul: North,"Guard Mol'dar, Guard Slip'kik",6,10,6,12,,,,,13.73,,Yes,Yes,Yes,Yes
+Wrists,Wrists,Supreme Bracers of Arcane Wrath,1,World Drop,,,,,21,,,,,21.00,,Yes,Yes,Yes,No
+Wrists,Wrists,Supreme Bracers of Nature's Wrath,1,World Drop,,,,,21,,,,,21.00,,Yes,Yes,No,Yes
+Wrists,Wrists,Swashbuckler's Bracers of Arcane Wrath,1,World Drop,,,,,19,,,,,19.00,,Yes,Yes,Yes,No
+Wrists,Wrists,Swashbuckler's Bracers of Nature's Wrath,1,World Drop,,,,,19,,,,,19.00,,Yes,Yes,No,Yes
+Wrists,Wrists,Tearfall Bracers of Arcane Wrath,1,Stratholme,The Unforgiven,,,,21,,,,,21.00,,Yes,Yes,Yes,No
+Wrists,Wrists,The Soul Harvester's Bindings,6,Naxxramas,Gothik the Harvester,11,14,,21,1,,,,33.80,,Yes,Yes,Yes,Yes
+Wrists,Wrists,Wanderer's Bracers of Arcane Wrath,1,World Drop,,,,,19,,,,,19.00,,Yes,Yes,Yes,No
+Wrists,Wrists,Wanderer's Bracers of Nature's Wrath,1,World Drop,,,,,19,,,,,19.00,,Yes,Yes,No,Yes
+,,,,,,,,,,,,,,,,,,,
+Wrist Enchant,,,,,,,,,,,,,,,,,,,
+Wrist Enchant,Enchant,Enchant Bracer - Greater Intellect,1,,,,7,,,,,,,1.21,,Yes,Yes,Yes,Yes
+Wrist Enchant,Enchant,Enchant Bracer - Intellect,1,,,,5,,,,,,,0.87,,Yes,Yes,Yes,Yes
+Wrist Enchant,Enchant,Enchant Bracer - Lesser Intellect,1,,,,3,,,,,,,0.52,,Yes,Yes,Yes,Yes
+Wrist Enchant,Enchant,Enchant Bracer - Mana Regeneration,1,,,,,,,,,4,,0.00,,Yes,Yes,Yes,Yes
+,,,,,,,,,,,,,,,,,,,
+Hands,,,,,,,,,,,,,,,,,,,
+Hands,Hands,Abyssal Cloth Handwraps of Sorcery,4,Silithus,Crimson Templar,11,10,,12,,,,,13.73,,Yes,Yes,Yes,Yes
+Hands,Hands,Abyssal Leather Gloves of Sorcery,4,Silithus,Earthen Templar,11,10,,13,,,,,14.73,,Yes,Yes,Yes,Yes
+Hands,Hands,Adventurer's Gloves of Arcane Wrath,1,World Drop,,,,,30,,,,,30.00,,Yes,Yes,Yes,No
+Hands,Hands,Bloodtinged Gloves,4,Zul'Gurub,Jin'do the Hexxer,10,10,10,19,,1,,,35.45,,Yes,Yes,Yes,Yes
+Hands,Hands,Brightspark Gloves,1,Dire Maul: West,Tsu'zee,9,15,,,1,,,,12.98,,Yes,Yes,Yes,Yes
+Hands,Hands,Cenarion Gloves,1,Molten Core,Shazzrah,17,18,15,,,,,,3.11,,Yes,Yes,Yes,Yes
+Hands,Hands,Dark Storm Gauntlets,5,Temple of Ahn'Qiraj,C'Thun,19,15,,37,,1,,,54.31,,Yes,Yes,Yes,Yes
+Hands,Hands,Dreamweave Gloves,1,Tailoring (225),,,4,,18,,,,,18.69,,Yes,Yes,Yes,Yes
+Hands,Hands,Earth Warder's Gloves,1,Winterspring,Quest: Winterfall Activity,,,,22,,,,,22.00,,Yes,Yes,Yes,Yes
+Hands,Hands,Feralheart Gloves,5,Ironforge / Ogrimmar,Quest: Just Compensation,10,12,10,11,,,,,13.08,,Yes,Yes,Yes,Yes
+Hands,Hands,Gauntlets of Southwind,5,Ruins of Ahn'Qiraj,Moam,11,13,,25,,,,,27.25,,Yes,Yes,Yes,Yes
+Hands,Hands,General's Dragonhide Gloves,2,Requires General,,15,,,12,,,,,12.00,,No,Yes,Yes,Yes
+Hands,Hands,Glacial Gloves,6,Naxxramas,Quest: Glacial Gloves,22,,,15,,,,,15.00,,Yes,Yes,Yes,Yes
+Hands,Hands,Gloves of Delusional Power,4,,"Emeriss, Taerar, Lethon, Ysondre",14,16,,27,,,5,,29.77,,Yes,Yes,Yes,Yes
+Hands,Hands,Gloves of Earthen Power,5,Silithus,Quest: Volunteer's Battlegear,,9,,27,,,,,28.56,,Yes,Yes,Yes,Yes
+Hands,Hands,Gloves of Ebru,5,Temple of Ahn'Qiraj,Vem,15,15,,27,1,,,,39.98,,Yes,Yes,Yes,Yes
+Hands,Hands,Gloves of the Hypnotic Flame,1,Molten Core,"Flamewaker Elite, Flamewaker Healer",18,19,8,9,,,,,12.29,,Yes,Yes,Yes,Yes
+Hands,Hands,Gloves of Undead Cleansing,6,,Quest: Argent Dawn Gloves,10,10,,35,,,,,36.73,,Yes,Yes,Yes,Yes
+Hands,Hands,Gordok's Gloves,1,Dire Maul: North,Quest: Unfinished Gordok Business,10,10,9,,1,,,,12.11,,Yes,Yes,Yes,Yes
+Hands,Hands,Gordok's Handwraps,1,Dire Maul: North,Quest: Unfinished Gordok Business,10,10,9,,1,,,,12.11,,Yes,Yes,Yes,Yes
+Hands,Hands,Grand Gauntlets of Arcane Wrath,1,World Drop,,,,,29,,,,,29.00,,Yes,Yes,Yes,No
+Hands,Hands,Hands of Power,1,Blackrock Spire,Quartermaster Zigris,,6,6,26,,,,,27.04,,Yes,Yes,Yes,Yes
+Hands,Hands,Jadefire Gloves of Arcane Wrath,1,World Drop,,,,,24,,,,,24.00,,Yes,Yes,Yes,No
+Hands,Hands,Mana Shaping Handwraps,5,Blackrock Depths,"Watchman Doomgrip, Warbringer Construct",9,11,7,16,,,,,17.90,,Yes,Yes,Yes,Yes
+Hands,Hands,Marshal's Dragonhide Gauntlets,2,Requires Marshal,,15,,,12,,,,,12.00,,Yes,No,Yes,Yes
+Hands,Hands,Mighty Gauntlets of Arcane Wrath,1,World Drop,,,,,30,,,,,30.00,,Yes,Yes,Yes,No
+Hands,Hands,Nightshade Gloves of Arcane Wrath,1,World Drop,,,,,29,,,,,29.00,,Yes,Yes,Yes,No
+Hands,Hands,Peerless Gloves of Arcane Wrath,1,World Drop,,,,,29,,,,,29.00,,Yes,Yes,Yes,No
+Hands,Hands,Praetorian Gloves of Arcane Wrath,1,World Drop,,,,,24,,,,,24.00,,Yes,Yes,Yes,No
+Hands,Hands,Sandworm Skin Gloves,5,Silithus,Quest: Armaments of War,8,5,,27,,,,,27.87,,Yes,Yes,Yes,Yes
+Hands,Hands,Slaghide Gauntlets of Arcane Wrath,1,Blackrock Spire,Urok Doomhowl,,,,30,,,,,30.00,,Yes,Yes,Yes,No
+Hands,Hands,Stormrage Handguards,3,Blackwing Lair,"Ebonroc, Flamegor, Firemaw",13,19,15,,,,,,3.29,,Yes,Yes,Yes,Yes
+Hands,Hands,Supreme Gloves of Arcane Wrath,1,World Drop,,,,,30,,,,,30.00,,Yes,Yes,Yes,No
+Hands,Hands,Swashbuckler's Gloves of Arcane Wrath,1,World Drop,,,,,24,,,,,24.00,,Yes,Yes,Yes,No
+Hands,Hands,Taut Dragonhide Gloves,3,Blackwing Lair,Chromaggus,20,20,,,1,,6,,13.84,,Yes,Yes,Yes,Yes
+Hands,Hands,Wanderer's Gloves of Arcane Wrath,1,World Drop,,,,,26,,,,,26.00,,Yes,Yes,Yes,No
+,,,,,,,,,,,,,,,,,,,
+Hands Enchant,,,,,,,,,,,,,,,,,,,
+Hands Enchant,Enchant,Enchant Gloves - Healing Power,5,,,,,,,,,,,0.00,,Yes,Yes,Yes,Yes
+,,,,,,,,,,,,,,,,,,,
+Waist,,,,,,,,,,,,,,,,,,,
+Waist,Waist,Abyssal Cloth Sash of Sorcery,4,Silithus,The Duke of Cynders,11,11,,13,,,,,14.90,,Yes,Yes,Yes,Yes
+Waist,Waist,Abyssal Leather Belt of Sorcery,4,Silithus,The Duke of Fathoms,11,11,,13,,,,,14.90,,Yes,Yes,Yes,Yes
+Waist,Waist,Adventurer's Belt of Arcane Wrath,1,World Drop,,,,,30,,,,,30.00,,Yes,Yes,Yes,No
+Waist,Waist,Angelista's Grasp,3,Blackwing Lair,Chromaggus,17,20,13,,,2,,,32.89,,Yes,Yes,Yes,Yes
+Waist,Waist,Ban'thok Sash,1,Blackrock Depths,Ok'thor the Breaker,10,11,,12,,1,,,28.62,,Yes,Yes,Yes,Yes
+Waist,Waist,Belt of the Archmage,1,Tailoring,,10,25,,,1,,,,14.71,,Yes,Yes,Yes,Yes
+Waist,Waist,Belt of the Dark Bog,4,,Lethon,16,8,,14,,,,,15.38,,Yes,Yes,Yes,Yes
+Waist,Waist,Belt of Untapped Power,4,Zul'Gurub,,6,7,,29,,,,,30.21,,Yes,Yes,Yes,Yes
+Waist,Waist,Cenarion Belt,1,Molten Core,,10,22,10,9,,,4,,12.81,,Yes,Yes,Yes,Yes
+Waist,Waist,Clutch of Andros,1,Scholomance,Kirtonos the Herald,9,19,,,,1,,,18.00,,Yes,Yes,Yes,Yes
+Waist,Waist,Crystallized Girdle,1,Blackrock Spire,Solakar Flamewreath,6,19,6,9,,,,,12.29,,Yes,Yes,Yes,Yes
+Waist,Waist,Defiler's Lizardhide Girdle,4,The Hinterlands,Rutherford Twing,7,17,,,1,,,,13.32,,Yes,Yes,Yes,Yes
+Waist,Waist,Dustfeather Sash,1,Blackrock Spire,Solakar Flamewreath,10,18,,9,,,,,12.11,,Yes,Yes,Yes,Yes
+Waist,Waist,Eyestalk Waist Cord,5,Temple of Ahn'Qiraj,C'Thun,10,9,,41,1,,,,52.94,,Yes,Yes,Yes,Yes
+Waist,Waist,Feralheart Belt,5,Ironforge / Ogrimmar,Quest: Just Compensation,9,12,8,7,,,,,9.08,,Yes,Yes,Yes,Yes
+Waist,Waist,Firemaw's Clutch,3,Blackwing Lair,Firemaw,12,12,,35,,,5,,37.08,,Yes,Yes,Yes,Yes
+Waist,Waist,Flayed Doomguard Belt,2,Blasted Lands,Lord Kazzak,18,18,,14,1,,,,27.49,,Yes,Yes,Yes,Yes
+Waist,Waist,Frostwolf Cloth Belt,2,Alterac Valley,Grunnda Wolfheart,11,10,,18,,,,,19.73,,Yes,Yes,Yes,Yes
+Waist,Waist,Grand Belt of Arcane Wrath,1,World Drop,,,,,26,,,,,26.00,,Yes,Yes,Yes,No
+Waist,Waist,Highlander's Lizardhide Girdle,4,Arathi Highlands,Samuel Hawke,7,17,,,1,,,,13.32,,Yes,Yes,Yes,Yes
+Waist,Waist,Jadefire Belt of Arcane Wrath,1,World Drop,,,,,24,,,,,24.00,,Yes,Yes,Yes,No
+Waist,Waist,Mana Igniting Cord,1,Molten Core,"Golemagg the Incinerator, Magmadar, Garr, Baron Geddon",12,16,,25,1,,,,38.15,,Yes,Yes,Yes,Yes
+Waist,Waist,Nightshade Girdle of Arcane Wrath,1,World Drop,,,,,29,,,,,29.00,,Yes,Yes,Yes,No
+Waist,Waist,Oddly Magical Belt,1,Dire Maul: North (Tribute),,13,,,16,,,,,16.00,,Yes,Yes,Yes,Yes
+Waist,Waist,Peerless Belt of Arcane Wrath,1,World Drop,,,,,26,,,,,26.00,,Yes,Yes,Yes,No
+Waist,Waist,Praetorian Girdle of Arcane Wrath,1,World Drop,,,,,24,,,,,24.00,,Yes,Yes,Yes,No
+Waist,Waist,Southwind's Grasp,5,Ruins of Ahn'Qiraj,General Rajaxx,11,13,,16,1,,,,28.63,,Yes,Yes,Yes,Yes
+Waist,Waist,Stormpike Cloth Girdle,2,Alterac Valley,"Gaelden Hammersmith, Thanthaldis Snowgleam",11,10,,18,,,,,19.73,,Yes,Yes,Yes,Yes
+Waist,Waist,Stormrage Belt,3,Blackwing Lair,Vaelastrasz the Corrupt,12,23,10,,,,4,,3.98,,Yes,Yes,Yes,Yes
+Waist,Waist,Supreme Sash of Arcane Wrath,1,World Drop,,,,,30,,,,,30.00,,Yes,Yes,Yes,No
+Waist,Waist,Swashbuckler's Belt of Arcane Wrath,1,World Drop,,,,,24,,,,,24.00,,Yes,Yes,Yes,No
+Waist,Waist,Thuzadin Sash,1,Stratholme,Nerub'enkan,11,12,11,11,,,,,13.08,,Yes,Yes,Yes,Yes
+Waist,Waist,Wanderer's Belt of Arcane Wrath,1,World Drop,,,,,24,,,,,24.00,,Yes,Yes,Yes,No
+,,,,,,,,,,,,,,,,,,,
+Legs,,,,,,,,,,,,,,,,,,,
+Legs,Legs,Abyssal Cloth Pants of Sorcery,4,Silithus,The Duke of Zephyrs,15,15,,18,1,,,,30.98,,Yes,Yes,Yes,Yes
+Legs,Legs,Adventurer's Legguards of Arcane Wrath,1,World Drop,,,,,41,,,,,41.00,,Yes,Yes,Yes,No
+Legs,Legs,Bloodtinged Kilt,4,Zul'Gurub,Bloodlord Mandokir,20,20,,28,,,,,31.46,,Yes,Yes,Yes,Yes
+Legs,Legs,Bloodvine Leggings,4,Tailoring,,,6,,37,,1,,,52.75,,Yes,Yes,Yes,Yes
+Legs,Legs,Cenarion Leggings,1,Molten Core,Magmadar,18,19,20,,1,,4,,13.67,,Yes,Yes,Yes,Yes
+Legs,Legs,Empowered Leggings,3,Blackwing Lair,Chromaggus,12,12,24,,1,,,,12.46,,Yes,Yes,Yes,Yes
+Legs,Legs,Feralheart Kilt,5,Ironforge / Ogrimmar,Quest: Anthion's Parting Words,14,14,14,9,,,,,11.42,,Yes,Yes,Yes,Yes
+Legs,Legs,Flarecore Leggings,3,Tailoring,,21,,,43,,,,,43.00,,Yes,Yes,Yes,Yes
+Legs,Legs,Genesis Trousers,5,Temple of Ahn'Qiraj,Quest: Genesis Trousers,22,22,9,27,,,,,30.81,,Yes,Yes,Yes,Yes
+Legs,Legs,Glacial Leggings,6,Naxxramas,Quest: The Only Song I Know…,28,,,18,,,,,18.00,,Yes,Yes,Yes,Yes
+Legs,Legs,Grand Legguards of Arcane Wrath,1,World Drop,,,,,40,,,,,40.00,,Yes,Yes,Yes,No
+Legs,Legs,Jadefire Pants of Arcane Wrath,1,World Drop,,,,,33,,,,,33.00,,Yes,Yes,Yes,No
+Legs,Legs,Knight-Captain's Dragonhide Leggings,2,Requires Knight-Captain,,12,12,5,14,1,,,,26.46,,Yes,No,Yes,Yes
+Legs,Legs,Leggings of Arcana,1,Winterspring,Quest: Leggings of Arcana,,20,30,18,,,,,21.46,,Yes,Yes,Yes,Yes
+Legs,Legs,Leggings of Arcane Supremacy,2,Azshara,Azuregos,14,24,14,36,,,,,40.15,,Yes,Yes,Yes,No
+Legs,Legs,Leggings of Frenzied Magic,5,Blackrock Depths,Gorosh the Dervish,15,15,,16,,,5,,18.60,,Yes,Yes,Yes,Yes
+Legs,Legs,Leggings of Immersion,5,Temple of Ahn'Qiraj,The Prophet Skeram,15,22,,39,,,6,,42.81,,Yes,Yes,Yes,Yes
+Legs,Legs,Leggings of Polarity,6,Naxxramas,Thaddius,20,14,,44,2,,,,67.18,,Yes,Yes,Yes,Yes
+Legs,Legs,Leggings of the Black Blizzard,5,Ruins of Ahn'Qiraj,Ossirian the Unscarred,14,16,8,41,1,,,,54.15,,Yes,Yes,Yes,Yes
+Legs,Legs,Legionnaire's Dragonhide Leggings,2,Requires Legionnaire,,12,12,5,14,1,,,,26.46,,No,Yes,Yes,Yes
+Legs,Legs,Luminary Kilt,1,Blackrock Depths,Golem Lord Argelmach,8,20,8,22,,,,,25.46,,Yes,Yes,Yes,Yes
+Legs,Legs,Mighty Leggings of Arcane Wrath,1,World Drop,,,,,40,,,,,40.00,,Yes,Yes,Yes,No
+Legs,Legs,Nightshade Leggings of Arcane Wrath,1,World Drop,,,,,40,,,,,40.00,,Yes,Yes,Yes,No
+Legs,Legs,Outrider's Lizardhide Pants,6,Ashenvale,Kelm Hargunth,22,22,9,11,,,,,14.81,,Yes,Yes,Yes,Yes
+Legs,Legs,Outrider's Silk Leggings,6,Ashenvale,Kelm Hargunth,23,19,10,28,,,,,31.29,,Yes,Yes,Yes,Yes
+Legs,Legs,Peerless Leggings of Arcane Wrath,1,World Drop,,,,,37,,,,,37.00,,Yes,Yes,Yes,No
+Legs,Legs,Praetorian Leggings of Arcane Wrath,1,World Drop,,,,,36,,,,,36.00,,Yes,Yes,Yes,No
+Legs,Legs,Sacred Cloth Leggings,1,Stratholme,,12,19,12,14,,,,,17.29,,Yes,Yes,Yes,Yes
+Legs,Legs,Sentinel's Lizardhide Pants,6,Ashenvale,Illiyana Moonblaze,22,22,9,11,,,,,14.81,,Yes,Yes,Yes,Yes
+Legs,Legs,Sentinel's Silk Leggings,6,Ashenvale,Illiyana Moonblaze,23,19,10,28,,,,,31.29,,Yes,Yes,Yes,Yes
+Legs,Legs,Skyshroud Leggings,1,Blackrock Spire,Highlord Omokk,8,8,,34,,,,,35.38,,Yes,Yes,Yes,Yes
+Legs,Legs,Spiritshroud Leggings,1,Blackrock Spire,The Beast,13,16,16,19,,,,,21.77,,Yes,Yes,Yes,Yes
+Legs,Legs,Stormrage Legguards,1,Molten Core,Ragnaros,17,26,16,,,,6,,4.50,,Yes,Yes,Yes,Yes
+Legs,Legs,Supreme Leggings of Arcane Wrath,1,World Drop,,,,,40,,,,,40.00,,Yes,Yes,Yes,No
+Legs,Legs,Swashbuckler's Leggings of Arcane Wrath,1,World Drop,,,,,36,,,,,36.00,,Yes,Yes,Yes,No
+Legs,Legs,Tanglemoss Leggings,1,Dire Maul: West,Tendris Warpwood,12,20,13,,1,,,,13.84,,Yes,Yes,Yes,Yes
+Legs,Legs,Tressermane Leggings,1,Blackrock Spire,Highlord Omokk,12,14,15,19,,,,,21.42,,Yes,Yes,Yes,Yes
+Legs,Legs,Wanderer's Leggings of Arcane Wrath,1,World Drop,,,,,37,,,,,37.00,,Yes,Yes,Yes,No
+,,,,,,,,,,,,,,,,,,,
+Legs Enchant,,,,,,,,,,,,,,,,,,,
+Legs Enchant,Enchant,Arcanum of Focus,1,,,,,,8,,,,,8.00,,Yes,Yes,Yes,Yes
+Legs Enchant,Enchant,Animist's Caress,4,,,,10,,,,,,,1.73,,Yes,Yes,Yes,Yes
+Legs Enchant,Enchant,Lesser Arcanum of Voracity,1,,,,8,,,,,,,1.38,,Yes,Yes,Yes,Yes
+,,,,,,,,,,,,,,,,,,,
+Feet,,,,,,,,,,,,,,,,,,,
+Feet,Feet,Abyssal Cloth Slippers of Sorcery,4,Silithus,Azure Templar,11,10,,12,,,,,13.73,,Yes,Yes,Yes,Yes
+Feet,Feet,Abyssal Leather Boots of Sorcery,4,Silithus,Hoary Templar,10,10,,13,,,,,14.73,,Yes,Yes,Yes,Yes
+Feet,Feet,Adventurer's Boots of Nature's Wrath,1,World Drop,,,,,30,,,,,30.00,,Yes,Yes,No,Yes
+Feet,Feet,Arachnidian Footpads of Arcane Wrath,1,World Drop,,,,,23,,,,,23.00,,Yes,Yes,Yes,No
+Feet,Feet,Betrayer's Boots,4,Zul'Gurub,High Priest Thekal,8,12,12,30,,,,,32.08,,Yes,Yes,Yes,Yes
+Feet,Feet,Blood Guard's Dragonhide Treads,2,Requires Blood Guard,,13,6,6,14,,,,,15.04,,No,Yes,Yes,Yes
+Feet,Feet,Bloodvine Boots,4,Tailoring,,,16,,19,,1,,,36.48,,Yes,Yes,Yes,Yes
+Feet,Feet,Bonecaster's Boots of Arcane Wrath,1,World Drop,,,,,24,,,,,24.00,,Yes,Yes,Yes,No
+Feet,Feet,Boots of Epiphany,5,Temple of Ahn'Qiraj,Emperor Vek'lor,18,19,,34,,,,,37.29,,Yes,Yes,Yes,Yes
+Feet,Feet,Boots of Fright,4,,Taerar,11,12,10,34,,,,,36.08,,Yes,Yes,Yes,Yes
+Feet,Feet,Boots of the Shrieker,1,Scholomance,Darkmaster Gandling,10,10,10,12,,,,,13.73,,Yes,Yes,Yes,Yes
+Feet,Feet,Celestial Slippers of Arcane Wrath,1,World Drop,,,,,29,,,,,29.00,,Yes,Yes,Yes,No
+Feet,Feet,Cenarion Boots,1,Molten Core,Lucifron,16,13,15,,,,3,,2.25,,Yes,Yes,Yes,Yes
+Feet,Feet,Councillor's Boots of Arcane Wrath,1,World Drop,,,,,26,,,,,26.00,,Yes,Yes,Yes,No
+Feet,Feet,Dragonrider Boots,1,Blackrock Spire,Warchief Rend Blackhand,5,16,,18,,,,,20.77,,Yes,Yes,Yes,Yes
+Feet,Feet,Duskwoven Sandals of Arcane Wrath,1,World Drop,,,,,23,,,,,23.00,,Yes,Yes,Yes,No
+Feet,Feet,Elegant Boots of Arcane Wrath,1,World Drop,,,,,29,,,,,29.00,,Yes,Yes,Yes,No
+Feet,Feet,Feralheart Boots,5,Ironforge / Ogrimmar,Quest: Anthion's Parting Words,13,12,10,11,,,2,,13.08,,Yes,Yes,Yes,Yes
+Feet,Feet,General's Dragonhide Boots,2,Requires General,,14,10,10,16,,,,,17.73,,No,Yes,Yes,Yes
+Feet,Feet,Genesis Boots,5,Temple of Ahn'Qiraj,Quest: Genesis Boots,14,14,6,20,,,4,10,22.42,,Yes,Yes,Yes,Yes
+Feet,Feet,Grand Boots of Nature's Wrath,1,World Drop,,,,,29,,,,,29.00,,Yes,Yes,No,Yes
+Feet,Feet,High Councillor's Boots of Arcane Wrath,1,World Drop,,,,,30,,,,,30.00,,Yes,Yes,Yes,No
+Feet,Feet,Kayser's Boots of Precision,5,Blackrock Spire,War Master Voone,11,18,,,,1,,,17.83,,Yes,Yes,Yes,Yes
+Feet,Feet,Knight-Lieutenant's Dragonhide Treads,2,Requires Knight-Lieutenant,,13,6,6,14,,,,,15.04,,Yes,No,Yes,Yes
+Feet,Feet,Marshal's Dragonhide Boots,2,Requires Marshal,,14,10,10,16,,,,,17.73,,Yes,No,Yes,Yes
+Feet,Feet,Master's Boots of Arcane Wrath,1,World Drop,,,,,30,,,,,30.00,,Yes,Yes,Yes,No
+Feet,Feet,Mighty Boots of Nature's Wrath,1,World Drop,,,,,30,,,,,30.00,,Yes,Yes,No,Yes
+Feet,Feet,Mystical Boots of Arcane Wrath,1,World Drop,,,,,24,,,,,24.00,,Yes,Yes,Yes,No
+Feet,Feet,Necropile Boots,1,Scholomance,,15,10,9,11,,,,,12.73,,Yes,Yes,Yes,Yes
+Feet,Feet,Nightshade Boots of Nature's Wrath,1,World Drop,,,,,29,,,,,29.00,,Yes,Yes,No,Yes
+Feet,Feet,Omnicast Boots,1,Blackrock Depths,Golem Lord Argelmach,6,9,,22,,,,,23.56,,Yes,Yes,Yes,Yes
+Feet,Feet,Peerless Boots of Nature's Wrath,1,World Drop,,,,,29,,,,,29.00,,Yes,Yes,No,Yes
+Feet,Feet,Praetorian Boots of Nature's Wrath,1,World Drop,,,,,26,,,,,26.00,,Yes,Yes,No,Yes
+Feet,Feet,Quicksand Waders,5,Ruins of Ahn'Qiraj,Buru the Gorger,14,14,11,16,,,,,18.42,,Yes,Yes,Yes,Yes
+Feet,Feet,Recomposed Boots,5,Temple of Ahn'Qiraj,Battleguard Sartura,21,13,,20,,,,,22.25,,Yes,Yes,Yes,Yes
+Feet,Feet,Resplendent Boots of Arcane Wrath,1,World Drop,,,,,29,,,,,29.00,,Yes,Yes,Yes,No
+Feet,Feet,Ringo's Blizzard Boots,3,Blackwing Lair,Death Talon Wyrmguard,11,12,,,,1,,,16.79,,Yes,Yes,Yes,Yes
+Feet,Feet,Sandstorm Boots,4,Silithus,Quest: Armaments of War,12,12,,14,,,4,,16.08,,Yes,Yes,Yes,Yes
+Feet,Feet,Snowblind Shoes,2,Azshara,Azuregos,10,10,,32,,,5,,33.73,,Yes,Yes,Yes,Yes
+Feet,Feet,Stormrage Boots,3,Blackwing Lair,Broodlord Lashlayer,15,17,11,,1,,,,13.32,,Yes,Yes,Yes,Yes
+Feet,Feet,Supreme Shoes of Nature's Wrath,1,World Drop,,,,,30,,,,,30.00,,Yes,Yes,No,Yes
+Feet,Feet,Swashbuckler's Boots of Nature's Wrath,1,World Drop,,,,,24,,,,,24.00,,Yes,Yes,No,Yes
+Feet,Feet,The Postmaster's Treads,1,Stratholme,Postmaster Malown,14,15,6,7,,,,,9.60,,Yes,Yes,Yes,Yes
+Feet,Feet,Verdant Footpads,1,Stratholme,Stonespine,,,,24,,,,,24.00,,Yes,Yes,No,Yes
+Feet,Feet,Wanderer's Boots of Nature's Wrath,1,World Drop,,,,,26,,,,,26.00,,Yes,Yes,No,Yes
+Feet,Feet,Waterspout Boots,1,Dire Maul: East,Hydrospawn,,6,6,25,,,,,26.04,,Yes,Yes,Yes,Yes
+Feet,Feet,Wolfrunner Shoes,1,World Drop,,11,11,11,13,,,,,14.90,,Yes,Yes,Yes,Yes
+,,,,,,,,,,,,,,,,,,,
+Feet Enchant,,,,,,,,,,,,,,,,,,,
+Feet Enchant,Enchant,Enchant Boots - Minor Speed,1,,,,,,,,,,,0.00,,Yes,Yes,Yes,Yes
+Feet Enchant,Enchant,Enchant Boots - Spirit,1,,,,,5,,,,,,0.00,,Yes,Yes,Yes,Yes
+,,,,,,,,,,,,,,,,,,,
+Finger,,,,,,,,,,,,,,,,,,,
+Finger,Finger,Advisor's Ring,3,Ashenvale,Kelm Hargunth,8,,,14,,,4,,14.00,,Yes,Yes,Yes,Yes
+Finger,Finger,Band of Earthen Wrath,5,Silithus,Quest: Volunteer's Battlegear,,8,,,1,,3,,11.76,,Yes,Yes,Yes,Yes
+Finger,Finger,Band of Forced Concentration,3,Blackwing Lair,Ebonroc,9,12,,21,,1,,,37.79,,Yes,Yes,Yes,Yes
+Finger,Finger,Band of Rumination,1,Blackrock Spire,Warchief Rend Blackhand,,,,,1,,5,,10.38,,Yes,Yes,Yes,Yes
+Finger,Finger,Band of Servitude,4,Zul'Gurub,,8,9,,23,,,,,24.56,,Yes,Yes,Yes,Yes
+Finger,Finger,Band of the Inevitable,6,Naxxramas,Noth the Plaguebringer,,,,36,,1,,,50.72,,Yes,Yes,Yes,Yes
+Finger,Finger,Band of the Unicorn,1,World Drop,,,,,13,,,,,13.00,,Yes,Yes,Yes,Yes
+Finger,Finger,Cyclopean Band,1,Blackrock Depths,Ok'thor the Breaker,8,7,4,9,,,,,10.21,,Yes,Yes,Yes,Yes
+Finger,Finger,Don Mauricio's Band of Domination,5,Scholomance,Darkmaster Gandling,5,,,11,1,,,,21.38,,Yes,Yes,Yes,Yes
+Finger,Finger,Dragonslayer's Signet,1,Stormwind City / Ogrimmar,"Quest: Celebrating Good Times, For All To See",12,12,6,,1,,,,12.46,,Yes,Yes,Yes,Yes
+Finger,Finger,Elemental Focus Band,4,Silithus,Prince Skaldrenox,8,11,,22,,,,,23.90,,Yes,Yes,Yes,Yes
+Finger,Finger,Eye of Orgrimmar,1,Blackrock Depths,Quest: The Princess Saved?,,7,4,18,,,,,19.21,,No,Yes,Yes,Yes
+Finger,Finger,Lorekeeper's Ring,3,Ashenvale,Illiyana Moonblaze,8,,,14,,,4,,14.00,,Yes,Yes,Yes,Yes
+Finger,Finger,Maiden's Circle,1,World Drop,,,7,6,18,,,,,19.21,,Yes,Yes,Yes,Yes
+Finger,Finger,Mindtear Band,4,,Taerar,6,6,,22,1,,,,33.42,,Yes,Yes,Yes,Yes
+Finger,Finger,Ring of Blackrock,3,Blackwing Lair,"Ebonroc, Flamegor, Firemaw",,,,19,,,9,,19.00,,Yes,Yes,Yes,Yes
+Finger,Finger,Ring of Entropy,2,Blasted Lands,Lord Kazzak,11,13,8,,1,,,,12.63,,Yes,Yes,Yes,Yes
+Finger,Finger,Ring of Spell Power,1,Molten Core,"Sulfuron Harbinger, Lucifron, Gehennas, Shazzrah",,,,33,,,,,33.00,,Yes,Yes,Yes,Yes
+Finger,Finger,Ring of Swarming Thought,5,Temple of Ahn'Qiraj,The Prophet Skeram,,,,26,,,,20,26.00,,Yes,Yes,Yes,Yes
+Finger,Finger,Ring of the Desert Winds,5,Ruins of Ahn'Qiraj,Ayamiss the Hunter,,9,,9,1,,3,,20.94,,Yes,Yes,Yes,Yes
+Finger,Finger,Ring of the Eternal Flame,6,Naxxramas,,,10,,,1,,,,12.11,,Yes,Yes,Yes,Yes
+Finger,Finger,Ring of the Fallen God,5,Temple of Ahn'Qiraj,Quest: The Savior of Kalimdor,5,6,,37,,1,,,52.75,,Yes,Yes,Yes,Yes
+Finger,Finger,Ritssyn's Ring of Chaos,5,Temple of Ahn'Qiraj,,6,,,25,1,,,,35.38,,Yes,Yes,Yes,Yes
+Finger,Finger,Rune Band of Wizardry,5,Blackrock Spire,Lord Valthalak,7,,,16,,1,,,30.72,,Yes,Yes,Yes,Yes
+Finger,Finger,Seal of the Damned,6,Naxxramas,Four Horsemen,17,,,21,1,1,,,46.10,,Yes,Yes,Yes,Yes
+Finger,Finger,Signet Ring of the Bronze Dragonflight,5,Tanaris,Quest: The Path of the Invoker,8,9,,28,,,5,,29.56,,Yes,Yes,Yes,Yes
+Finger,Finger,Songstone of Ironforge,1,Blackrock Depths,Quest: The Princess's Surprise,,7,4,18,,,,,19.21,,Yes,No,Yes,Yes
+Finger,Finger,Wrath of Cenarius,5,Silithus,Quest: Champion's Battlegear,,,,22,,,,,22.00,,Yes,Yes,Yes,Yes
+Finger,Finger,Wrath of Cenarius (Wrath),5,Silithus,Quest: Champion's Battlegear,,,,44,,,,,44.00,,Yes,Yes,No,No
+Finger,Finger,Zanzil's Band,4,Zul'Gurub,High Priest Venoxis,,13,,,,1,4,,16.96,,Yes,Yes,Yes,Yes
+Finger,Finger,Zanzil's Seal,4,Zul'Gurub,Bloodlord Mandokir,10,10,,11,,1,,,27.45,,Yes,Yes,Yes,Yes
+,,,,,,,,,,,,,,,,,,,
+Trinket,,,,,,,,,,,,,,,,,,,
+Trinket,Trinket,Briarwood Reed,1,Blackrock Spire,Jed Runewatcher,,,,29,,,,,29.00,,Yes,Yes,Yes,Yes
+Trinket,Trinket,Burst of Knowledge,1,Blackrock Depths,Ambassador Flamelash,,,,12,,,,,12.00,,Yes,Yes,Yes,Yes
+Trinket,Trinket,Draconic Infused Emblem,5,Blackrock Spire,General Drakkisath,,,,,,,,,0.00,,Yes,Yes,Yes,Yes
+Trinket,Trinket,Eye of Diminution,6,Naxxramas,Thaddius,,,,,2,,,,20.76,,Yes,Yes,Yes,Yes
+Trinket,Trinket,Eye of Moam,5,Ruins of Ahn'Qiraj,Moam,,,,,,,,,0.00,,Yes,Yes,Yes,Yes
+Trinket,Trinket,Eye of the Beast,1,Blackrock Spire,"Quest: For The Horde!, General Drakkisath's Demise",,,,,2,,,,20.76,,Yes,Yes,Yes,Yes
+Trinket,Trinket,Mark of the Champion,6,Naxxramas,Quest: The Fall of Kel'Thuzad,,,,85,,,,,85.00,,Yes,Yes,Yes,Yes
+Trinket,Trinket,Nat Pagle's Broken Reel,4,Zul'Gurub,Gahz'ranka,,,,,,,,,0.00,,Yes,Yes,Yes,Yes
+Trinket,Trinket,Neltharion's Tear,3,Blackwing Lair,Nefarian,,,,44,,2,,,73.43,,Yes,Yes,Yes,Yes
+Trinket,Trinket,Rune of Perfection,5,Ashenvale,Illiyana Moonblaze,7,,,,,,,20,0.00,,Yes,Yes,Yes,Yes
+Trinket,Trinket,Rune of the Dawn,1,Stratholme,Quest: The Active Agent,,,,48,,,,,48.00,,Yes,Yes,Yes,Yes
+Trinket,Trinket,Talisman of Ascendance,6,Eastern Plaguelands,Quest: Armaments of Battle,,,,,,,,,0.00,,Yes,Yes,Yes,Yes
+Trinket,Trinket,Talisman of Ephemeral Power,1,Molten Core,"Golemagg the Incinerator, Magmadar, Garr, Baron Geddon",,,,,,,,,0.00,,Yes,Yes,Yes,Yes
+Trinket,Trinket,The Restrained Essence of Sapphiron,6,Naxxramas,Sapphiron,,,,40,,,,,40.00,,Yes,Yes,Yes,Yes
+Trinket,Trinket,Zandalarian Hero Charm,4,Zul'Gurub,Quest: The Heart of Hakkar,,,,,,,,,0.00,,Yes,Yes,Yes,Yes
+,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,

@@ -2,11 +2,10 @@
   "name": "@ultrabis/db",
   "version": "0.0.1",
   "scripts": {
-    "wowhead:download": "ts-node -T wowhead-download.ts",
-    "wowhead:prune": "./prune-wowhead.sh",
-    "getSuffix": "ts-node -T getSuffix.ts",
-    "test": "ts-node -T test.ts",
-    "build": "ts-node -T build.ts"
+    "build": "ts-node -T bin/build.ts",
+    "test": "ts-node -T bin/test.ts",
+    "cache": "ts-node -T bin/wowhead-download.ts",
+    "getSuffix": "ts-node -T bin/getSuffix.ts"
   },
   "prettier": {
     "semi": false,
@@ -26,6 +25,7 @@
   },
   "devDependencies": {
     "@types/cheerio": "^0.22.21",
+    "@types/mkdirp": "^1.0.1",
     "@types/node": "^14.0.27",
     "@types/request": "^2.48.5",
     "@types/requestretry": "^1.12.7",
@@ -36,6 +36,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.1.4",
     "minimist": "^1.2.5",
+    "mkdirp": "^1.0.4",
     "prettier": "^2.0.5",
     "ts-node": "^8.10.2",
     "typedoc": "^0.17.8",
