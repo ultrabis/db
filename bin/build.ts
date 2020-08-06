@@ -48,6 +48,11 @@ if (!fs.existsSync(outputFile)) {
 console.log(`creating 'moonkin' database...`)
 mkdirp.sync(`dist/moonkin`)
 
+// convert csv to json
+// loop cvs items
+// convert item name to id
+// add id to set
+
 // FIXME: copy interface files. this will probably change.
 console.log(`copying interfaces...`)
 fs.copyFileSync(`src/interface/ItemJSON.ts`, `dist/ItemJSON.ts`)
