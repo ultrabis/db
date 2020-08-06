@@ -97,24 +97,29 @@ const testItemJSONArrayFromItemListFile = () => {
   let itemJSONArray
 
   console.log(`Creating item database WITHOUT random enchants`)
-  itemJSONArray = common.itemJSONArrayFromItemListFile(`wowhead/itemList.json`, {
+  itemJSONArray = common.itemJSONArrayFromMasterList({
     outputFile: fileWithoutSuffixes
   })
   console.log(`succesfully wrote ${itemJSONArray.length} items to ${fileWithoutSuffixes}`)
 
   console.log(`Creating item database WITH random enchants`)
-  itemJSONArray = common.itemJSONArrayFromItemListFile(`wowhead/itemList.json`, {
+  itemJSONArray = common.itemJSONArrayFromMasterList({
     outputFile: fileWithSuffixes,
     createSuffixes: true
   })
   console.log(`succesfully wrote ${itemJSONArray.length} items to ${fileWithSuffixes}`)
 }
 
+const testPruneItemSuffixFile = () => {
+  common.itemSuffixJSONArrayFromItemFile('item.json', 'itemSuffixPruned.json')
+}
+
 const doIt = async () => {
   // testWowheadItemName()
   // testItemIdsFromName()
   // testItemJSONFromId()
-  testItemJSONArrayFromItemListFile()
+  // testItemJSONArrayFromItemListFile()
+  testPruneItemSuffixFile()
 }
 
 doIt()

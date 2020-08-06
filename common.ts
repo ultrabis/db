@@ -13,8 +13,8 @@ import ItemSuffixJSON from './ItemSuffixJSON'
 
 const xmlOutputDir = 'wowhead/items'
 const iconOutputDir = 'wowhead/icons'
-const itemListFilePath = `wowhead/itemList.json`
-const itemSuffixPath = `itemSuffix.json`
+const masterListFile = `wowhead/masterList.json`
+const masterItemSuffixFile = `masterItemSuffix.json`
 
 const zsum = (one: number | undefined, two: number | undefined) => {
   const val = (one ? one : 0) + (two ? two : 0)
@@ -111,7 +111,7 @@ const jsonFromFile = (filePath: string): any => {
 
 /**
  *
- * read itemList file and return array of matching items based on the name
+ * read masterList and return array of matching items based on the name
  * we must return an array becaue itemName is not unique
  *
  * @param itemName
@@ -119,10 +119,10 @@ const jsonFromFile = (filePath: string): any => {
 const itemIdsFromName = (itemName: string): number[] => {
   const ids: number[] = []
 
-  const itemList = jsonFromFile(itemListFilePath)
-  const itemCount = itemList.length
+  const masterList = jsonFromFile(masterListFile)
+  const itemCount = masterList.length
   for (let i = 0; i < itemCount; i++) {
-    const item = itemList[i]
+    const item = masterList[i]
     if (wowheadItemName(itemName) === wowheadItemName(item.name)) {
       ids.push(item.id)
     }
@@ -138,10 +138,10 @@ const itemIdsFromName = (itemName: string): number[] => {
  * @param itemId
  */
 const itemNameFromId = (itemId: number): string => {
-  const itemList = jsonFromFile(itemListFilePath)
-  const itemCount = itemList.length
+  const masterList = jsonFromFile(masterListFile)
+  const itemCount = masterList.length
   for (let i = 0; i < itemCount; i++) {
-    const item = itemList[i]
+    const item = masterList[i]
     if (item.id === itemId) {
       return item.name
     }
@@ -224,11 +224,11 @@ const wowheadDownloadXML = async (itemId: number, _itemName?: string) => {
 }
 
 /**
- * download all item id's / names from wowhead and write as JSON to `outputPath`
+ * download all item id's / names from wowhead
  *
  * @param outputPath write to file
  */
-const wowheadDownloadItemList = async (outputPath: string) => {
+const wowheadDownloadMasterList = async (outputPath: string) => {
   if (!fs.existsSync(outputPath)) {
     const data = await wowheadScrapeList()
     fs.writeFileSync(outputPath, JSON.stringify(data))
@@ -284,16 +284,16 @@ const wowheadScrapeList = async () => {
  */
 const wowheadDownloadItems = async (): Promise<void> => {
   // download list of items if necessary
-  await wowheadDownloadItemList(itemListFilePath)
+  await wowheadDownloadMasterList(masterListFile)
 
   // read in itemList
-  const itemList = jsonFromFile(itemListFilePath)
-  const itemCount = itemList.length
+  const masterList = jsonFromFile(masterListFile)
+  const itemCount = masterList.length
 
   // iterate itemList and download XML, HTML, and icon for each item
   console.log(`Processing ${itemCount} item(s)`)
   for (let i = 0; i < itemCount; i++) {
-    const item = itemList[i]
+    const item = masterList[i]
     console.log(`- ${item.name} (${item.id})`)
     await wowheadDownloadXML(item.id, item.name)
     await wowheadDownloadHTML(item.id, item.name)
@@ -306,8 +306,8 @@ const wowheadDownloadItems = async (): Promise<void> => {
 }
 */
 
-const itemSuffixJSONFromId = (suffixId: number): ItemSuffixJSON | undefined => {
-  const itemSuffixJSONArray: ItemSuffixJSON[] = jsonFromFile(itemSuffixPath)
+const itemSuffixJSONFromId = (suffixId: number, suffixPath?: string): ItemSuffixJSON | undefined => {
+  const itemSuffixJSONArray: ItemSuffixJSON[] = jsonFromFile(suffixPath ? suffixPath : masterItemSuffixFile)
   const suffixCount = itemSuffixJSONArray.length
 
   for (let i = 0; i < suffixCount; i++) {
@@ -796,17 +796,13 @@ const itemJSONFromId = (itemId: number, suffixId?: number): ItemJSON | undefined
   return JSON.parse(JSON.stringify(itemJSON))
 }
 
-// const itemJSONArrayFromItemListFile = (itemListFilePath: string, outputFile?: string): ItemJSON[] => {
-const itemJSONArrayFromItemListFile = (
-  itemListFilePath: string,
-  opts?: { outputFile?: string; createSuffixes?: boolean }
-): ItemJSON[] => {
+const itemJSONArrayFromMasterList = (opts?: { outputFile?: string; createSuffixes?: boolean }): ItemJSON[] => {
   const itemJSONArray: ItemJSON[] = []
 
-  const itemList = jsonFromFile(itemListFilePath)
-  const itemCount = itemList.length
+  const masterList = jsonFromFile(masterListFile)
+  const itemCount = masterList.length
   for (let i = 0; i < itemCount; i++) {
-    const item = itemList[i]
+    const item = masterList[i]
 
     console.log(`-- ${item.name} (${item.id})`)
     const itemJSON = itemJSONFromId(item.id)
@@ -834,6 +830,49 @@ const itemJSONArrayFromItemListFile = (
   return itemJSONArray
 }
 
+/**
+ *
+ * Return array of suffixes that are used in item file
+ * Optionally write it to a file
+ *
+ * @param inputFile
+ * @param outputFile
+ */
+const itemSuffixJSONArrayFromItemFile = (myItemFile: string, newItemSuffixFile?: string): ItemSuffixJSON[] => {
+  // find the itemSuffix and add it to the set
+  const addToSet = (itemSuffixSet: Set<ItemSuffixJSON>, suffixId: number) => {
+    for (let i = 0; i < itemSuffixJSONArray.length; i++) {
+      const itemSuffix = itemSuffixJSONArray[i]
+      if (itemSuffix.id === suffixId) {
+        itemSuffixSet.add(itemSuffix)
+      }
+    }
+  }
+
+  const itemSuffixJSONArray: ItemSuffixJSON[] = jsonFromFile(masterItemSuffixFile)
+  const itemJSONArray: ItemJSON[] = jsonFromFile(myItemFile)
+  const mySet: Set<ItemSuffixJSON> = new Set()
+
+  for (let i = 0; i < itemJSONArray.length; i++) {
+    const itemJSON = itemJSONArray[i]
+    if (itemJSON.validSuffixIds && itemJSON.validSuffixIds.length > 0) {
+      // this is a random enchant base item
+      for (let x = 0; x < itemJSON.validSuffixIds.length; x++) {
+        addToSet(mySet, itemJSON.validSuffixIds[x])
+      }
+    } else if (itemJSON.suffixId) {
+      // this is a standard random enchant
+      addToSet(mySet, itemJSON.suffixId)
+    }
+  }
+
+  const result = Array.from(mySet)
+  if (newItemSuffixFile) {
+    fs.writeFileSync(newItemSuffixFile, JSON.stringify(result))
+  }
+  return result
+}
+
 export default {
   stringFromFile,
   stringFromGzipFile,
@@ -841,16 +880,17 @@ export default {
   stringFromComment,
   atoi,
   atoa,
-  itemIdsFromName,
-  itemIconFromXML,
-  itemNameFromId,
   download,
   wowheadItemName,
   wowheadDownloadItems,
-  wowheadDownloadItemList,
+  wowheadDownloadMasterList,
   wowheadDownloadHTML,
   wowheadDownloadXML,
   wowheadDownloadIcon,
+  itemIdsFromName,
+  itemIconFromXML,
+  itemNameFromId,
   itemJSONFromId,
-  itemJSONArrayFromItemListFile
+  itemJSONArrayFromMasterList,
+  itemSuffixJSONArrayFromItemFile
 }
