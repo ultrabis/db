@@ -4,7 +4,7 @@
   "scripts": {
     "build": "ts-node -T bin/build.ts",
     "test": "ts-node -T bin/test.ts",
-    "cache": "ts-node -T bin/wowhead-download.ts",
+    "download": "ts-node -T bin/wowhead-download.ts",
     "getSuffix": "ts-node -T bin/getSuffix.ts"
   },
   "prettier": {
