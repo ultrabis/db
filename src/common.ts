@@ -75,6 +75,7 @@ const wowheadItemName = (itemName: string): string => {
     .replace(/\'/g, '')
     .replace(/\"/g, '')
     .replace(/,/g, '')
+    .replace(/:/g, '')
     .replace(/ - /g, '-')
     .replace(/ /g, '-')
 }
