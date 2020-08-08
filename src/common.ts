@@ -24,6 +24,7 @@ const xmlOutputDir = 'cache/items'
 const iconOutputDir = 'cache/icons'
 const masterListFile = `cache/masterList.json`
 const masterItemSuffixFile = `src/masterItemSuffix.json`
+const cacheItemSuffixFile = `cache/itemSuffix.json`
 
 const hrTimeToSeconds = (hrtime: any) => {
   return (hrtime[0] + hrtime[1] / 1e9).toFixed(3)
@@ -177,21 +178,6 @@ const jsonFromFileAsync = async (filePath: string): Promise<any> => {
  *
  * @param itemName
  */
-const itemIdsFromName = (itemName: string): number[] => {
-  const ids: number[] = []
-
-  const masterList = jsonFromFile(masterListFile)
-  const itemCount = masterList.length
-  for (let i = 0; i < itemCount; i++) {
-    const item = masterList[i]
-    if (wowheadItemName(itemName) === wowheadItemName(item.name)) {
-      ids.push(item.id)
-    }
-  }
-
-  return ids
-}
-
 /**
  *
  * read itemList file and return the itemName based on itemId
@@ -875,12 +861,13 @@ const wowheadParseItem = async (
 
 const wowheadParseItems = async (itemListFile: string) => {
   const limit = plimit(10)
-  const itemList = await jsonFromFileAsync(itemListFile)
-  const masterSuffixes: ItemSuffixJSON[] = await jsonFromFileAsync(masterItemSuffixFile)
+  const itemSuffixFile = fs.existsSync(cacheItemSuffixFile) ? cacheItemSuffixFile : masterItemSuffixFile
+  const itemSuffixes: ItemSuffixJSON[] = await jsonFromFileAsync(itemSuffixFile)
   const parsePromises: Promise<WowheadItemParserResult>[] = []
 
+  const itemList = await jsonFromFileAsync(itemListFile)
   for (let i = 0; i < itemList.length; i++) {
-    parsePromises.push(limit(() => wowheadParseItem(itemList[i].id, itemList[i].name, masterSuffixes)))
+    parsePromises.push(limit(() => wowheadParseItem(itemList[i].id, itemList[i].name, itemSuffixes)))
   }
 
   return Promise.all(parsePromises)
@@ -936,49 +923,6 @@ const wowheadWriteItems = async (
   await fsPromises.writeFile(itemSuffixFile, JSON.stringify(Array.from(itemSuffixSet)))
 }
 
-/**
- *
- * Return array of suffixes that are used in item file
- * Optionally write it to a file
- *
- * @param inputFile
- * @param outputFile
- */
-const itemSuffixJSONArrayFromItemFile = (myItemFile: string, newItemSuffixFile?: string): ItemSuffixJSON[] => {
-  // find the itemSuffix and add it to the set
-  const addToSet = (itemSuffixSet: Set<ItemSuffixJSON>, suffixId: number) => {
-    for (let i = 0; i < itemSuffixJSONArray.length; i++) {
-      const itemSuffix = itemSuffixJSONArray[i]
-      if (itemSuffix.id === suffixId) {
-        itemSuffixSet.add(itemSuffix)
-      }
-    }
-  }
-
-  const itemSuffixJSONArray: ItemSuffixJSON[] = jsonFromFile(masterItemSuffixFile)
-  const itemJSONArray: ItemJSON[] = jsonFromFile(myItemFile)
-  const mySet: Set<ItemSuffixJSON> = new Set()
-
-  for (let i = 0; i < itemJSONArray.length; i++) {
-    const itemJSON = itemJSONArray[i]
-    if (itemJSON.validSuffixIds && itemJSON.validSuffixIds.length > 0) {
-      // this is a random enchant base item
-      for (let x = 0; x < itemJSON.validSuffixIds.length; x++) {
-        addToSet(mySet, itemJSON.validSuffixIds[x])
-      }
-    } else if (itemJSON.suffixId) {
-      // this is a standard random enchant
-      addToSet(mySet, itemJSON.suffixId)
-    }
-  }
-
-  const result = Array.from(mySet)
-  if (newItemSuffixFile) {
-    fs.writeFileSync(newItemSuffixFile, JSON.stringify(result))
-  }
-  return result
-}
-
 const createDB = async (outputDir: string, itemListFile: string): Promise<void> => {
   // parse items
   const startTime = process.hrtime()
@@ -1012,9 +956,7 @@ export default {
   wowheadDownloadHTML,
   wowheadDownloadXML,
   wowheadDownloadIcon,
-  itemIdsFromName,
   itemIconFromXML,
   itemNameFromId,
-  itemSuffixJSONArrayFromItemFile,
   createDB
 }
