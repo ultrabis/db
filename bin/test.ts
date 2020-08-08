@@ -91,27 +91,10 @@ const testItemJSONFromId = () => {
 }
 */
 
-// now need to parse keftenk CSV to an itemList file
 const testCreateItemDb = async () => {
-  //const itemJSONArray = await common.itemJSONArrayFromMasterListAsync()
-
-  console.log(`rm -rf dist/test && mkdir -p dist/test`)
   rimraf.sync(`dist/test`)
   mkdirp.sync(`dist/test`)
-
-  console.log(`running createItemDb()`)
-  await common.createItemDbAsync(
-    `cache/masterList.json`,
-    `dist/test/item.json`,
-    `dist/test/item-modular.json`,
-    `dist/test/item-randoms.json`,
-    `dist/test/itemSuffix.json`
-  )
-
-  //console.log(`hello itemJSONArray`)
-  //console.log(itemJSONArray)
-
-  //return fsPromises.readFile(filePath).then((buffer) => {
+  await common.createDB(`dist/test`, `cache/masterList.json`)
 }
 
 const doIt = async () => {
@@ -120,7 +103,7 @@ const doIt = async () => {
   // testItemJSONFromIdAsync()
   // testItemJSONArrayFromItemListFile()
   // testItemJSONArrayFromMasterListAsync()
-  testCreateItemDb()
+  // testCreateItemDb()
 }
 
 doIt()
