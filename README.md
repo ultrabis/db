@@ -4,6 +4,8 @@ JSON item database for World of Warcraft Classic.
 
 The purpose is to provide a database for simulators and/or other tools without requiring a back-end database server. 
 
+![build](https://github.com/ultrabis/db/workflows/gh/badge.svg)
+
 ## download
 
 | full                                                                   | moonkin             | firemage              | description |
