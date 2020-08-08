@@ -15,6 +15,16 @@ itemSuffix = can be used in conjunction with `modular` to generate the random en
 - [modular (2MB)](https://ultrabis.github.io/db/full/item-modular.json)
 - [itemSuffix (43k)](https://ultrabis.github.io/db/full/itemSuffix.json)
 
+## moonkin database
 
+soon
+
+## fire mage database
+
+soon
+
+## other classes / specs
+
+soon
 
 
