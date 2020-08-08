@@ -1,15 +1,17 @@
 import common from '../src/common'
 import mkdirp from 'mkdirp'
 import rimraf from 'rimraf'
-
-const testItems = [
-  `Monster - Spear, Broad Notched`,
-  `Atiesh, Greatstaff of the Guardian`,
-  `Monster - Throwing Axe`,
-  `Well-stitched Robe`
-]
+import ItemSuffixType from 'libclassic/src/enum/ItemSuffixType'
+import ItemSuffixJSON from '../src/interface/ItemSuffixJSON'
+import lc from 'libclassic'
 
 const testWowheadItemName = () => {
+  const testItems = [
+    `Monster - Spear, Broad Notched`,
+    `Atiesh, Greatstaff of the Guardian`,
+    `Monster - Throwing Axe`,
+    `Well-stitched Robe`
+  ]
   console.log(`test wowheadItemName()`)
   console.log(`======================`)
   for (let i = 0; i < testItems.length; i++) {
@@ -18,78 +20,77 @@ const testWowheadItemName = () => {
   console.log(``)
 }
 
-const testItemIdsFromName = () => {
-  console.log(`test itemIdsFromName()`)
-  console.log(`======================`)
-  for (let i = 0; i < testItems.length; i++) {
-    console.log(`${testItems[i]} = ${common.itemIdsFromName(testItems[i])}`)
-  }
-  console.log(``)
-}
+const testParse = async () => {
+  const masterSuffixes: ItemSuffixJSON[] = JSON.parse(common.stringFromFile(`src/masterItemSuffix.json`))
 
-/*
-const testItemJSONFromId = () => {
-  console.log(`test itemJSONFromId()`)
-  console.log(`======================`)
+  const p = async (id: number, name: string) => {
+    console.log(`-- ${name}`)
+    const item = await common.wowheadParseItem(id, name, masterSuffixes)
+    console.log(JSON.parse(JSON.stringify(item)))
+  }
+
+  console.log(`test parse`)
+  console.log(`==========`)
+
+  p(11118, `Archaedic Stone`)
+  // console.log(await common.wowheadParseItem(11118, `Archaedic Stone`, masterSuffixes))
+
+  return
 
   console.log(`-- masters hat`)
-  console.log(common.itemJSONFromIdAsync(10250))
-
-  console.log(`-- masters hat of arcane wrath (+40)`)
-  console.log(common.itemJSONFromId(10250, 1826))
+  console.log(await common.wowheadParseItem(10250, `Master's Hat`, masterSuffixes))
 
   console.log(`-- mark of the champion`)
-  console.log(common.itemJSONFromId(23207))
+  console.log(await common.wowheadParseItem(23207, `Mark of the Chamption`, masterSuffixes))
 
   console.log(`-- lifestone`)
-  console.log(common.itemJSONFromId(833))
+  console.log(await common.wowheadParseItem(833, `Lifestone`, masterSuffixes))
 
   console.log(`-- blessed qiraji bulwark`)
-  console.log(common.itemJSONFromId(21269))
+  console.log(await common.wowheadParseItem(21269, `Blessed Qiraji Bulwark`, masterSuffixes))
 
   console.log(`-- royal qiraji belt`)
-  console.log(common.itemJSONFromId(21598))
+  console.log(await common.wowheadParseItem(21598, `Royal Qiraji Belt`, masterSuffixes))
 
   console.log(`-- rhokdelar longbow of the ancient keepers`)
-  console.log(common.itemJSONFromId(18713))
+  console.log(await common.wowheadParseItem(18713, `Rhokdelar Longbow of the Ancient Keepers`, masterSuffixes))
 
   console.log(`-- mark of cthun`)
-  console.log(common.itemJSONFromId(22732))
+  console.log(await common.wowheadParseItem(22732, `Mark of Cthun`, masterSuffixes))
 
   console.log(`-- storm gauntlets`)
-  console.log(common.itemJSONFromId(12632))
+  console.log(await common.wowheadParseItem(12632, `Storm Gauntlets`, masterSuffixes))
 
   console.log(`-- ritssyns ring of chaos`)
-  console.log(common.itemJSONFromId(21836))
+  console.log(await common.wowheadParseItem(21836, `Ritssyns Ring of Chaos`, masterSuffixes))
 
   console.log(`-- freezing band`)
-  console.log(common.itemJSONFromId(942))
+  console.log(await common.wowheadParseItem(942, `Freezing Band`, masterSuffixes))
 
   console.log(`-- natures embrace`)
-  console.log(common.itemJSONFromId(17741))
+  console.log(await common.wowheadParseItem(17741, `Natures Embrace`, masterSuffixes))
 
   console.log(`-- orb of soranruk`)
-  console.log(common.itemJSONFromId(6898))
+  console.log(await common.wowheadParseItem(6898, `Orb of Soranruk`, masterSuffixes))
 
   console.log(`-- atiesh greatstaff of the guardian`)
-  console.log(common.itemJSONFromId(22632))
+  console.log(await common.wowheadParseItem(22632, `Atiesh Greatstaff of the Guardian`, masterSuffixes))
 
   console.log(`-- staff of the qiraji prophets`)
-  console.log(common.itemJSONFromId(21128))
+  console.log(await common.wowheadParseItem(21128, `Staff of the Qiraji Prophets`, masterSuffixes))
 
   console.log(`-- leggings of arcane supremacy`)
-  console.log(common.itemJSONFromId(18545))
+  console.log(await common.wowheadParseItem(18545, `Leggings of Arcane Supremacy`, masterSuffixes))
 
   console.log(`-- rune of perfection`)
-  console.log(common.itemJSONFromId(21565))
+  console.log(await common.wowheadParseItem(21565, `Rune of Perfection`, masterSuffixes))
 
   console.log(`-- neltharions tear`)
-  console.log(common.itemJSONFromId(19379))
+  console.log(await common.wowheadParseItem(19379, `Neltharions Tear`, masterSuffixes))
 
   console.log(`-- grand marshals demolisher`)
-  console.log(common.itemJSONFromId(23455))
+  console.log(await common.wowheadParseItem(23455, `Grand Marshals Demolisher`, masterSuffixes))
 }
-*/
 
 const testCreateItemDb = async () => {
   rimraf.sync(`dist/test`)
@@ -97,13 +98,41 @@ const testCreateItemDb = async () => {
   await common.createDB(`dist/test`, `cache/masterList.json`)
 }
 
+const testShowSuffixTypes = async () => {
+  const suffixTypeSet: Set<ItemSuffixType> = new Set()
+  const itemSuffixes: ItemSuffixJSON[] = JSON.parse(common.stringFromFile(`dist/full/itemSuffix.json`))
+  const usedSuffixTypes: string[] = []
+  const unusedSuffixTypes: string[] = []
+
+  for (let i = 0; i < itemSuffixes.length; i++) {
+    suffixTypeSet.add(itemSuffixes[i].type)
+  }
+
+  // used suffixes
+  const validSuffixTypes = Array.from(suffixTypeSet)
+  for (let i = 0; i < validSuffixTypes.length; i++) {
+    usedSuffixTypes.push(lc.utils.getEnumKeyByEnumValue(lc.common.ItemSuffixType, validSuffixTypes[i]))
+  }
+
+  // unused suffixes
+  const allSuffixTypes = lc.utils.getAllEnumValues(lc.common.ItemSuffixType)
+  for (let i = 0; i < allSuffixTypes.length; i++) {
+    if (!validSuffixTypes.includes(allSuffixTypes[i])) {
+      unusedSuffixTypes.push(lc.utils.getEnumKeyByEnumValue(lc.common.ItemSuffixType, allSuffixTypes[i]))
+    }
+  }
+
+  console.log(`usedSuffixTypes: ${usedSuffixTypes}`)
+  console.log(`unusedSuffixTypes: ${unusedSuffixTypes}`)
+}
+
 const doIt = async () => {
   // testWowheadItemName()
-  // testItemIdsFromName()
-  // testItemJSONFromIdAsync()
-  // testItemJSONArrayFromItemListFile()
-  // testItemJSONArrayFromMasterListAsync()
   // testCreateItemDb()
+  // testShowSuffixTypes()
+  // testEluding()
+  // testShowSuffixTypes()
+  testParse()
 }
 
 doIt()

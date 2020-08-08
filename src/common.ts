@@ -353,7 +353,49 @@ const wowheadDownloadItems = async (): Promise<void> => {
 }
 */
 
-const getItemSuffixJSON = (itemSuffixJSONArray: ItemSuffixJSON[], suffixId: number): ItemSuffixJSON | undefined => {
+const getItemSuffixesFromItemName = (itemSuffixJSONArray: ItemSuffixJSON[], itemName: string): ItemSuffixJSON[] => {
+  const suffixType = lc.common.itemSuffixTypeFromText(itemName)
+  const itemSuffixes: ItemSuffixJSON[] = []
+
+  for (let i = 0; i < itemSuffixJSONArray.length; i++) {
+    if (itemSuffixJSONArray[i].type === suffixType) {
+      itemSuffixes.push(itemSuffixJSONArray[i])
+    }
+  }
+
+  /*
+  console.log(`${lc.utils.getEnumKeyByEnumValue(lc.common.ItemSuffixType, suffixType)}`)
+  for (let i = 0; i < itemSuffixes.length; i++) {
+    console.log(itemSuffixes[i].bonus)
+  }
+  */
+
+  return itemSuffixes
+}
+
+const getItemSuffixFromItemNameAndValues = (
+  itemSuffixJSONArray: ItemSuffixJSON[],
+  itemName: string,
+  values: [number, number]
+): ItemSuffixJSON | undefined => {
+  const itemSuffixes = getItemSuffixesFromItemName(itemSuffixJSONArray, itemName)
+
+  for (let i = 0; i < itemSuffixes.length; i++) {
+    const itemSuffix = itemSuffixes[i]
+    const suffixValues = [
+      itemSuffix.bonus[0] ? itemSuffix.bonus[0].value : 0,
+      itemSuffix.bonus[1] ? itemSuffix.bonus[1].value : 0
+    ]
+
+    if (values[0] === suffixValues[0] && values[1] === suffixValues[1]) {
+      return itemSuffix
+    }
+  }
+
+  return undefined
+}
+
+const getItemSuffix = (itemSuffixJSONArray: ItemSuffixJSON[], suffixId: number): ItemSuffixJSON | undefined => {
   const suffixCount = itemSuffixJSONArray.length
 
   for (let i = 0; i < suffixCount; i++) {
@@ -637,6 +679,25 @@ const getRandomEnchantJSON = (baseItemJSON: ItemJSON, itemSuffixJSON: ItemSuffix
   return itemJSON
 }
 
+const wowheadParseBonusValues = (bonusText: string): [number, number] => {
+  let bonusValue1 = 0
+  let bonusValue2 = 0
+
+  if (bonusText.includes('(')) {
+    const bonuses = bonusText
+      .replace(/.*\(|\).*/g, '')
+      .replace(/ /g, '')
+      .replace(/%/g, '')
+      .split('-')
+    bonusValue1 = Number(bonuses[0])
+    bonusValue2 = Number(bonuses[1])
+  } else {
+    bonusValue1 = Number(bonusText.split(' ')[0].replace(/\+/g, '').replace(/%/g, ''))
+  }
+
+  return [bonusValue1, bonusValue2]
+}
+
 const wowheadParseItem = async (
   itemId: number,
   itemName: string,
@@ -788,6 +849,7 @@ const wowheadParseItem = async (
       .find('li')
       .find('div')
       .each(function (i: number, elem: any) {
+        let bonusText
         const span = html$(elem).find('span')
         const small = html$(elem).find('small')
 
@@ -804,34 +866,41 @@ const wowheadParseItem = async (
         html$(small).remove()
         html$(elem).find('br').remove()
 
-        // we only care about the first bonus type e.g. the stamina bonus of 'the bear'
-        // this is enough to find the itemSuffix record, which has all the bonuses
-        const bonusText = html$(elem).text().trim().split(',')[0]
+        // e.g. +1% Dodge , +(5 - 7) Agility
+        //
+        // - some enchants have up to two bonuses (seperated by ,)
+        // - some enchants have multiple suffixId's (denoted in parens)
+        //
+        // we want to get the text with parens, if it exists
+        const bonusTextBase = html$(elem).text().trim().split(',')
+        const bonusTextOne = bonusTextBase[0].trim()
+        const bonusTextTwo = bonusTextBase[1] ? bonusTextBase[1].trim() : ''
+        const bonusValuesOne = wowheadParseBonusValues(bonusTextOne)
+        const bonusValuesTwo = wowheadParseBonusValues(bonusTextTwo)
+        const bonusValuesX: [number, number] = [bonusValuesOne[0], bonusValuesTwo[0]]
+        const bonusValuesY: [number, number] = [
+          !bonusValuesOne[1] && bonusValuesTwo[1] ? bonusValuesOne[0] : bonusValuesOne[1],
+          bonusValuesTwo[1]
+        ]
 
-        // sometimes there are two versions of an item with different bonus values
-        // e.g. "+(6 - 7) Stamina"
-        // so we'll create an array of bonus values
-        // note: for some enchantments e.g. of healing, wowhead lists as e.g. '59-62'
-        // that means 59 AND 62, not 59 through 62
-        const bonusValues: number[] = []
-        if (bonusText.includes('(')) {
-          const bonuses = bonusText
-            .replace(/.*\(|\).*/g, '')
-            .replace(/ /g, '')
-            .split('-')
-          bonusValues[0] = Number(bonuses[0])
-          bonusValues[1] = Number(bonuses[1])
-        } else {
-          bonusValues[0] = Number(bonusText.split(' ')[0].replace(/\+/g, ''))
+        /*
+        console.log(`bonusTextBase: ${bonusTextBase}`)
+        console.log(`bonusValuesOne: ${bonusValuesOne}`)
+        console.log(`bonusValuesTwo: ${bonusValuesTwo}`)
+        console.log(`bonusValuesX: ${bonusValuesX}`)
+        console.log(`bonusValuesY: ${bonusValuesY}`)
+        */
+
+        let itemSuffix
+
+        itemSuffix = getItemSuffixFromItemNameAndValues(suffixes, `x ${suffixTypeText}`, bonusValuesX)
+        if (itemSuffix) {
+          validSuffixIds.push(itemSuffix.id)
         }
 
-        // lookup the itemSuffix(es). each represents a suffix id with associated bonuses
-        // so at this point, we have an itemId and all valid suffixId's for that item.
-        for (let i = 0; i < bonusValues.length; i++) {
-          const itemSuffix = lc.itemSuffix.fromItemNameAndBonusValue(`x ${suffixTypeText}`, bonusValues[i])
-          if (itemSuffix) {
-            validSuffixIds.push(itemSuffix.id)
-          }
+        itemSuffix = getItemSuffixFromItemNameAndValues(suffixes, `x ${suffixTypeText}`, bonusValuesY)
+        if (itemSuffix) {
+          validSuffixIds.push(itemSuffix.id)
         }
       })
     if (validSuffixIds.length > 0) {
@@ -848,7 +917,7 @@ const wowheadParseItem = async (
     output.suffixes = []
     for (let i = 0; i < itemJSON.validSuffixIds.length; i++) {
       const suffixId = itemJSON.validSuffixIds[i]
-      const itemSuffixJSON = getItemSuffixJSON(suffixes, suffixId)
+      const itemSuffixJSON = getItemSuffix(suffixes, suffixId)
       if (itemSuffixJSON) {
         output.randomEnchants.push(getRandomEnchantJSON(itemJSON, itemSuffixJSON))
         output.suffixes.push(itemSuffixJSON)
@@ -956,7 +1025,11 @@ export default {
   wowheadDownloadHTML,
   wowheadDownloadXML,
   wowheadDownloadIcon,
+  wowheadParseItem,
   itemIconFromXML,
   itemNameFromId,
+  getItemSuffix,
+  getItemSuffixesFromItemName,
+  getItemSuffixFromItemNameAndValues,
   createDB
 }
