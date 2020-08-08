@@ -1,12 +1,18 @@
 # db
 
-main = includes all valid random enchants e.g. `Master's Hat of Arcane Wrath`
+JSON item database for World of Warcraft Classic.
 
-random = only random enchants (educational purposes)
+The purpose is to provide a database for simulators and/or other tools without requiring a back-end database server. 
 
-modular = random enchants only include the base item e.g. `Master's Hat`
+## explanation of files
 
-itemSuffix = can be used in conjunction with `modular` to generate the random enchants at run-time (using roughly 4 times less space) 
+`main` = includes all valid random enchants e.g. `Master's Hat of Arcane Wrath`
+
+`random` = only random enchants (educational purposes)
+
+`modular` = random enchants only include the base item e.g. `Master's Hat`
+
+`itemSuffix` = can be used in conjunction with `modular` to generate the random enchants at run-time (using roughly 4 times less space) 
 
 ## full database
 
@@ -15,16 +21,12 @@ itemSuffix = can be used in conjunction with `modular` to generate the random en
 - [modular (2MB)](https://ultrabis.github.io/db/full/item-modular.json)
 - [itemSuffix (43k)](https://ultrabis.github.io/db/full/itemSuffix.json)
 
-## moonkin database
+## moonkin / fire mage / other classes and specs
 
-soon
+smaller db's tailored to specific classes/specs coming soon
 
-## fire mage database
+## typescript interfaces
 
-soon
-
-## other classes / specs
-
-soon
-
+- [ItemJSON.ts](https://ultrabis.github.io/db/ItemJSON.ts)
+- [ItemSuffixJSON.ts](https://ultrabis.github.io/db/ItemSuffixJSON.ts)
 
