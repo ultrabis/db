@@ -1,4 +1,4 @@
-# db
+# @ultrabis/db
 
 JSON item database for World of Warcraft Classic.
 
