@@ -4,15 +4,6 @@ JSON item database for World of Warcraft Classic.
 
 The purpose is to provide a database for simulators and/or other tools without requiring a back-end database server. 
 
-## explanation of files
-
-`main` = includes all valid random enchants e.g. `Master's Hat of Arcane Wrath`
-
-`random` = only random enchants (educational purposes)
-
-`modular` = random enchants only include the base item e.g. `Master's Hat`
-
-`itemSuffix` = can be used in conjunction with `modular` to generate the random enchants at run-time (using roughly 4 times less space) 
 
 ## full database
 
@@ -29,6 +20,16 @@ The purpose is to provide a database for simulators and/or other tools without r
 ## icons
 
 The icons for all items are included in `cache/icons`
+
+### explanation of files
+
+`main` = includes all valid random enchants e.g. `Master's Hat of Arcane Wrath`
+
+`random` = only random enchants (educational purposes)
+
+`modular` = random enchants only include the base item e.g. `Master's Hat`
+
+`itemSuffix` = can be used in conjunction with `modular` to generate the random enchants at run-time (using roughly 4 times less space) 
 
 ### known issues
 
