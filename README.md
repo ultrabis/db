@@ -30,3 +30,6 @@ smaller db's tailored to specific classes/specs coming soon
 - [ItemJSON.ts](https://ultrabis.github.io/db/ItemJSON.ts)
 - [ItemSuffixJSON.ts](https://ultrabis.github.io/db/ItemSuffixJSON.ts)
 
+## icons
+
+The icons for all items are included in `cache/icons`
