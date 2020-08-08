@@ -33,3 +33,8 @@ smaller db's tailored to specific classes/specs coming soon
 ## icons
 
 The icons for all items are included in `cache/icons`
+
+### known issues
+
+- faction property not yet supported
+- wowhead doesn't have 'phase' for every item. how to handle those is up to the user right now 
