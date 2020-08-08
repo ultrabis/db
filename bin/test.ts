@@ -31,65 +31,25 @@ const testParse = async () => {
 
   console.log(`test parse`)
   console.log(`==========`)
-
-  p(11118, `Archaedic Stone`)
-  // console.log(await common.wowheadParseItem(11118, `Archaedic Stone`, masterSuffixes))
-
-  return
-
-  console.log(`-- masters hat`)
-  console.log(await common.wowheadParseItem(10250, `Master's Hat`, masterSuffixes))
-
-  console.log(`-- mark of the champion`)
-  console.log(await common.wowheadParseItem(23207, `Mark of the Chamption`, masterSuffixes))
-
-  console.log(`-- lifestone`)
-  console.log(await common.wowheadParseItem(833, `Lifestone`, masterSuffixes))
-
-  console.log(`-- blessed qiraji bulwark`)
-  console.log(await common.wowheadParseItem(21269, `Blessed Qiraji Bulwark`, masterSuffixes))
-
-  console.log(`-- royal qiraji belt`)
-  console.log(await common.wowheadParseItem(21598, `Royal Qiraji Belt`, masterSuffixes))
-
-  console.log(`-- rhokdelar longbow of the ancient keepers`)
-  console.log(await common.wowheadParseItem(18713, `Rhokdelar Longbow of the Ancient Keepers`, masterSuffixes))
-
-  console.log(`-- mark of cthun`)
-  console.log(await common.wowheadParseItem(22732, `Mark of Cthun`, masterSuffixes))
-
-  console.log(`-- storm gauntlets`)
-  console.log(await common.wowheadParseItem(12632, `Storm Gauntlets`, masterSuffixes))
-
-  console.log(`-- ritssyns ring of chaos`)
-  console.log(await common.wowheadParseItem(21836, `Ritssyns Ring of Chaos`, masterSuffixes))
-
-  console.log(`-- freezing band`)
-  console.log(await common.wowheadParseItem(942, `Freezing Band`, masterSuffixes))
-
-  console.log(`-- natures embrace`)
-  console.log(await common.wowheadParseItem(17741, `Natures Embrace`, masterSuffixes))
-
-  console.log(`-- orb of soranruk`)
-  console.log(await common.wowheadParseItem(6898, `Orb of Soranruk`, masterSuffixes))
-
-  console.log(`-- atiesh greatstaff of the guardian`)
-  console.log(await common.wowheadParseItem(22632, `Atiesh Greatstaff of the Guardian`, masterSuffixes))
-
-  console.log(`-- staff of the qiraji prophets`)
-  console.log(await common.wowheadParseItem(21128, `Staff of the Qiraji Prophets`, masterSuffixes))
-
-  console.log(`-- leggings of arcane supremacy`)
-  console.log(await common.wowheadParseItem(18545, `Leggings of Arcane Supremacy`, masterSuffixes))
-
-  console.log(`-- rune of perfection`)
-  console.log(await common.wowheadParseItem(21565, `Rune of Perfection`, masterSuffixes))
-
-  console.log(`-- neltharions tear`)
-  console.log(await common.wowheadParseItem(19379, `Neltharions Tear`, masterSuffixes))
-
-  console.log(`-- grand marshals demolisher`)
-  console.log(await common.wowheadParseItem(23455, `Grand Marshals Demolisher`, masterSuffixes))
+  await p(11118, `Archaedic Stone`)
+  await p(10250, `Master's Hat`)
+  await p(23207, `Mark of the Champion`)
+  await p(833, `Lifestone`)
+  await p(21269, `Blessed Qiraji Bulwark`)
+  await p(21598, `Royal Qiraji Belt`)
+  await p(18713, `Rhokdelar Longbow of the Ancient Keepers`)
+  await p(22732, `Mark of Cthun`)
+  await p(12632, `Storm Gauntlets`)
+  await p(21836, `Ritssyns Ring of Chaos`)
+  await p(942, `Freezing Band`)
+  await p(17741, `Natures Embrace`)
+  await p(6898, `Orb of Soranruk`)
+  await p(22632, `Atiesh Greatstaff of the Guardian`)
+  await p(21128, `Staff of the Qiraji Prophets`)
+  await p(18545, `Leggings of Arcane Supremacy`)
+  await p(21565, `Rune of Perfection`)
+  await p(19379, `Neltharions Tear`)
+  await p(23455, `Grand Marshals Demolisher`)
 }
 
 const testCreateItemDb = async () => {

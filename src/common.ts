@@ -819,8 +819,8 @@ const wowheadParseItem = async (
   }
 
   // parse xml json object
-  const jsonText = xml$('json').text()
-  const json = JSON.parse(`{ ${jsonText} }`)
+  //const jsonText = xml$('json').text()
+  //const json = JSON.parse(`{ ${jsonText} }`)
 
   // parse html
   const html$ = cheerio.load(html)
@@ -828,6 +828,9 @@ const wowheadParseItem = async (
   const x = html.substr(n)
   const n2 = x.search('Added in content phase')
   itemJSON.phase = Number(x.substr(n2 + 23, 1))
+  if (!itemJSON.phase || itemJSON.phase === null || itemJSON.phase === NaN) {
+    itemJSON.phase = 1
+  }
 
   // faction requirement...grr
   //const listView = $('script[type="text/javascript"]').get()[0].children[0].data.split('\n')[1].slice(26, -2)
