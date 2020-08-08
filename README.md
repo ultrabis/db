@@ -21,10 +21,6 @@ The purpose is to provide a database for simulators and/or other tools without r
 - [modular (2MB)](https://ultrabis.github.io/db/full/item-modular.json)
 - [itemSuffix (43k)](https://ultrabis.github.io/db/full/itemSuffix.json)
 
-## moonkin / fire mage / other classes and specs
-
-smaller db's tailored to specific classes/specs coming soon
-
 ## typescript interfaces
 
 - [ItemJSON.ts](https://ultrabis.github.io/db/ItemJSON.ts)
@@ -38,3 +34,10 @@ The icons for all items are included in `cache/icons`
 
 - faction property not yet supported
 - wowhead doesn't have 'phase' for every item. how to handle those is up to the user right now 
+
+### TODO
+
+- create databases tailored for specific classes/specs based on their spreadsheets
+- add client side functions for working with databases
+  - publish to NPM
+  - allow importing / including by database type 
