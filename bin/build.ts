@@ -14,6 +14,7 @@ const buildAll = async () => {
   await build('full', 'cache/masterList.json')
   fs.copyFileSync(`src/interface/ItemJSON.ts`, `dist/ItemJSON.ts`)
   fs.copyFileSync(`src/interface/ItemSuffixJSON.ts`, `dist/ItemSuffixJSON.ts`)
+  fs.writeFileSync(`dist/index.html`, `nothing here yet`)
 }
 
 void buildAll()
