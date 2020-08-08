@@ -3,13 +3,16 @@
  */
 
 import fs from 'fs'
+import fsPromises from 'fs/promises'
 import path from 'path'
 import zlib from 'zlib'
 import cheerio from 'cheerio'
 import request from 'requestretry'
+import plimit from 'p-limit'
 import lc from 'libclassic'
 import ItemJSON from './interface/ItemJSON'
 import ItemSuffixJSON from './interface/ItemSuffixJSON'
+import ItemListJSON from './interface/ItemListJSON'
 
 const xmlOutputDir = 'cache/items'
 const iconOutputDir = 'cache/icons'
@@ -92,6 +95,17 @@ const stringFromGzipFile = (filePath: string): string => {
 
 /**
  *
+ * read gzip file as plain text string
+ *
+ * @param filePath
+ */
+const stringFromGzipFileAsync = async (filePath: string): Promise<string> => {
+  const buffer = await fsPromises.readFile(filePath)
+  return zlib.gunzipSync(buffer).toString()
+}
+
+/**
+ *
  * read file as plain text string
  *
  * @param filePath
@@ -102,12 +116,34 @@ const stringFromFile = (filePath: string): string => {
 
 /**
  *
+ * read file as plain text string asynchronously
+ *
+ * @param filePath
+ */
+const stringFromFileAsync = async (filePath: string): Promise<string> => {
+  const buffer = await fsPromises.readFile(filePath)
+  return buffer.toString()
+}
+
+/**
+ *
  * read JSON from a plaintext file
  *
  * @param filePath
  */
 const jsonFromFile = (filePath: string): any => {
   return JSON.parse(stringFromFile(filePath))
+}
+
+/**
+ *
+ * read JSON from a plaintext file asynchronously
+ *
+ * @param filePath
+ */
+const jsonFromFileAsync = async (filePath: string): Promise<any> => {
+  const buffer = await fsPromises.readFile(filePath)
+  return JSON.parse(buffer.toString())
 }
 
 /**
@@ -307,8 +343,7 @@ const wowheadDownloadItems = async (): Promise<void> => {
 }
 */
 
-const itemSuffixJSONFromId = (suffixId: number, suffixPath?: string): ItemSuffixJSON | undefined => {
-  const itemSuffixJSONArray: ItemSuffixJSON[] = jsonFromFile(suffixPath ? suffixPath : masterItemSuffixFile)
+const getItemSuffixJSON = (itemSuffixJSONArray: ItemSuffixJSON[], suffixId: number): ItemSuffixJSON | undefined => {
   const suffixCount = itemSuffixJSONArray.length
 
   for (let i = 0; i < suffixCount; i++) {
@@ -320,26 +355,288 @@ const itemSuffixJSONFromId = (suffixId: number, suffixPath?: string): ItemSuffix
   return undefined
 }
 
-/**
- *
- * Parse XML and HTML and return ItemJSON object
- *
- * @param itemId
- * @param suffixId
- */
-const itemJSONFromId = (itemId: number, suffixId?: number): ItemJSON | undefined => {
-  // get contents of xml and html files as strings
-  const itemName = itemNameFromId(itemId)
-  const baseFilePath = `${xmlOutputDir}/${itemId}-${wowheadItemName(itemName)}`
-  const xmlString = stringFromGzipFile(`${baseFilePath}.xml.gz`)
-  const htmlString = stringFromGzipFile(`${baseFilePath}.html.gz`)
+const getRandomEnchantJSON = (
+  itemSuffixJSONArray: ItemSuffixJSON[],
+  baseItemJSON: ItemJSON,
+  suffixId: number
+): ItemJSON => {
+  const itemJSON = lc.utils.cloneObject(baseItemJSON)
 
-  // init itemJSON object
+  // add suffixId and remove validSuffixIds
+  itemJSON.validSuffixIds = undefined
+  itemJSON.suffixId = suffixId
+
+  // apply the bonuses
+  const itemSuffixJSON = getItemSuffixJSON(itemSuffixJSONArray, itemJSON.suffixId)
+  if (itemSuffixJSON) {
+    for (let i = 0; i < itemSuffixJSON.bonus.length; i++) {
+      const value = itemSuffixJSON.bonus[i].value
+      switch (itemSuffixJSON.bonus[i].type) {
+        case lc.common.ItemBonusType.Agility:
+          itemJSON.agility = zsum(itemJSON.agility, value)
+          break
+        case lc.common.ItemBonusType.ArcaneResistence:
+          itemJSON.arcaneResistance = zsum(itemJSON.arcaneResistance, value)
+          break
+        case lc.common.ItemBonusType.ArcaneSpellDamage:
+          itemJSON.arcaneDamage = zsum(itemJSON.arcaneDamage, value)
+          break
+        case lc.common.ItemBonusType.Armor:
+          itemJSON.armor = zsum(itemJSON.armor, value)
+          break
+        case lc.common.ItemBonusType.AttackPower:
+          itemJSON.attackPower = zsum(itemJSON.attackPower, value)
+          break
+        case lc.common.ItemBonusType.BeastSlaying:
+          itemJSON.beastSlaying = zsum(itemJSON.beastSlaying, value)
+          break
+        case lc.common.ItemBonusType.Block:
+          itemJSON.blockChance = zsum(itemJSON.blockChance, value)
+          break
+        case lc.common.ItemBonusType.CriticalHit:
+          itemJSON.meleeCrit = zsum(itemJSON.meleeCrit, value)
+          itemJSON.rangedCrit = zsum(itemJSON.rangedCrit, value)
+          break
+        case lc.common.ItemBonusType.Damage:
+          // NOT IN GAME
+          break
+        case lc.common.ItemBonusType.DamageAndHealingSpells:
+          itemJSON.spellDamage = zsum(itemJSON.spellDamage, value)
+          itemJSON.spellHealing = zsum(itemJSON.spellHealing, value)
+          break
+        case lc.common.ItemBonusType.Defense:
+          itemJSON.defense = zsum(itemJSON.defense, value)
+          break
+        case lc.common.ItemBonusType.Dodge:
+          itemJSON.dodge = zsum(itemJSON.dodge, value)
+          break
+        case lc.common.ItemBonusType.FireResistance:
+          itemJSON.fireResistance = zsum(itemJSON.fireResistance, value)
+          break
+        case lc.common.ItemBonusType.FireSpellDamage:
+          itemJSON.fireDamage = zsum(itemJSON.fireDamage, value)
+          break
+        case lc.common.ItemBonusType.FrostResistance:
+          itemJSON.frostResistance = zsum(itemJSON.frostResistance, value)
+          break
+        case lc.common.ItemBonusType.FrostSpellDamage:
+          itemJSON.frostDamage = zsum(itemJSON.frostDamage, value)
+          break
+        case lc.common.ItemBonusType.HealingSpells:
+          itemJSON.spellHealing = zsum(itemJSON.spellHealing, value)
+          break
+        case lc.common.ItemBonusType.HealthEvery5:
+          itemJSON.hp5 = zsum(itemJSON.hp5, value)
+          break
+        case lc.common.ItemBonusType.HolySpellDamage:
+          itemJSON.holyDamage = zsum(itemJSON.holyDamage, value)
+          break
+        case lc.common.ItemBonusType.Intellect:
+          itemJSON.intellect = zsum(itemJSON.intellect, value)
+          break
+        case lc.common.ItemBonusType.ManaEvery5:
+          itemJSON.mp5 = zsum(itemJSON.mp5, value)
+          break
+        case lc.common.ItemBonusType.NatureResistance:
+          itemJSON.natureResistance = zsum(itemJSON.natureResistance, value)
+          break
+        case lc.common.ItemBonusType.NatureSpellDamage:
+          itemJSON.natureDamage = zsum(itemJSON.natureDamage, value)
+          break
+        case lc.common.ItemBonusType.RangedAttackPower:
+          itemJSON.rangedAttackPower = zsum(itemJSON.rangedAttackPower, value)
+          break
+        case lc.common.ItemBonusType.ShadowResistance:
+          itemJSON.shadowResistance = zsum(itemJSON.shadowResistance, value)
+          break
+        case lc.common.ItemBonusType.ShadowSpellDamage:
+          itemJSON.shadowDamage = zsum(itemJSON.shadowDamage, value)
+          break
+        case lc.common.ItemBonusType.Spirit:
+          itemJSON.spirit = zsum(itemJSON.spirit, value)
+          break
+        case lc.common.ItemBonusType.Stamina:
+          itemJSON.stamina = zsum(itemJSON.stamina, value)
+          break
+        case lc.common.ItemBonusType.Strength:
+          itemJSON.strength = zsum(itemJSON.strength, value)
+          break
+        case lc.common.ItemBonusType.AxeSkill:
+          itemJSON.axeSkill = zsum(itemJSON.axeSkill, value)
+          break
+        case lc.common.ItemBonusType.BowSkill:
+          itemJSON.bowSkill = zsum(itemJSON.bowSkill, value)
+          break
+        case lc.common.ItemBonusType.DaggerSkill:
+          itemJSON.daggerSkill = zsum(itemJSON.daggerSkill, value)
+          break
+        case lc.common.ItemBonusType.GunSkill:
+          itemJSON.gunSkill = zsum(itemJSON.gunSkill, value)
+          break
+        case lc.common.ItemBonusType.MaceSkill:
+          itemJSON.maceSkill = zsum(itemJSON.maceSkill, value)
+          break
+        case lc.common.ItemBonusType.SwordSkill:
+          itemJSON.swordSkill = zsum(itemJSON.swordSkill, value)
+          break
+        case lc.common.ItemBonusType.TwoHandedAxeSkill:
+          itemJSON.twoHandedAxeSkill = zsum(itemJSON.twoHandedAxeSkill, value)
+          break
+        case lc.common.ItemBonusType.TwoHandedMaceSkill:
+          itemJSON.twoHandedMaceSkill = zsum(itemJSON.twoHandedMaceSkill, value)
+          break
+        case lc.common.ItemBonusType.TwoHandedSwordSkill:
+          itemJSON.twoHandedSwordSkill = zsum(itemJSON.twoHandedSwordSkill, value)
+          break
+        case lc.common.ItemBonusType.OnGetHitShadowBolt:
+          // FIXME: dunno
+          break
+      }
+      // console.log(`hello bonus: ${JSON.stringify(itemSuffixJSON.bonus[i])}`)
+    }
+
+    // apply the item name
+    switch (itemSuffixJSON.type) {
+      case lc.common.ItemSuffixType.Agility:
+        itemJSON.name = `${itemJSON.name} of Agility`
+        break
+      case lc.common.ItemSuffixType.ArcaneResistance:
+        itemJSON.name = `${itemJSON.name} of Arcane Resistance`
+        break
+      case lc.common.ItemSuffixType.ArcaneWrath:
+        itemJSON.name = `${itemJSON.name} of Arcane Wrath`
+        break
+      case lc.common.ItemSuffixType.BeastSlaying:
+        itemJSON.name = `${itemJSON.name} of Beast Slaying`
+        break
+      case lc.common.ItemSuffixType.Blocking:
+        itemJSON.name = `${itemJSON.name} of Blocking`
+        break
+      case lc.common.ItemSuffixType.Concentration:
+        itemJSON.name = `${itemJSON.name} of Concentration`
+        break
+      case lc.common.ItemSuffixType.CriticalStrike:
+        itemJSON.name = `${itemJSON.name} of Critical Strike`
+        break
+      case lc.common.ItemSuffixType.Defense:
+        itemJSON.name = `${itemJSON.name} of Defense`
+        break
+      case lc.common.ItemSuffixType.Eluding:
+        itemJSON.name = `${itemJSON.name} of Eluding`
+        break
+      case lc.common.ItemSuffixType.FieryWrath:
+        itemJSON.name = `${itemJSON.name} of Fiery Wrath`
+        break
+      case lc.common.ItemSuffixType.FireResistance:
+        itemJSON.name = `${itemJSON.name} of Fire Resistance`
+        break
+      case lc.common.ItemSuffixType.FrostResistance:
+        itemJSON.name = `${itemJSON.name} of Frost Resistance`
+        break
+      case lc.common.ItemSuffixType.FrozenWrath:
+        itemJSON.name = `${itemJSON.name} of Frozen Wrath`
+        break
+      case lc.common.ItemSuffixType.Healing:
+        itemJSON.name = `${itemJSON.name} of Healing`
+        break
+      case lc.common.ItemSuffixType.HolyWrath:
+        itemJSON.name = `${itemJSON.name} of Holy Wrath`
+        break
+      case lc.common.ItemSuffixType.Intellect:
+        itemJSON.name = `${itemJSON.name} of Intellect`
+        break
+      case lc.common.ItemSuffixType.Marksmanship:
+        itemJSON.name = `${itemJSON.name} of Marksmanship`
+        break
+      case lc.common.ItemSuffixType.NatureResistance:
+        itemJSON.name = `${itemJSON.name} of Nature Resistance`
+        break
+      case lc.common.ItemSuffixType.NaturesWrath:
+        itemJSON.name = `${itemJSON.name} of Nature's Wrath`
+        break
+      case lc.common.ItemSuffixType.Power:
+        itemJSON.name = `${itemJSON.name} of Power`
+        break
+      case lc.common.ItemSuffixType.Proficiency:
+        itemJSON.name = `${itemJSON.name} of Proficiency`
+        break
+      case lc.common.ItemSuffixType.Quality:
+        itemJSON.name = `${itemJSON.name} of Quality`
+        break
+      case lc.common.ItemSuffixType.Regeneration:
+        itemJSON.name = `${itemJSON.name} of Regeneration`
+        break
+      case lc.common.ItemSuffixType.Restoration:
+        itemJSON.name = `${itemJSON.name} of Restoration`
+        break
+      case lc.common.ItemSuffixType.Retaliation:
+        itemJSON.name = `${itemJSON.name} of Retaliation`
+        break
+      case lc.common.ItemSuffixType.ShadowResistance:
+        itemJSON.name = `${itemJSON.name} of Shadow Resistance`
+        break
+      case lc.common.ItemSuffixType.ShadowWrath:
+        itemJSON.name = `${itemJSON.name} of Shadow Wrath`
+        break
+      case lc.common.ItemSuffixType.Sorcery:
+        itemJSON.name = `${itemJSON.name} of Sorcery`
+        break
+      case lc.common.ItemSuffixType.Spirit:
+        itemJSON.name = `${itemJSON.name} of Spirit`
+        break
+      case lc.common.ItemSuffixType.Stamina:
+        itemJSON.name = `${itemJSON.name} of Stamina`
+        break
+      case lc.common.ItemSuffixType.Strength:
+        itemJSON.name = `${itemJSON.name} of Strength`
+        break
+      case lc.common.ItemSuffixType.Striking:
+        itemJSON.name = `${itemJSON.name} of Striking`
+        break
+      case lc.common.ItemSuffixType.TheBear:
+        itemJSON.name = `${itemJSON.name} of the Bear`
+        break
+      case lc.common.ItemSuffixType.TheBoar:
+        itemJSON.name = `${itemJSON.name} of the Boar`
+        break
+      case lc.common.ItemSuffixType.TheEagle:
+        itemJSON.name = `${itemJSON.name} of the Eagle`
+        break
+      case lc.common.ItemSuffixType.TheFalcon:
+        itemJSON.name = `${itemJSON.name} of the Falcon`
+        break
+      case lc.common.ItemSuffixType.TheGorilla:
+        itemJSON.name = `${itemJSON.name} of the Gorilla`
+        break
+      case lc.common.ItemSuffixType.TheMonkey:
+        itemJSON.name = `${itemJSON.name} of the Monkey`
+        break
+      case lc.common.ItemSuffixType.TheOwl:
+        itemJSON.name = `${itemJSON.name} of the Owl`
+        break
+      case lc.common.ItemSuffixType.TheTiger:
+        itemJSON.name = `${itemJSON.name} of the Tiger`
+        break
+      case lc.common.ItemSuffixType.TheWhale:
+        itemJSON.name = `${itemJSON.name} of the Whale`
+        break
+      case lc.common.ItemSuffixType.TheWolf:
+        itemJSON.name = `${itemJSON.name} of the Wolf`
+        break
+      case lc.common.ItemSuffixType.Toughness:
+        itemJSON.name = `${itemJSON.name} of Toughness`
+        break
+      case lc.common.ItemSuffixType.Twain:
+        itemJSON.name = `${itemJSON.name} of Twain`
+        break
+    }
+  }
+  return itemJSON
+}
+
+const parseWowheadAsync = async (xmlString: string, htmlString: string, itemId: number) => {
   const itemJSON = {} as ItemJSON
   itemJSON.id = itemId
-  if (suffixId) {
-    itemJSON.suffixId = suffixId
-  }
 
   // parse xml
   const xml$ = cheerio.load(xmlString, { xmlMode: true })
@@ -462,277 +759,8 @@ const itemJSONFromId = (itemId: number, suffixId?: number): ItemJSON | undefined
   // console.log(reactArray)
   //.children[0].data.split('\n')[1].slice(26, -2)
 
-  if (isRandomEnchant && itemJSON.suffixId) {
-    // apply the bonuses
-    const itemSuffixJSON = itemSuffixJSONFromId(itemJSON.suffixId)
-    if (itemSuffixJSON) {
-      for (let i = 0; i < itemSuffixJSON.bonus.length; i++) {
-        const value = itemSuffixJSON.bonus[i].value
-        switch (itemSuffixJSON.bonus[i].type) {
-          case lc.common.ItemBonusType.Agility:
-            itemJSON.agility = zsum(itemJSON.agility, value)
-            break
-          case lc.common.ItemBonusType.ArcaneResistence:
-            itemJSON.arcaneResistance = zsum(itemJSON.arcaneResistance, value)
-            break
-          case lc.common.ItemBonusType.ArcaneSpellDamage:
-            itemJSON.arcaneDamage = zsum(itemJSON.arcaneDamage, value)
-            break
-          case lc.common.ItemBonusType.Armor:
-            itemJSON.armor = zsum(itemJSON.armor, value)
-            break
-          case lc.common.ItemBonusType.AttackPower:
-            itemJSON.attackPower = zsum(itemJSON.attackPower, value)
-            break
-          case lc.common.ItemBonusType.BeastSlaying:
-            itemJSON.beastSlaying = zsum(itemJSON.beastSlaying, value)
-            break
-          case lc.common.ItemBonusType.Block:
-            itemJSON.blockChance = zsum(itemJSON.blockChance, value)
-            break
-          case lc.common.ItemBonusType.CriticalHit:
-            itemJSON.meleeCrit = zsum(itemJSON.meleeCrit, value)
-            itemJSON.rangedCrit = zsum(itemJSON.rangedCrit, value)
-            break
-          case lc.common.ItemBonusType.Damage:
-            // NOT IN GAME
-            break
-          case lc.common.ItemBonusType.DamageAndHealingSpells:
-            itemJSON.spellDamage = zsum(itemJSON.spellDamage, value)
-            itemJSON.spellHealing = zsum(itemJSON.spellHealing, value)
-            break
-          case lc.common.ItemBonusType.Defense:
-            itemJSON.defense = zsum(itemJSON.defense, value)
-            break
-          case lc.common.ItemBonusType.Dodge:
-            itemJSON.dodge = zsum(itemJSON.dodge, value)
-            break
-          case lc.common.ItemBonusType.FireResistance:
-            itemJSON.fireResistance = zsum(itemJSON.fireResistance, value)
-            break
-          case lc.common.ItemBonusType.FireSpellDamage:
-            itemJSON.fireDamage = zsum(itemJSON.fireDamage, value)
-            break
-          case lc.common.ItemBonusType.FrostResistance:
-            itemJSON.frostResistance = zsum(itemJSON.frostResistance, value)
-            break
-          case lc.common.ItemBonusType.FrostSpellDamage:
-            itemJSON.frostDamage = zsum(itemJSON.frostDamage, value)
-            break
-          case lc.common.ItemBonusType.HealingSpells:
-            itemJSON.spellHealing = zsum(itemJSON.spellHealing, value)
-            break
-          case lc.common.ItemBonusType.HealthEvery5:
-            itemJSON.hp5 = zsum(itemJSON.hp5, value)
-            break
-          case lc.common.ItemBonusType.HolySpellDamage:
-            itemJSON.holyDamage = zsum(itemJSON.holyDamage, value)
-            break
-          case lc.common.ItemBonusType.Intellect:
-            itemJSON.intellect = zsum(itemJSON.intellect, value)
-            break
-          case lc.common.ItemBonusType.ManaEvery5:
-            itemJSON.mp5 = zsum(itemJSON.mp5, value)
-            break
-          case lc.common.ItemBonusType.NatureResistance:
-            itemJSON.natureResistance = zsum(itemJSON.natureResistance, value)
-            break
-          case lc.common.ItemBonusType.NatureSpellDamage:
-            itemJSON.natureDamage = zsum(itemJSON.natureDamage, value)
-            break
-          case lc.common.ItemBonusType.RangedAttackPower:
-            itemJSON.rangedAttackPower = zsum(itemJSON.rangedAttackPower, value)
-            break
-          case lc.common.ItemBonusType.ShadowResistance:
-            itemJSON.shadowResistance = zsum(itemJSON.shadowResistance, value)
-            break
-          case lc.common.ItemBonusType.ShadowSpellDamage:
-            itemJSON.shadowDamage = zsum(itemJSON.shadowDamage, value)
-            break
-          case lc.common.ItemBonusType.Spirit:
-            itemJSON.spirit = zsum(itemJSON.spirit, value)
-            break
-          case lc.common.ItemBonusType.Stamina:
-            itemJSON.stamina = zsum(itemJSON.stamina, value)
-            break
-          case lc.common.ItemBonusType.Strength:
-            itemJSON.strength = zsum(itemJSON.strength, value)
-            break
-          case lc.common.ItemBonusType.AxeSkill:
-            itemJSON.axeSkill = zsum(itemJSON.axeSkill, value)
-            break
-          case lc.common.ItemBonusType.BowSkill:
-            itemJSON.bowSkill = zsum(itemJSON.bowSkill, value)
-            break
-          case lc.common.ItemBonusType.DaggerSkill:
-            itemJSON.daggerSkill = zsum(itemJSON.daggerSkill, value)
-            break
-          case lc.common.ItemBonusType.GunSkill:
-            itemJSON.gunSkill = zsum(itemJSON.gunSkill, value)
-            break
-          case lc.common.ItemBonusType.MaceSkill:
-            itemJSON.maceSkill = zsum(itemJSON.maceSkill, value)
-            break
-          case lc.common.ItemBonusType.SwordSkill:
-            itemJSON.swordSkill = zsum(itemJSON.swordSkill, value)
-            break
-          case lc.common.ItemBonusType.TwoHandedAxeSkill:
-            itemJSON.twoHandedAxeSkill = zsum(itemJSON.twoHandedAxeSkill, value)
-            break
-          case lc.common.ItemBonusType.TwoHandedMaceSkill:
-            itemJSON.twoHandedMaceSkill = zsum(itemJSON.twoHandedMaceSkill, value)
-            break
-          case lc.common.ItemBonusType.TwoHandedSwordSkill:
-            itemJSON.twoHandedSwordSkill = zsum(itemJSON.twoHandedSwordSkill, value)
-            break
-          case lc.common.ItemBonusType.OnGetHitShadowBolt:
-            // FIXME: dunno
-            break
-        }
-        // console.log(`hello bonus: ${JSON.stringify(itemSuffixJSON.bonus[i])}`)
-      }
-
-      // apply the item name
-      switch (itemSuffixJSON.type) {
-        case lc.common.ItemSuffixType.Agility:
-          itemJSON.name = `${itemJSON.name} of Agility`
-          break
-        case lc.common.ItemSuffixType.ArcaneResistance:
-          itemJSON.name = `${itemJSON.name} of Arcane Resistance`
-          break
-        case lc.common.ItemSuffixType.ArcaneWrath:
-          itemJSON.name = `${itemJSON.name} of Arcane Wrath`
-          break
-        case lc.common.ItemSuffixType.BeastSlaying:
-          itemJSON.name = `${itemJSON.name} of Beast Slaying`
-          break
-        case lc.common.ItemSuffixType.Blocking:
-          itemJSON.name = `${itemJSON.name} of Blocking`
-          break
-        case lc.common.ItemSuffixType.Concentration:
-          itemJSON.name = `${itemJSON.name} of Concentration`
-          break
-        case lc.common.ItemSuffixType.CriticalStrike:
-          itemJSON.name = `${itemJSON.name} of Critical Strike`
-          break
-        case lc.common.ItemSuffixType.Defense:
-          itemJSON.name = `${itemJSON.name} of Defense`
-          break
-        case lc.common.ItemSuffixType.Eluding:
-          itemJSON.name = `${itemJSON.name} of Eluding`
-          break
-        case lc.common.ItemSuffixType.FieryWrath:
-          itemJSON.name = `${itemJSON.name} of Fiery Wrath`
-          break
-        case lc.common.ItemSuffixType.FireResistance:
-          itemJSON.name = `${itemJSON.name} of Fire Resistance`
-          break
-        case lc.common.ItemSuffixType.FrostResistance:
-          itemJSON.name = `${itemJSON.name} of Frost Resistance`
-          break
-        case lc.common.ItemSuffixType.FrozenWrath:
-          itemJSON.name = `${itemJSON.name} of Frozen Wrath`
-          break
-        case lc.common.ItemSuffixType.Healing:
-          itemJSON.name = `${itemJSON.name} of Healing`
-          break
-        case lc.common.ItemSuffixType.HolyWrath:
-          itemJSON.name = `${itemJSON.name} of Holy Wrath`
-          break
-        case lc.common.ItemSuffixType.Intellect:
-          itemJSON.name = `${itemJSON.name} of Intellect`
-          break
-        case lc.common.ItemSuffixType.Marksmanship:
-          itemJSON.name = `${itemJSON.name} of Marksmanship`
-          break
-        case lc.common.ItemSuffixType.NatureResistance:
-          itemJSON.name = `${itemJSON.name} of Nature Resistance`
-          break
-        case lc.common.ItemSuffixType.NaturesWrath:
-          itemJSON.name = `${itemJSON.name} of Nature's Wrath`
-          break
-        case lc.common.ItemSuffixType.Power:
-          itemJSON.name = `${itemJSON.name} of Power`
-          break
-        case lc.common.ItemSuffixType.Proficiency:
-          itemJSON.name = `${itemJSON.name} of Proficiency`
-          break
-        case lc.common.ItemSuffixType.Quality:
-          itemJSON.name = `${itemJSON.name} of Quality`
-          break
-        case lc.common.ItemSuffixType.Regeneration:
-          itemJSON.name = `${itemJSON.name} of Regeneration`
-          break
-        case lc.common.ItemSuffixType.Restoration:
-          itemJSON.name = `${itemJSON.name} of Restoration`
-          break
-        case lc.common.ItemSuffixType.Retaliation:
-          itemJSON.name = `${itemJSON.name} of Retaliation`
-          break
-        case lc.common.ItemSuffixType.ShadowResistance:
-          itemJSON.name = `${itemJSON.name} of Shadow Resistance`
-          break
-        case lc.common.ItemSuffixType.ShadowWrath:
-          itemJSON.name = `${itemJSON.name} of Shadow Wrath`
-          break
-        case lc.common.ItemSuffixType.Sorcery:
-          itemJSON.name = `${itemJSON.name} of Sorcery`
-          break
-        case lc.common.ItemSuffixType.Spirit:
-          itemJSON.name = `${itemJSON.name} of Spirit`
-          break
-        case lc.common.ItemSuffixType.Stamina:
-          itemJSON.name = `${itemJSON.name} of Stamina`
-          break
-        case lc.common.ItemSuffixType.Strength:
-          itemJSON.name = `${itemJSON.name} of Strength`
-          break
-        case lc.common.ItemSuffixType.Striking:
-          itemJSON.name = `${itemJSON.name} of Striking`
-          break
-        case lc.common.ItemSuffixType.TheBear:
-          itemJSON.name = `${itemJSON.name} of the Bear`
-          break
-        case lc.common.ItemSuffixType.TheBoar:
-          itemJSON.name = `${itemJSON.name} of the Boar`
-          break
-        case lc.common.ItemSuffixType.TheEagle:
-          itemJSON.name = `${itemJSON.name} of the Eagle`
-          break
-        case lc.common.ItemSuffixType.TheFalcon:
-          itemJSON.name = `${itemJSON.name} of the Falcon`
-          break
-        case lc.common.ItemSuffixType.TheGorilla:
-          itemJSON.name = `${itemJSON.name} of the Gorilla`
-          break
-        case lc.common.ItemSuffixType.TheMonkey:
-          itemJSON.name = `${itemJSON.name} of the Monkey`
-          break
-        case lc.common.ItemSuffixType.TheOwl:
-          itemJSON.name = `${itemJSON.name} of the Owl`
-          break
-        case lc.common.ItemSuffixType.TheTiger:
-          itemJSON.name = `${itemJSON.name} of the Tiger`
-          break
-        case lc.common.ItemSuffixType.TheWhale:
-          itemJSON.name = `${itemJSON.name} of the Whale`
-          break
-        case lc.common.ItemSuffixType.TheWolf:
-          itemJSON.name = `${itemJSON.name} of the Wolf`
-          break
-        case lc.common.ItemSuffixType.Toughness:
-          itemJSON.name = `${itemJSON.name} of Toughness`
-          break
-        case lc.common.ItemSuffixType.Twain:
-          itemJSON.name = `${itemJSON.name} of Twain`
-          break
-      }
-    }
-  }
-
-  // - if no suffixId passed in, this is a base item and we need the valid suffixId's
-  // - if suffixId passed in, this is one individual item and we don't need the valid suffixId's
-  if (isRandomEnchant && !itemJSON.suffixId) {
+  // for random enchants we need to generate a 'validSuffixIds' array
+  if (isRandomEnchant) {
     const div = html$('div[class=random-enchantments]')
     const ul = html$('ul')
     const root = html$(div).text() !== `` ? div : ul
@@ -797,41 +825,98 @@ const itemJSONFromId = (itemId: number, suffixId?: number): ItemJSON | undefined
   return JSON.parse(JSON.stringify(itemJSON))
 }
 
-const itemJSONArrayFromMasterList = (opts?: { outputFile?: string; modular?: boolean }): ItemJSON[] => {
-  const itemJSONArray: ItemJSON[] = []
+const parsedItemFromIdAsync = async (
+  itemId: number,
+  itemName: string,
+  itemSuffixJSONArray: ItemSuffixJSON[]
+): Promise<ParsedItem> => {
+  const itemJSONRandoms: ItemJSON[] = []
+  const baseFilePath = `${xmlOutputDir}/${itemId}-${wowheadItemName(itemName)}`
+  const dataStrings = await Promise.all([
+    stringFromGzipFileAsync(`${baseFilePath}.xml.gz`),
+    stringFromGzipFileAsync(`${baseFilePath}.html.gz`)
+  ])
 
-  const masterList = jsonFromFile(masterListFile)
-  const itemCount = masterList.length
+  // parse the item
+  const itemJSON: ItemJSON = await parseWowheadAsync(dataStrings[0], dataStrings[1], itemId)
+
+  // if it's a random enchant item we need to generate each of them
+  if (itemJSON && itemJSON.validSuffixIds) {
+    for (let i = 0; i < itemJSON.validSuffixIds.length; i++) {
+      const suffixId = itemJSON.validSuffixIds[i]
+      itemJSONRandoms.push(getRandomEnchantJSON(itemSuffixJSONArray, itemJSON, suffixId))
+    }
+  }
+
+  return {
+    itemJSON: itemJSON,
+    itemJSONRandoms: itemJSONRandoms
+  }
+}
+
+interface ParsedItem {
+  itemJSON: ItemJSON
+  itemJSONRandoms: ItemJSON[]
+}
+
+const createItemDbAsync = async (
+  itemListFile: string,
+  outItemFile: string,
+  outItemModularFile: string,
+  outItemRandomsFile: string,
+  outItemSuffixFile: string
+): Promise<number> => {
+  const concurLimit = 10
+  const limit = plimit(concurLimit)
+  const parsePromises: Promise<ParsedItem>[] = []
+
+  console.log(`reading master item list`)
+  const itemList = await jsonFromFileAsync(itemListFile)
+  const masterSuffixes: ItemSuffixJSON[] = await jsonFromFileAsync(masterItemSuffixFile)
+
+  console.log(`creating parse promises`)
+  const itemCount = itemList.length
   for (let i = 0; i < itemCount; i++) {
-    const item = masterList[i]
+    parsePromises.push(limit(() => parsedItemFromIdAsync(itemList[i].id, itemList[i].name, masterSuffixes)))
+  }
+  console.log(`await parse promises (count = ${parsePromises.length}, concur limit = ${concurLimit})`)
+  const parsedItems = await Promise.all(parsePromises)
+  console.log(`finished parsing items`)
 
-    console.log(`-- ${item.name} (${item.id})`)
-    const itemJSON = itemJSONFromId(item.id)
-    if (!itemJSON) {
-      console.warn(`WARNING: couldn't find ${item.id}, skipping`)
-      continue
-    }
+  console.log(`constructing files to write`)
 
-    if (opts && opts.modular) {
-      // this is a modular db, meaning we'll just write the items as is
-      // the random enchants can be generated at run-time
-      itemJSONArray.push(itemJSON)
-    } else if (itemJSON.validSuffixIds && itemJSON.validSuffixIds.length > 0) {
-      // this is a complete db, meaning we'll generate the random enchant items now, at build time.
-      for (let i = 0; i < itemJSON.validSuffixIds.length; i++) {
-        const _itemJSON = itemJSONFromId(item.id, itemJSON.validSuffixIds[i])
-        if (_itemJSON) {
-          itemJSONArray.push(_itemJSON)
-        }
-      }
+  const items: ItemJSON[] = []
+  const itemsModular: ItemJSON[] = []
+  const itemsRandom: ItemJSON[] = []
+
+  for (let i = 0; i < parsedItems.length; i++) {
+    const parsedItem = parsedItems[i]
+
+    // the modular item db only stores the 'base item' for random enchants
+    // that way we can save space and generate them at run time
+    itemsModular.push(parsedItem.itemJSON)
+
+    // the random item db just stores random enchants. it's mostly
+    // for educational purposes
+    itemsRandom.push(...parsedItem.itemJSONRandoms)
+
+    // the main item db stores everything except the 'base item' for the random enchants
+    if (!parsedItem.itemJSON.validSuffixIds) {
+      items.push(parsedItem.itemJSON)
     }
+    items.push(...parsedItem.itemJSONRandoms)
   }
 
-  if (opts && opts.outputFile) {
-    fs.writeFileSync(opts.outputFile, JSON.stringify(itemJSONArray))
-  }
+  console.log(`writing item db: ${items.length}`)
+  await fsPromises.writeFile(outItemFile, JSON.stringify(items))
 
-  return itemJSONArray
+  console.log(`writing modular item db: ${itemsModular.length}`)
+  await fsPromises.writeFile(outItemModularFile, JSON.stringify(itemsModular))
+
+  console.log(`writing random enchant item db: ${itemsRandom.length}`)
+  await fsPromises.writeFile(outItemRandomsFile, JSON.stringify(itemsRandom))
+
+  return 0
 }
 
 /**
@@ -879,6 +964,7 @@ const itemSuffixJSONArrayFromItemFile = (myItemFile: string, newItemSuffixFile?:
 
 export default {
   stringFromFile,
+  stringFromFileAsync,
   stringFromGzipFile,
   jsonFromFile,
   stringFromComment,
@@ -894,7 +980,6 @@ export default {
   itemIdsFromName,
   itemIconFromXML,
   itemNameFromId,
-  itemJSONFromId,
-  itemJSONArrayFromMasterList,
-  itemSuffixJSONArrayFromItemFile
+  itemSuffixJSONArrayFromItemFile,
+  createItemDbAsync
 }

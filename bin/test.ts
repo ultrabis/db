@@ -1,4 +1,6 @@
 import common from '../src/common'
+import mkdirp from 'mkdirp'
+import rimraf from 'rimraf'
 
 const testItems = [
   `Monster - Spear, Broad Notched`,
@@ -25,12 +27,13 @@ const testItemIdsFromName = () => {
   console.log(``)
 }
 
+/*
 const testItemJSONFromId = () => {
   console.log(`test itemJSONFromId()`)
   console.log(`======================`)
 
   console.log(`-- masters hat`)
-  console.log(common.itemJSONFromId(10250))
+  console.log(common.itemJSONFromIdAsync(10250))
 
   console.log(`-- masters hat of arcane wrath (+40)`)
   console.log(common.itemJSONFromId(10250, 1826))
@@ -86,14 +89,38 @@ const testItemJSONFromId = () => {
   console.log(`-- grand marshals demolisher`)
   console.log(common.itemJSONFromId(23455))
 }
+*/
 
 // now need to parse keftenk CSV to an itemList file
+const testCreateItemDb = async () => {
+  //const itemJSONArray = await common.itemJSONArrayFromMasterListAsync()
+
+  console.log(`rm -rf dist/test && mkdir -p dist/test`)
+  rimraf.sync(`dist/test`)
+  mkdirp.sync(`dist/test`)
+
+  console.log(`running createItemDb()`)
+  await common.createItemDbAsync(
+    `cache/masterList.json`,
+    `dist/test/item.json`,
+    `dist/test/item-modular.json`,
+    `dist/test/item-randoms.json`,
+    `dist/test/itemSuffix.json`
+  )
+
+  //console.log(`hello itemJSONArray`)
+  //console.log(itemJSONArray)
+
+  //return fsPromises.readFile(filePath).then((buffer) => {
+}
 
 const doIt = async () => {
   // testWowheadItemName()
   // testItemIdsFromName()
-  // testItemJSONFromId()
+  // testItemJSONFromIdAsync()
   // testItemJSONArrayFromItemListFile()
+  // testItemJSONArrayFromMasterListAsync()
+  testCreateItemDb()
 }
 
 doIt()
