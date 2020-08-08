@@ -21,7 +21,7 @@ The purpose is to provide a database for simulators and/or other tools without r
 
 The icons for all items are included in `cache/icons`
 
-### explanation of files
+## explanation of files
 
 `main` = includes all valid random enchants e.g. `Master's Hat of Arcane Wrath`
 
@@ -31,7 +31,7 @@ The icons for all items are included in `cache/icons`
 
 `itemSuffix` = can be used in conjunction with `modular` to generate the random enchants at run-time (using roughly 4 times less space) 
 
-### known issues
+## known issues
 
 - faction property not yet supported
 - wowhead doesn't have 'phase' for every item. how to handle those is up to the user right now 
