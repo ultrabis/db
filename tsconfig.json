@@ -9,7 +9,7 @@
     "baseUrl": ".",
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "noFallthroughCasesInSwitch": true,
+    "noFallthroughCasesInSwitch": false,
     "resolveJsonModule": true,
     "outDir": "./dist"
   }

@@ -1,20 +1,23 @@
 import common from '../src/common'
-import mkdirp from 'mkdirp'
-import rimraf from 'rimraf'
 import fs from 'fs'
+import rimraf from 'rimraf'
 
-const build = async (dbName: string, itemListFile: string) => {
-  console.log(`creating '${dbName}' database...`)
-  rimraf.sync(`dist/${dbName}`)
-  mkdirp.sync(`dist/${dbName}`)
-  await common.createDB(`dist/${dbName}`, itemListFile)
-}
+const build = async () => {
+  // clean destination
+  console.log(`cleaning dist...`)
+  rimraf.sync(`dist`)
 
-const buildAll = async () => {
-  await build('full', 'cache/masterList.json')
+  console.log(`creating 'full' database`)
+  await common.createDB(`full`, `cache/masterList.json`)
+
+  console.log(`creating 'moonkin' database`)
+  await common.moonkinCreateDB(`custom/moonkin.csv`)
+
+  console.log(`copying interfaces`)
   fs.copyFileSync(`src/interface/ItemJSON.ts`, `dist/ItemJSON.ts`)
   fs.copyFileSync(`src/interface/ItemSuffixJSON.ts`, `dist/ItemSuffixJSON.ts`)
-  //fs.writeFileSync(`dist/index.html`, `nothing here yet`)
+
+  console.log(`complete`)
 }
 
-void buildAll()
+void build()

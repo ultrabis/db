@@ -52,12 +52,6 @@ const testParse = async () => {
   await p(23455, `Grand Marshals Demolisher`)
 }
 
-const testCreateItemDb = async () => {
-  rimraf.sync(`dist/test`)
-  mkdirp.sync(`dist/test`)
-  await common.createDB(`dist/test`, `cache/masterList.json`)
-}
-
 const testShowSuffixTypes = async () => {
   const suffixTypeSet: Set<ItemSuffixType> = new Set()
   const itemSuffixes: ItemSuffixJSON[] = JSON.parse(common.stringFromFile(`dist/full/itemSuffix.json`))
@@ -86,13 +80,19 @@ const testShowSuffixTypes = async () => {
   console.log(`unusedSuffixTypes: ${unusedSuffixTypes}`)
 }
 
+const testMoonkinCreateDB = async () => {
+  await common.moonkinCreateDB(`custom/moonkin.csv`)
+}
+
 const doIt = async () => {
   // testWowheadItemName()
   // testCreateItemDb()
   // testShowSuffixTypes()
   // testEluding()
   // testShowSuffixTypes()
-  testParse()
+  // testParse()
+  // testParseCSV()
+  testMoonkinCreateDB()
 }
 
 doIt()

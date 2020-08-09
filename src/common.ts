@@ -9,15 +9,22 @@ import zlib from 'zlib'
 import cheerio from 'cheerio'
 import request from 'requestretry'
 import plimit from 'p-limit'
+import csv from 'csvtojson'
+import mkdirp from 'mkdirp'
 import lc from 'libclassic'
+
 import ItemJSON from './interface/ItemJSON'
 import ItemSuffixJSON from './interface/ItemSuffixJSON'
-import ItemListJSON from './interface/ItemListJSON'
 
 interface WowheadItemParserResult {
   item: ItemJSON
   randomEnchants: ItemJSON[]
   suffixes: ItemSuffixJSON[]
+}
+
+interface ItemListJSON {
+  id: number
+  name: string
 }
 
 const xmlOutputDir = 'cache/items'
@@ -171,13 +178,6 @@ const jsonFromFileAsync = async (filePath: string): Promise<any> => {
   return JSON.parse(buffer.toString())
 }
 
-/**
- *
- * read masterList and return array of matching items based on the name
- * we must return an array becaue itemName is not unique
- *
- * @param itemName
- */
 /**
  *
  * read itemList file and return the itemName based on itemId
@@ -387,6 +387,17 @@ const getItemSuffixFromItemNameAndValues = (
       itemSuffix.bonus[1] ? itemSuffix.bonus[1].value : 0
     ]
 
+    // special handle for looking up suffix with only one value
+    // we might need this on spreadsheets
+    if (values[1] == -1) {
+      // console.log(`hello ${values[0]} vs ${suffixValues[0]}`)
+      if (values[0] === suffixValues[0]) {
+        return itemSuffix
+      }
+    }
+
+    //console.log(`values: ${values}`)
+    //console.log(`suffixValues: ${suffixValues}`)
     if (values[0] === suffixValues[0] && values[1] === suffixValues[1]) {
       return itemSuffix
     }
@@ -701,7 +712,8 @@ const wowheadParseBonusValues = (bonusText: string): [number, number] => {
 const wowheadParseItem = async (
   itemId: number,
   itemName: string,
-  suffixes: ItemSuffixJSON[]
+  suffixes: ItemSuffixJSON[],
+  opts?: { validSuffixTypes?: number[] }
 ): Promise<WowheadItemParserResult> => {
   const output: WowheadItemParserResult = {} as WowheadItemParserResult
 
@@ -898,12 +910,16 @@ const wowheadParseItem = async (
 
         itemSuffix = getItemSuffixFromItemNameAndValues(suffixes, `x ${suffixTypeText}`, bonusValuesX)
         if (itemSuffix) {
-          validSuffixIds.push(itemSuffix.id)
+          if (!opts || !opts.validSuffixTypes || opts.validSuffixTypes.includes(itemSuffix.type)) {
+            validSuffixIds.push(itemSuffix.id)
+          }
         }
 
         itemSuffix = getItemSuffixFromItemNameAndValues(suffixes, `x ${suffixTypeText}`, bonusValuesY)
         if (itemSuffix) {
-          validSuffixIds.push(itemSuffix.id)
+          if (!opts || !opts.validSuffixTypes || opts.validSuffixTypes.includes(itemSuffix.type)) {
+            validSuffixIds.push(itemSuffix.id)
+          }
         }
       })
     if (validSuffixIds.length > 0) {
@@ -931,7 +947,7 @@ const wowheadParseItem = async (
   return output
 }
 
-const wowheadParseItems = async (itemListFile: string) => {
+const wowheadParseItems = async (itemListFile: string, opts?: { validSuffixTypes?: number[] }) => {
   const limit = plimit(10)
   const itemSuffixFile = fs.existsSync(cacheItemSuffixFile) ? cacheItemSuffixFile : masterItemSuffixFile
   const itemSuffixes: ItemSuffixJSON[] = await jsonFromFileAsync(itemSuffixFile)
@@ -939,7 +955,7 @@ const wowheadParseItems = async (itemListFile: string) => {
 
   const itemList = await jsonFromFileAsync(itemListFile)
   for (let i = 0; i < itemList.length; i++) {
-    parsePromises.push(limit(() => wowheadParseItem(itemList[i].id, itemList[i].name, itemSuffixes)))
+    parsePromises.push(limit(() => wowheadParseItem(itemList[i].id, itemList[i].name, itemSuffixes, opts)))
   }
 
   return Promise.all(parsePromises)
@@ -995,22 +1011,103 @@ const wowheadWriteItems = async (
   await fsPromises.writeFile(itemSuffixFile, JSON.stringify(Array.from(itemSuffixSet)))
 }
 
-const createDB = async (outputDir: string, itemListFile: string): Promise<void> => {
+const moonkinCreateDB = async (csvFile: string): Promise<void> => {
+  // parse csv and write out the itemList.json
+  mkdirp.sync(`dist/moonkin`)
+  const moonkinItemList = await moonkinParseCSV(csvFile)
+  const moonkinItemListFile = `dist/moonkin/itemList.json`
+  await fsPromises.writeFile(moonkinItemListFile, JSON.stringify(moonkinItemList))
+
+  // do the standard db create using our newly created moonkin itemList.json
+  // we'll also restrict random enchants to ones a moonkin might care about
+  const validSuffixTypes = [
+    lc.common.ItemSuffixType.ArcaneWrath,
+    lc.common.ItemSuffixType.NaturesWrath,
+    lc.common.ItemSuffixType.Sorcery,
+    lc.common.ItemSuffixType.Restoration
+  ]
+  return await createDB('moonkin', moonkinItemListFile, { validSuffixTypes: validSuffixTypes })
+}
+
+const createDB = async (dbName: string, itemListFile: string, opts?: { validSuffixTypes: number[] }): Promise<void> => {
+  mkdirp.sync(`dist/${dbName}`)
+
   // parse items
+  console.log(`parsing items from ${itemListFile}`)
   const startTime = process.hrtime()
-  const items = await wowheadParseItems(itemListFile)
+  const items = await wowheadParseItems(itemListFile, opts)
 
   // write db
+  console.log(`writing files to dist/${dbName}`)
   await wowheadWriteItems(
     items,
-    `${outputDir}/item.json`,
-    `${outputDir}/item-modular.json`,
-    `${outputDir}/item-random.json`,
-    `${outputDir}/itemSuffix.json`
+    `dist/${dbName}/item.json`,
+    `dist/${dbName}/item-modular.json`,
+    `dist/${dbName}/item-random.json`,
+    `dist/${dbName}/itemSuffix.json`
   )
-  const elapsedTime = hrTimeToSeconds(process.hrtime(startTime))
 
+  const elapsedTime = hrTimeToSeconds(process.hrtime(startTime))
   console.log(`spent ${secondsToPretty(elapsedTime)} creating databases`)
+}
+
+const moonkinParseCSV = async (csvFilePath: string): Promise<ItemListJSON[]> => {
+  const moonkinItemList: ItemListJSON[] = []
+  const itemNameSet: Set<string> = new Set()
+
+  const itemList = jsonFromFile(masterListFile)
+  const csvArray = await csv().fromFile(csvFilePath)
+
+  const _isEnchant = (csvRecord: any): boolean => {
+    switch (csvRecord['Equipment Type']) {
+      case 'Back Enchant':
+      case 'Chest Enchant':
+      case 'Feet Enchant':
+      case 'Hands Enchant':
+      case 'Head Enchant':
+      case 'Legs Enchant':
+      case 'Shoulder Enchant':
+      case 'Weapon Enchant':
+      case 'Wrist Enchant':
+        return true
+      default:
+        return false
+    }
+  }
+
+  const _getItemId = (itemName: string) => {
+    for (let i = 0; i < itemList.length; i++) {
+      const item = itemList[i]
+      if (item.name === itemName) {
+        return item.id
+      }
+    }
+    return undefined
+  }
+
+  // shove all item names into a set
+  for (const csvRecord of csvArray) {
+    if (!_isEnchant(csvRecord)) {
+      const itemName = lc.common.itemBaseName(csvRecord.Name)
+      if (itemName !== '') {
+        itemNameSet.add(itemName)
+      }
+    }
+  }
+
+  // loop the unique set of item names, grab id and stuff in result array
+  const itemNameArray = Array.from(itemNameSet)
+  for (let i = 0; i < itemNameArray.length; i++) {
+    const itemName = itemNameArray[i]
+    const itemId = _getItemId(itemName)
+    if (!itemId) {
+      console.warn(`WARNING: Couldn't find item id for ${itemName}, skipping`)
+      continue
+    }
+    moonkinItemList.push({ id: itemId, name: itemName })
+  }
+
+  return moonkinItemList
 }
 
 export default {
@@ -1022,6 +1119,11 @@ export default {
   atoi,
   atoa,
   download,
+  itemIconFromXML,
+  itemNameFromId,
+  getItemSuffix,
+  getItemSuffixesFromItemName,
+  getItemSuffixFromItemNameAndValues,
   wowheadItemName,
   wowheadDownloadItems,
   wowheadDownloadMasterList,
@@ -1029,10 +1131,7 @@ export default {
   wowheadDownloadXML,
   wowheadDownloadIcon,
   wowheadParseItem,
-  itemIconFromXML,
-  itemNameFromId,
-  getItemSuffix,
-  getItemSuffixesFromItemName,
-  getItemSuffixFromItemNameAndValues,
-  createDB
+  createDB,
+  moonkinParseCSV,
+  moonkinCreateDB
 }

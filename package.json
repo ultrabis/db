@@ -16,6 +16,7 @@
   },
   "devDependencies": {
     "@types/cheerio": "^0.22.21",
+    "@types/csvtojson": "^1.1.5",
     "@types/mkdirp": "^1.0.1",
     "@types/node": "^14.0.27",
     "@types/requestretry": "^1.12.7",
