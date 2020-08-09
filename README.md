@@ -10,10 +10,10 @@ The purpose is to provide a database for simulators and/or other tools without r
 
 | full                                                                   | moonkin             | firemage              | description |
 |------------------------------------------------------------------------|---------------------| ----------------------|-------------|
-| [main (8.8MB)](https://ultrabis.github.io/db/full/item.json)           | TODO | TODO | all items including random enchants  |
-| [modular (2MB)](https://ultrabis.github.io/db/full/item-modular.json)  | TODO | TODO | all items excluding random enchants |
-| [random (7.3MB)](https://ultrabis.github.io/db/full/item-random.json)  | TODO | TODO | only random enchants |
-| [itemSuffix (43k)](https://ultrabis.github.io/db/full/itemSuffix.json) | TODO | TODO | can be used in conjunction with `modular` to generate random enchants at run-time |
+| [main (8.8MB)](https://ultrabis.github.io/db/full/item.json)           | [main (178k)](https://ultrabis.github.io/db/moonkin/item.json) | TODO | all items including random enchants  |
+| [modular (2MB)](https://ultrabis.github.io/db/full/item-modular.json)  | [modular (125k)](https://ultrabis.github.io/db/moonkin/item-modular.json) | TODO | all items excluding random enchants |
+| [random (7.3MB)](https://ultrabis.github.io/db/full/item-random.json)  | [random (91k)](https://ultrabis.github.io/db/moonkin/item-random.json) | TODO | only random enchants |
+| [itemSuffix (43k)](https://ultrabis.github.io/db/full/itemSuffix.json) | [itemSuffix (3k)](https://ultrabis.github.io/db/moonkin/itemSuffix.json) | TODO | can be used in conjunction with `modular` to generate random enchants at run-time |
 
 ### typescript interfaces
 
