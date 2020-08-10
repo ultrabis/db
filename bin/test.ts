@@ -32,6 +32,7 @@ const testParse = async () => {
 
   console.log(`test parse`)
   console.log(`==========`)
+  await p(21186, 'Rockfury Bracers')
   await p(14152, 'Robe of the Archmage')
   await p(11118, `Archaedic Stone`)
   await p(10250, `Master's Hat`)

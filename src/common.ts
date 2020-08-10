@@ -143,7 +143,11 @@ const stringFromGzipFileAsync = async (filePath: string): Promise<string> => {
  * @param filePath
  */
 const stringFromFile = (filePath: string): string => {
-  return fs.readFileSync(filePath).toString()
+  try {
+    return fs.readFileSync(filePath).toString()
+  } catch (err) {
+    return ``
+  }
 }
 
 /**
@@ -720,11 +724,13 @@ const wowheadParseItem = async (
   const baseFilePath = `${xmlOutputDir}/${itemId}-${wowheadItemName(itemName)}`
   const dataStrings = await Promise.all([
     stringFromGzipFileAsync(`${baseFilePath}.xml.gz`),
-    stringFromGzipFileAsync(`${baseFilePath}.html.gz`)
+    stringFromGzipFileAsync(`${baseFilePath}.html.gz`),
+    stringFromFile(`custom/overrides/${itemId}.json`)
   ])
 
   const xml = dataStrings[0]
   const html = dataStrings[1]
+  const override: ItemJSON | undefined = dataStrings[2] !== `` ? JSON.parse(dataStrings[2]) : undefined
 
   const itemJSON = {} as ItemJSON
   itemJSON.id = itemId
@@ -945,6 +951,10 @@ const wowheadParseItem = async (
         output.suffixes.push(itemSuffixJSON)
       }
     }
+  }
+
+  if (override) {
+    Object.assign(itemJSON, override)
   }
 
   return output
