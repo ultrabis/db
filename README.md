@@ -8,6 +8,8 @@ The purpose is to provide a database for simulators and/or other tools without r
 
 ## download
 
+Full contains every item. The others are tailored for specific classes/spec, derived from various spreadsheets and BiS lists.
+
 | full | moonkin | feral | warlock | description |
 |------|---------| ------|---------|-------------|
 | [main (8.8MB)](https://ultrabis.github.io/db/full/item.json)           | [main (178k)](https://ultrabis.github.io/db/moonkin/item.json) | [main (220k)](https://ultrabis.github.io/db/feral/item.json) | [main (121k)](https://ultrabis.github.io/db/warlock/item.json) | all items including random enchants  |
