@@ -8,7 +8,7 @@ The purpose is to provide a database for simulators and/or other tools without r
 
 ## download
 
-Full contains every item. The others are tailored for specific classes/spec, derived from various spreadsheets and BiS lists.
+Full contains every item. The others are tailored for a specific class/spec and were derived from various spreadsheets and BiS lists.
 
 | full | moonkin | feral | warlock | description |
 |------|---------| ------|---------|-------------|
