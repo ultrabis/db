@@ -8,6 +8,8 @@ The purpose is to provide a database for simulators and/or other tools without r
 
 ## download
 
+Full contains every item. The others are tailored for a specific class/spec and were derived from various spreadsheets and BiS lists.
+
 | full | moonkin | feral | warlock | description |
 |------|---------| ------|---------|-------------|
 | [main (8.8MB)](https://ultrabis.github.io/db/full/item.json)           | [main (178k)](https://ultrabis.github.io/db/moonkin/item.json) | [main (220k)](https://ultrabis.github.io/db/feral/item.json) | [main (121k)](https://ultrabis.github.io/db/warlock/item.json) | all items including random enchants  |
@@ -35,3 +37,7 @@ The icons for all items are included in `cache/icons`
 - add client side functions for working with databases
   - publish to NPM
   - allow importing / including by database type 
+
+#### Credits and thanks
+
+wowhead, classicwow.live, wowwiki.fandom.com, keftenks balance druid spreadsheet, shedo's cat spreadsheet, zephans warlock simulator
