@@ -12,6 +12,8 @@ const build = async () => {
     return await common.createDBWarlock()
   } else if (dbName && dbName === 'feral') {
     return await common.createDBFeral()
+  } else if (dbName && dbName === 'mage') {
+    return await common.createDBMage()
   }
 
   // clean destination
@@ -29,6 +31,9 @@ const build = async () => {
 
   console.log(`creating 'feral' database`)
   await common.createDBFeral()
+
+  console.log(`creating 'mage' database`)
+  await common.createDBMage()
 
   console.log(`copying interfaces`)
   fs.copyFileSync(`src/interface/ItemJSON.ts`, `dist/ItemJSON.ts`)

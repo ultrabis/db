@@ -112,7 +112,7 @@ const doIt = async () => {
   // testCreateDBMoonkin()
   // testCreateDBWarlock()
   // testCreateHTML()
-  // convertTextToBaseItems('custom/x.txt')
+  convertTextToBaseItems('custom/y')
 }
 
 doIt()

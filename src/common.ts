@@ -1024,10 +1024,15 @@ const createDBWarlock = async () => {
   return createDBCustom('warlock', [
     lc.common.ItemSuffixType.ShadowWrath,
     lc.common.ItemSuffixType.FieryWrath,
-    lc.common.ItemSuffixType.Sorcery,
-    lc.common.ItemSuffixType.FireResistance,
-    lc.common.ItemSuffixType.ShadowResistance,
-    lc.common.ItemSuffixType.NatureResistance
+    lc.common.ItemSuffixType.Sorcery
+  ])
+}
+
+const createDBMage = async () => {
+  return createDBCustom('mage', [
+    lc.common.ItemSuffixType.FieryWrath,
+    lc.common.ItemSuffixType.FrozenWrath,
+    lc.common.ItemSuffixType.Sorcery
   ])
 }
 
@@ -1118,11 +1123,16 @@ const parseTXT = async (txtFilePath: string): Promise<ItemListJSON[]> => {
   const itemNameArray = Array.from(itemNameSet)
   for (let i = 0; i < itemNameArray.length; i++) {
     const itemName = itemNameArray[i]
+    let itemFound = false
     for (let i = 0; i < itemList.length; i++) {
       const item = itemList[i]
-      if (item.name === itemName) {
+      if (item.name.toLowerCase() === itemName.toLowerCase()) {
         results.push({ id: item.id, name: itemName })
+        itemFound = true
       }
+    }
+    if (!itemFound) {
+      console.log(`WARNING: Couldn't find item name "${itemName}"`)
     }
   }
 
@@ -1187,5 +1197,6 @@ export default {
   createDBCustom,
   createDBMoonkin,
   createDBWarlock,
-  createDBFeral
+  createDBFeral,
+  createDBMage
 }

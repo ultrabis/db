@@ -259,7 +259,7 @@ Knight-Captain's Dragonhide Leggings
 Knight-Lieutenant's Dragonhide Grips
 Knight-Lieutenant's Dragonhide Treads
 Lava Belt
-Leggings of the Apocalypse
+Leggings of Apocalypse
 Leggings of the Fang
 Legionnaire's Band
 Legionnaire's Dragonhide Chestpiece
@@ -271,7 +271,7 @@ Lordrec Helmet
 Lunar Coronet
 Mace of Unending Life
 Magma Forged Band
-Magni's Will 
+Magni's Will
 Malfurion's Blessed Bulwark
 Mantle of Wicked Revenge
 Manual Crowd Pummeler
@@ -427,7 +427,12 @@ Spaulders of the Unseen
 Sprightring Helm
 Stonecloth Circlet
 Stoneskin Gargoyle Cape
-Stormpike Insignia
+Stormpike Insignia Rank 1
+Stormpike Insignia Rank 2
+Stormpike Insignia Rank 3
+Stormpike Insignia Rank 4
+Stormpike Insignia Rank 5
+Stormpike Insignia Rank 6
 Stormpike Leather Girdle
 Stormpike Soldier's Cloak
 Stormrage's Talisman of Seething
