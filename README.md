@@ -35,3 +35,7 @@ The icons for all items are included in `cache/icons`
 - add client side functions for working with databases
   - publish to NPM
   - allow importing / including by database type 
+
+#### Credits and thanks
+
+wowhead, classicwow.live, wowwiki.fandom.com, keftenks balance druid spreadsheet, shedo's cat spreadsheet, zephans warlock simulator
