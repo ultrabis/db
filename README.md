@@ -26,18 +26,6 @@ Full contains every item. The others are tailored for a specific class/spec and 
 
 The icons for all items are included in `cache/icons`
 
-## known issues
-
-- faction property not yet supported
-- wowhead doesn't have 'phase' for every item. how to handle those is up to the user right now 
-
-### TODO
-
-- create databases tailored for specific classes/specs based on their spreadsheets
-- add client side functions for working with databases
-  - publish to NPM
-  - allow importing / including by database type 
-
 #### Credits and thanks
 
 wowhead, classicwow.live, wowwiki.fandom.com, keftenks balance druid spreadsheet, shedo's cat spreadsheet, zephans warlock simulator, ginners mage spreadsheet
