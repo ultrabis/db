@@ -1035,6 +1035,8 @@ const createDBFeral = async () => {
     lc.common.ItemSuffixType.TheTiger,
     lc.common.ItemSuffixType.TheBear,
     lc.common.ItemSuffixType.TheMonkey,
+    lc.common.ItemSuffixType.TheWolf,
+    lc.common.ItemSuffixType.TheFalcon,
     lc.common.ItemSuffixType.Stamina,
     lc.common.ItemSuffixType.Eluding,
     lc.common.ItemSuffixType.Power
@@ -1044,17 +1046,21 @@ const createDBFeral = async () => {
 const createDBCustom = async (dbName: string, validSuffixTypes: number[]): Promise<void> => {
   const itemListFile = `cache/itemList-${dbName}.json`
 
-  // so we ultimately need `itemListFile` to exist.
-  // if it doesn't exist:
-  //  - copy it from 'custom/itemList-dbName.json`
-  //  - and if that doesn't exist, convert a CSV at 'custom/itemList-dbName.csv' and write it
+  // so we ultimately need `itemListFile` to exist. if it doesn't exist we'll create it based
+  // on a file in 'custom/'. in order:
+  //  - .json: json file in itemList format
+  //  - .txt: text file of item names, one per line
+  //  - .csv: a CSV with an 'Name' column
   if (!fs.existsSync(itemListFile)) {
     const customItemListFile = `custom/${dbName}.json`
+    const customTXTFile = `custom/${dbName}.txt`
+    const customCSVFile = `custom/${dbName}.csv`
     if (fs.existsSync(customItemListFile)) {
       await fsPromises.writeFile(itemListFile, stringFromFile(customItemListFile))
+    } else if (fs.existsSync(customTXTFile)) {
+      await fsPromises.writeFile(itemListFile, JSON.stringify(await parseTXT(customTXTFile)))
     } else {
-      const csvFile = `custom/${dbName}.csv`
-      await fsPromises.writeFile(itemListFile, JSON.stringify(await parseCSV(csvFile, 'Name')))
+      await fsPromises.writeFile(itemListFile, JSON.stringify(await parseCSV(customCSVFile, 'Name')))
     }
   }
 
@@ -1091,22 +1097,41 @@ const createDB = async (
   console.log(`spent ${secondsToPretty(elapsedTime)} creating databases`)
 }
 
+const parseTXT = async (txtFilePath: string): Promise<ItemListJSON[]> => {
+  const results: ItemListJSON[] = []
+  const itemNameSet: Set<string> = new Set()
+
+  const txtArray = fs.readFileSync(txtFilePath).toString().split('\n')
+  for (let i = 0; i < txtArray.length; i++) {
+    const itemName = lc.common.itemBaseName(txtArray[i])
+    if (itemName !== '') {
+      itemNameSet.add(itemName)
+    }
+  }
+
+  // loop the unique set of item names, grab id and stuff in result array
+  // there are duplicate items...this will include ALL that match
+  const itemList = jsonFromFile(masterListFile)
+  const itemNameArray = Array.from(itemNameSet)
+  for (let i = 0; i < itemNameArray.length; i++) {
+    const itemName = itemNameArray[i]
+    for (let i = 0; i < itemList.length; i++) {
+      const item = itemList[i]
+      if (item.name === itemName) {
+        results.push({ id: item.id, name: itemName })
+      }
+    }
+  }
+
+  return results
+}
+
 const parseCSV = async (csvFilePath: string, itemNameKey: string): Promise<ItemListJSON[]> => {
   const results: ItemListJSON[] = []
   const itemNameSet: Set<string> = new Set()
 
   const itemList = jsonFromFile(masterListFile)
   const csvArray = await csv().fromFile(csvFilePath)
-
-  const _getItemId = (itemName: string) => {
-    for (let i = 0; i < itemList.length; i++) {
-      const item = itemList[i]
-      if (item.name === itemName) {
-        return item.id
-      }
-    }
-    return undefined
-  }
 
   for (const csvRecord of csvArray) {
     const itemName = lc.common.itemBaseName(csvRecord[itemNameKey])
@@ -1152,6 +1177,7 @@ export default {
   wowheadDownloadXML,
   wowheadDownloadIcon,
   wowheadParseItem,
+  parseTXT,
   parseCSV,
   createDB,
   createDBFull,

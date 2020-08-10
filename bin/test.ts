@@ -88,6 +88,8 @@ const testCreateDBWarlock = async () => {
   common.createDBMoonkin()
 }
 
+const testCreateHTML = async () => {}
+
 const doIt = async () => {
   // testWowheadItemName()
   // testCreateItemDb()
@@ -95,8 +97,9 @@ const doIt = async () => {
   // testEluding()
   // testShowSuffixTypes()
   // testParse()
-  testCreateDBMoonkin()
+  // testCreateDBMoonkin()
   // testCreateDBWarlock()
+  testCreateHTML()
 }
 
 doIt()
