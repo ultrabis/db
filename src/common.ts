@@ -734,6 +734,10 @@ const wowheadParseItem = async (
   const jsonEquipText = xml$('jsonEquip').text()
   const jsonEquip = JSON.parse(`{ ${jsonEquipText} }`)
   itemJSON.name = xml$('name').text()
+  itemJSON.slot = Number(xml$('inventorySlot').attr('id'))
+  if (itemJSON.slot === NaN) {
+    console.warn('WARNING: Invalid slot')
+  }
   itemJSON.icon = xml$('icon').text()
   itemJSON.class = atoi(xml$('class').attr('id'))
   itemJSON.subclass = atoi(xml$('subclass').attr('id'))
@@ -742,7 +746,6 @@ const wowheadParseItem = async (
   //const droppedBy = tt('.whtt-droppedby').text()
 
   // parse xml jsonEquip object
-  itemJSON.slot = jsonEquip.slotbak
   itemJSON.reqLevel = itoi(jsonEquip.reqlevel, true)
   itemJSON.durability = itoi(jsonEquip.dura, true)
 
@@ -1053,6 +1056,9 @@ const createDBFeral = async () => {
 
 const createDBCustom = async (dbName: string, validSuffixTypes: number[]): Promise<void> => {
   const itemListFile = `cache/itemList-${dbName}.json`
+
+  // FIXME: this is dumb I know
+  fs.unlinkSync(itemListFile)
 
   // so we ultimately need `itemListFile` to exist. if it doesn't exist we'll create it based
   // on a file in 'custom/'. in order:

@@ -17,7 +17,6 @@ Archivist Cape
 Arena Wristguards
 Argent Boots
 Argent Shoulders
-Aspect of the Wild
 Atal'ai Gloves
 Atiesh, Greatstaff of the Guardian
 Azuresong Mageblade
@@ -239,8 +238,6 @@ Grand Marshal's Mageblade
 Grand Marshal's Stave
 Grand Marshal's Tome of Power
 Gravestone Scepter
-Greater Nature Resistance
-Greater Resistance
 Green Dragonskin Cloak
 Green Lens
 Grovekeeper's Drape
@@ -259,7 +256,6 @@ Highlander's Epaulets
 Hydrocane
 Hypnotic Blade
 Icy Cloak
-Improved Mark of the Wild
 Incendic Bracers
 Inferno Cloak
 Inferno Gloves
@@ -311,18 +307,15 @@ Mantle of Maz'Nadir
 Mantle of Phrenic Power
 Mantle of the Blackwing Cabal
 Mark of the Champion
-Mark of the Wild
 Marshal's Dreadweave Boots
 Marshal's Dreadweave Gloves
 Marshal's Dreadweave Leggings
-Master Demonologist
 Master Dragonslayer's Orb
 Midnight Haze
 Mind Carver
 Mindtear Band
 Mish'undare, Circlet of the Mind Flayer
 Nat Pagle's Broken Reel
-Nature Mantle of the Dawn
 Nature's Whisper
 Necklace of Purity
 Necklace of Sanctuary
@@ -407,8 +400,6 @@ Sapphiron's Left Eye
 Sash of the Burning Heart
 Sash of Whispered Secrets
 Satyrmane Sash
-Savage Guard
-Sayge's Dark Fortune of Resistance        
 Scepter of Interminable Focus
 Scorn's Focal Dagger
 Seal of Ascension
@@ -460,7 +451,12 @@ Star Belt
 Star of Mystaria
 Starfire Tiara
 Stormpike Cloth Girdle
-Stormpike Insignia
+Stormpike Insignia Rank 1
+Stormpike Insignia Rank 2
+Stormpike Insignia Rank 3
+Stormpike Insignia Rank 4
+Stormpike Insignia Rank 5
+Stormpike Insignia Rank 6
 Stormpike Sage's Cloak
 Stormrager
 Sublime Wristguards
@@ -491,7 +487,6 @@ Touch of Chaos
 Touch of Frost
 Trance Stone
 Ukko's Ring of Darkness
-Ultra-Flash Fire Reflector
 Ultra-Flash Shadow Reflector
 Umbral Crystal
 Underworld Band

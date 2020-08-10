@@ -32,6 +32,7 @@ const testParse = async () => {
 
   console.log(`test parse`)
   console.log(`==========`)
+  await p(14152, 'Robe of the Archmage')
   await p(11118, `Archaedic Stone`)
   await p(10250, `Master's Hat`)
   await p(23207, `Mark of the Champion`)
@@ -108,11 +109,11 @@ const doIt = async () => {
   // testShowSuffixTypes()
   // testEluding()
   // testShowSuffixTypes()
-  // testParse()
+  testParse()
   // testCreateDBMoonkin()
   // testCreateDBWarlock()
   // testCreateHTML()
-  convertTextToBaseItems('custom/y')
+  //convertTextToBaseItems('custom/y')
 }
 
 doIt()
