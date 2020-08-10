@@ -8,12 +8,12 @@ The purpose is to provide a database for simulators and/or other tools without r
 
 ## download
 
-| full                                                                   | moonkin             | feral              | description |
-|------------------------------------------------------------------------|---------------------| ----------------------|-------------|
-| [main (8.8MB)](https://ultrabis.github.io/db/full/item.json)           | [main (178k)](https://ultrabis.github.io/db/moonkin/item.json) | [main (100k)](https://ultrabis.github.io/db/feral/item.json) | all items including random enchants  |
-| [modular (2MB)](https://ultrabis.github.io/db/full/item-modular.json)  | [modular (125k)](https://ultrabis.github.io/db/moonkin/item-modular.json) | [modular (90k)](https://ultrabis.github.io/db/feral/item-modular.json) | all items excluding random enchants |
-| [random (7.3MB)](https://ultrabis.github.io/db/full/item-random.json)  | [random (91k)](https://ultrabis.github.io/db/moonkin/item-random.json) | [random (12k)](https://ultrabis.github.io/db/feral/item-random.json) | only random enchants |
-| [itemSuffix (43k)](https://ultrabis.github.io/db/full/itemSuffix.json) | [itemSuffix (3k)](https://ultrabis.github.io/db/moonkin/itemSuffix.json) | [itemSuffix (3k)](https://ultrabis.github.io/db/feral/itemSuffix.json) | can be used in conjunction with `modular` to generate random enchants at run-time |
+| full | moonkin | feral | warlock | description |
+|------|---------| ------|---------|-------------|
+| [main (8.8MB)](https://ultrabis.github.io/db/full/item.json)           | [main (178k)](https://ultrabis.github.io/db/moonkin/item.json) | [main (100k)](https://ultrabis.github.io/db/feral/item.json) | [main (121k)](https://ultrabis.github.io/db/warlock/item.json) | all items including random enchants  |
+| [modular (2MB)](https://ultrabis.github.io/db/full/item-modular.json)  | [modular (125k)](https://ultrabis.github.io/db/moonkin/item-modular.json) | [modular (90k)](https://ultrabis.github.io/db/feral/item-modular.json) | [modular (119k)](https://ultrabis.github.io/db/warlock/item-modular.json) | all items excluding random enchants |
+| [random (7.3MB)](https://ultrabis.github.io/db/full/item-random.json)  | [random (91k)](https://ultrabis.github.io/db/moonkin/item-random.json) | [random (12k)](https://ultrabis.github.io/db/feral/item-random.json) | [random (5k)](https://ultrabis.github.io/db/warlock/item-random.json) | only random enchants |
+| [itemSuffix (43k)](https://ultrabis.github.io/db/full/itemSuffix.json) | [itemSuffix (3k)](https://ultrabis.github.io/db/moonkin/itemSuffix.json) | [itemSuffix (3k)](https://ultrabis.github.io/db/feral/itemSuffix.json) | [itemSuffix (1k)](https://ultrabis.github.io/db/warlock/itemSuffix.json) | can be used in conjunction with `modular` to generate random enchants at run-time |
 
 ### typescript interfaces
 
