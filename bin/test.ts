@@ -1,4 +1,5 @@
 import common from '../src/common'
+import fs from 'fs'
 import mkdirp from 'mkdirp'
 import rimraf from 'rimraf'
 import ItemSuffixType from 'libclassic/src/enum/ItemSuffixType'
@@ -88,7 +89,18 @@ const testCreateDBWarlock = async () => {
   common.createDBMoonkin()
 }
 
-const testCreateHTML = async () => {}
+//const testCreateHTML = async () => {}
+
+const convertTextToBaseItems = async (txtFilePath: string) => {
+  // await fsPromises.writeFile(itemListFile, JSON.stringify(await parseTXT(customTXTFile)))
+  const txtArray = fs.readFileSync(txtFilePath).toString().split('\n')
+  for (let i = 0; i < txtArray.length; i++) {
+    const itemName = lc.common.itemBaseName(txtArray[i])
+    if (itemName !== '') {
+      console.log(itemName)
+    }
+  }
+}
 
 const doIt = async () => {
   // testWowheadItemName()
@@ -99,7 +111,8 @@ const doIt = async () => {
   // testParse()
   // testCreateDBMoonkin()
   // testCreateDBWarlock()
-  testCreateHTML()
+  // testCreateHTML()
+  // convertTextToBaseItems('custom/x.txt')
 }
 
 doIt()

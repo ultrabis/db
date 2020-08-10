@@ -1024,7 +1024,10 @@ const createDBWarlock = async () => {
   return createDBCustom('warlock', [
     lc.common.ItemSuffixType.ShadowWrath,
     lc.common.ItemSuffixType.FieryWrath,
-    lc.common.ItemSuffixType.Sorcery
+    lc.common.ItemSuffixType.Sorcery,
+    lc.common.ItemSuffixType.FireResistance,
+    lc.common.ItemSuffixType.ShadowResistance,
+    lc.common.ItemSuffixType.NatureResistance
   ])
 }
 
