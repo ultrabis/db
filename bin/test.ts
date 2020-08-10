@@ -80,8 +80,12 @@ const testShowSuffixTypes = async () => {
   console.log(`unusedSuffixTypes: ${unusedSuffixTypes}`)
 }
 
-const testMoonkinCreateDB = async () => {
-  await common.moonkinCreateDB(`custom/moonkin.csv`)
+const testCreateDBMoonkin = async () => {
+  common.createDBMoonkin()
+}
+
+const testCreateDBWarlock = async () => {
+  common.createDBMoonkin()
 }
 
 const doIt = async () => {
@@ -91,8 +95,8 @@ const doIt = async () => {
   // testEluding()
   // testShowSuffixTypes()
   // testParse()
-  // testParseCSV()
-  testMoonkinCreateDB()
+  testCreateDBMoonkin()
+  // testCreateDBWarlock()
 }
 
 doIt()

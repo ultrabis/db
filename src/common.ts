@@ -29,7 +29,7 @@ interface ItemListJSON {
 
 const xmlOutputDir = 'cache/items'
 const iconOutputDir = 'cache/icons'
-const masterListFile = `cache/masterList.json`
+const masterListFile = `cache/itemList-master.json`
 const masterItemSuffixFile = `src/masterItemSuffix.json`
 const cacheItemSuffixFile = `cache/itemSuffix.json`
 
@@ -1011,25 +1011,65 @@ const wowheadWriteItems = async (
   await fsPromises.writeFile(itemSuffixFile, JSON.stringify(Array.from(itemSuffixSet)))
 }
 
-const moonkinCreateDB = async (csvFile: string): Promise<void> => {
-  // parse csv and write out the itemList.json
-  mkdirp.sync(`dist/moonkin`)
-  const moonkinItemList = await moonkinParseCSV(csvFile)
-  const moonkinItemListFile = `dist/moonkin/itemList.json`
-  await fsPromises.writeFile(moonkinItemListFile, JSON.stringify(moonkinItemList))
-
-  // do the standard db create using our newly created moonkin itemList.json
-  // we'll also restrict random enchants to ones a moonkin might care about
-  const validSuffixTypes = [
+const createDBMoonkin = async () => {
+  return createDBCustom('moonkin', [
     lc.common.ItemSuffixType.ArcaneWrath,
     lc.common.ItemSuffixType.NaturesWrath,
     lc.common.ItemSuffixType.Sorcery,
     lc.common.ItemSuffixType.Restoration
-  ]
-  return await createDB('moonkin', moonkinItemListFile, { validSuffixTypes: validSuffixTypes })
+  ])
 }
 
-const createDB = async (dbName: string, itemListFile: string, opts?: { validSuffixTypes: number[] }): Promise<void> => {
+const createDBWarlock = async () => {
+  return createDBCustom('warlock', [
+    lc.common.ItemSuffixType.ShadowWrath,
+    lc.common.ItemSuffixType.FieryWrath,
+    lc.common.ItemSuffixType.Sorcery
+  ])
+}
+
+const createDBFeral = async () => {
+  return createDBCustom('feral', [
+    lc.common.ItemSuffixType.Agility,
+    lc.common.ItemSuffixType.Striking,
+    lc.common.ItemSuffixType.TheTiger,
+    lc.common.ItemSuffixType.TheBear,
+    lc.common.ItemSuffixType.TheMonkey,
+    lc.common.ItemSuffixType.Stamina,
+    lc.common.ItemSuffixType.Eluding,
+    lc.common.ItemSuffixType.Power
+  ])
+}
+
+const createDBCustom = async (dbName: string, validSuffixTypes: number[]): Promise<void> => {
+  const itemListFile = `cache/itemList-${dbName}.json`
+
+  // so we ultimately need `itemListFile` to exist.
+  // if it doesn't exist:
+  //  - copy it from 'custom/itemList-dbName.json`
+  //  - and if that doesn't exist, convert a CSV at 'custom/itemList-dbName.csv' and write it
+  if (!fs.existsSync(itemListFile)) {
+    const customItemListFile = `custom/${dbName}.json`
+    if (fs.existsSync(customItemListFile)) {
+      await fsPromises.writeFile(itemListFile, stringFromFile(customItemListFile))
+    } else {
+      const csvFile = `custom/${dbName}.csv`
+      await fsPromises.writeFile(itemListFile, JSON.stringify(await parseCSV(csvFile, 'Name')))
+    }
+  }
+
+  return await createDB(dbName, itemListFile, { validSuffixTypes: validSuffixTypes })
+}
+
+const createDBFull = async (): Promise<void> => {
+  return await createDB(`full`, `cache/itemList-master.json`)
+}
+
+const createDB = async (
+  dbName: string,
+  itemListFile: string,
+  opts?: { validSuffixTypes?: number[] }
+): Promise<void> => {
   mkdirp.sync(`dist/${dbName}`)
 
   // parse items
@@ -1051,29 +1091,12 @@ const createDB = async (dbName: string, itemListFile: string, opts?: { validSuff
   console.log(`spent ${secondsToPretty(elapsedTime)} creating databases`)
 }
 
-const moonkinParseCSV = async (csvFilePath: string): Promise<ItemListJSON[]> => {
-  const moonkinItemList: ItemListJSON[] = []
+const parseCSV = async (csvFilePath: string, itemNameKey: string): Promise<ItemListJSON[]> => {
+  const results: ItemListJSON[] = []
   const itemNameSet: Set<string> = new Set()
 
   const itemList = jsonFromFile(masterListFile)
   const csvArray = await csv().fromFile(csvFilePath)
-
-  const _isEnchant = (csvRecord: any): boolean => {
-    switch (csvRecord['Equipment Type']) {
-      case 'Back Enchant':
-      case 'Chest Enchant':
-      case 'Feet Enchant':
-      case 'Hands Enchant':
-      case 'Head Enchant':
-      case 'Legs Enchant':
-      case 'Shoulder Enchant':
-      case 'Weapon Enchant':
-      case 'Wrist Enchant':
-        return true
-      default:
-        return false
-    }
-  }
 
   const _getItemId = (itemName: string) => {
     for (let i = 0; i < itemList.length; i++) {
@@ -1085,29 +1108,27 @@ const moonkinParseCSV = async (csvFilePath: string): Promise<ItemListJSON[]> => 
     return undefined
   }
 
-  // shove all item names into a set
   for (const csvRecord of csvArray) {
-    if (!_isEnchant(csvRecord)) {
-      const itemName = lc.common.itemBaseName(csvRecord.Name)
-      if (itemName !== '') {
-        itemNameSet.add(itemName)
-      }
+    const itemName = lc.common.itemBaseName(csvRecord[itemNameKey])
+    if (itemName !== '') {
+      itemNameSet.add(itemName)
     }
   }
 
   // loop the unique set of item names, grab id and stuff in result array
+  // there are duplicate items...this will include ALL that match
   const itemNameArray = Array.from(itemNameSet)
   for (let i = 0; i < itemNameArray.length; i++) {
     const itemName = itemNameArray[i]
-    const itemId = _getItemId(itemName)
-    if (!itemId) {
-      console.warn(`WARNING: Couldn't find item id for ${itemName}, skipping`)
-      continue
+    for (let i = 0; i < itemList.length; i++) {
+      const item = itemList[i]
+      if (item.name === itemName) {
+        results.push({ id: item.id, name: itemName })
+      }
     }
-    moonkinItemList.push({ id: itemId, name: itemName })
   }
 
-  return moonkinItemList
+  return results
 }
 
 export default {
@@ -1131,7 +1152,11 @@ export default {
   wowheadDownloadXML,
   wowheadDownloadIcon,
   wowheadParseItem,
+  parseCSV,
   createDB,
-  moonkinParseCSV,
-  moonkinCreateDB
+  createDBFull,
+  createDBCustom,
+  createDBMoonkin,
+  createDBWarlock,
+  createDBFeral
 }
