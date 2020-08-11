@@ -10,12 +10,13 @@ The purpose is to provide a database for simulators and/or other tools without r
 
 Full contains every item. The others are tailored for a specific class/spec and were derived from various spreadsheets and BiS lists.
 
-| full | moonkin | feral | warlock | mage | description |
-|------|---------| ------|---------|------|-------------|
-| [main (9M)][full-main] | [main (186K)][moonkin-main] | [main (223K)][feral-main] | [main (172K)][warlock-main] | [main (99K)][mage-main] | all items |
-| [modular (2M)][full-modular] | [modular (133K)][moonkin-modular] | [modular (130K)][feral-modular] | [modular (145K)][warlock-modular] | [modular (73K)][mage-modular] | no random enchants |
-| [random (7M)][full-random] | [random (91K)][moonkin-random] | [random (109K)][feral-random] | [random (43K)][warlock-random] | [random (43K)][mage-random] | only random enchants |
-| [suffix (45K)][full-suffix] | [suffix (3K)][moonkin-suffix] | [suffix (7K)][feral-suffix] | [suffix (2K)][warlock-suffix] | [suffix (2K)][mage-suffix] | used with modular|
+| main | modular | suffix |
+| ---- | ------- | ------ |
+| [full (9M)][full-main] | [full (2M)][full-modular] | [full (45K)][full-suffix] |
+| [moonkin (186K)][moonkin-main] | [moonkin (133K)][moonkin-modular] | [moonkin (3K)][moonkin-suffix] |
+| [feral (223K)][feral-main] | [feral (130K)][feral-modular] | [feral (7K)][feral-suffix] |
+| [warlock (172K)][warlock-main] | [warlock (145K)][warlock-modular] | [warlock (2K)][warlock-suffix] |
+| [mage (99K)][mage-main] | [mage (73K)][mage-modular] | [mage (2K)][mage-suffix] |
 
 ### typescript interfaces
 
