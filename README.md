@@ -9,6 +9,7 @@ The purpose is to provide a database for simulators and/or other tools without r
 ## download
 
 Full contains every item. The others are tailored for a specific class/spec and were derived from various spreadsheets and BiS lists.
+
 Modular and suffix can be combined to generate random enchant items at runtime, requiring less space.
 
 | main | modular | suffix |
