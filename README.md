@@ -12,10 +12,10 @@ Full contains every item. The others are tailored for a specific class/spec and 
 
 | full | moonkin | feral | warlock | mage | description |
 |------|---------| ------|---------|------|-------------|
-| [main (8.8MB)][full-main] | [main (178k)][moonkin-main] | [main (220k)][feral-main] | [main (121k)][warlock-main] | [main (63k)][mage-main] | all items including random enchants |
-| [modular (2MB)][full-modular] | [modular (125k)][moonkin-modular] | [modular (130k)][feral-modular] | [modular (119k)][warlock-modular] | [modular (60k][mage-modular] | all items excluding random enchants |
-| [random (7.3MB)][full-random] | [random (91k)][moonkin-random] | [random (110k)][feral-random] | [random (5k)][warlock-random] | [random (6K)][mage-random] | only random enchants |
-| [itemSuffix (43k)][full-suffix] | [itemSuffix (3k)][moonkin-suffix] | [itemSuffix (7k)][feral-suffix] | [itemSuffix (1k)][warlock-suffix] | [itemSuffix (2K)][mage-suffix] | can be used in conjunction with `modular` to generate random enchants at run-time |
+| [main (9M)][full-main] | [main (186K)][moonkin-main] | [main (223K)][feral-main] | [main (172K)][warlock-main] | [main (99K)][mage-main] | all items |
+| [modular (2M)][full-modular] | [modular (133K)][moonkin-modular] | [modular (130K)][feral-modular] | [modular (145K)][warlock-modular] | [modular (73K)][mage-modular] | no random enchants |
+| [random (7M)][full-random] | [random (91K)][moonkin-random] | [random (109K)][feral-random] | [random (43K)][warlock-random] | [random (43K)][mage-random] | only random enchants |
+| [suffix (45K)][full-suffix] | [suffix (3K)][moonkin-suffix] | [suffix (7K)][feral-suffix] | [suffix (2K)][warlock-suffix] | [suffix (2K)][mage-suffix] | used with modular|
 
 ### typescript interfaces
 
