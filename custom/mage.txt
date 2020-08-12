@@ -1,5 +1,8 @@
 Abyssal Cloth Amice
+Abyssal Cloth Handwraps
 Abyssal Cloth Pants
+Abyssal Cloth Sash
+Abyssal Cloth Slippers
 Abyssal Cloth Wristbands
 Advisor's Ring
 Amethyst War Staff
@@ -7,6 +10,12 @@ Amplifying Cloak
 Amulet of Vek'nilash
 Ancient Cornerstone Grimoire
 Angelista's Grasp
+Arachnidian Armor
+Arachnidian Bracelets
+Arachnidian Circlet
+Arachnidian Footpads
+Arachnidian Pauldrons
+Arachnidian Robes
 Arcane Crystal Pendant
 Arcanist Belt
 Arcanist Bindings
@@ -16,7 +25,6 @@ Arcanist Gloves
 Arcanist Leggings
 Arcanist Mantle
 Arcanist Robes
-Archivist Cape
 Archivist Cape
 Atal'ai Gloves
 Azuresong Mageblade
@@ -33,12 +41,19 @@ Blessed Qiraji Acolyte Staff
 Blood Guard's Silk Handwraps
 Blood Guard's Silk Walkers
 Bloodcaller
+Bloodstrike Dagger
 Bloodtinged Gloves
 Bloodtinged Kilt
 Bloodvine Boots
 Bloodvine Goggles
 Bloodvine Leggings
 Bloodvine Vest
+Bonecaster's Bindings
+Bonecaster's Boots
+Bonecaster's Crown
+Bonecaster's Shroud
+Bonecaster's Spaulders
+Bonecaster's Vest
 Bonecreeper Stylus
 Book of the Dead
 Boots of Epiphany
@@ -47,6 +62,12 @@ Briarwood Reed
 Burrower Bracers
 Cap of the Scarlet Savant
 Cape of the Trinity
+Celestial Bindings
+Celestial Crown
+Celestial Pauldrons
+Celestial Silk Robes
+Celestial Slippers
+Celestial Tunic
 Champion's Silk Cowl
 Champion's Silk Mantle
 Charm of the Shifting Sands
@@ -54,16 +75,23 @@ Choker of Enlightenment
 Choker of the Fire Lord
 Claw of Chromaggus
 Cloak of Consumption
-Cloak of the Hakkari Worshipers
 Cloak of the Brood Lord
 Cloak of the Devoured
+Cloak of the Hakkari Worshipers
 Cold Snap
+Councillor's Boots
+Councillor's Cuffs
+Councillor's Robes
+Councillor's Shoulders
+Councillor's Tunic
 Crystalline Threaded Cape
 Dark Storm Gauntlets
 Defiler's Cloth Boots
 Defiler's Cloth Girdle
 Defiler's Epaulets
+Demon Blade
 Diana's Pearl Necklace
+Dire Nail
 Don Rodrigo's Band
 Draconic Infused Emblem
 Dragon Finger
@@ -73,7 +101,19 @@ Drakestone
 Drape of Vaulted Secrets
 Dreamweave Circlet
 Dryad's Wrist Bindings
+Duskwoven Amice
+Duskwoven Bracers
+Duskwoven Robe
+Duskwoven Sandals
+Duskwoven Tunic
+Duskwoven Turban
 Earth Warder's Gloves
+Elegant Boots
+Elegant Bracers
+Elegant Circlet
+Elegant Mantle
+Elegant Robes
+Elegant Tunic
 Elemental Attuned Blade
 Elemental Focus Band
 Enigma Boots
@@ -82,6 +122,11 @@ Enigma Leggings
 Enigma Robes
 Enigma Shoulderpads
 Essence Gatherer
+Eternal Bindings
+Eternal Chestguard
+Eternal Crown
+Eternal Spaulders
+Eternal Wraps
 Eye of Flame
 Eye of Moam
 Eye of Orgrimmar
@@ -106,6 +151,12 @@ Gloves of the Hypnotic Flame
 Glowstar Rod
 Green Lens
 Hands of Power
+High Councillor's Boots
+High Councillor's Bracers
+High Councillor's Circlet
+High Councillor's Mantle
+High Councillor's Robe
+High Councillor's Tunic
 High Warlord's Spellblade
 High Warlord's Tome of Destruction
 High Warlord's War Staff
@@ -120,6 +171,7 @@ Leggings of the Festering Swarm
 Legionnaire's Silk Legguards
 Legionnaire's Silk Tunic
 Lunar Wand
+Magus Long Staff
 Maiden's Circle
 Mana Igniting Cord
 Mana Shaping Handwraps
@@ -128,14 +180,26 @@ Mantle of Phrenic Power
 Mantle of the Blackwing Cabal
 Mar'li's Touch
 Master Dragonslayer's Orb
+Master's Boots
+Master's Bracers
+Master's Hat
+Master's Mantle
+Master's Robe
+Master's Vest
 Mind Quickening Gem
 Mindfang
 Mindtear Band
 Mish'undare, Circlet of the Mind Flayer
+Mystical Armor
+Mystical Boots
+Mystical Bracers
+Mystical Headwrap
+Mystical Mantle
+Mystical Robe
 Neltharion's Tear
 Netherwind Belt
-Netherwind Boots
 Netherwind Bindings
+Netherwind Boots
 Netherwind Crown
 Netherwind Gloves
 Netherwind Mantle
@@ -145,6 +209,12 @@ Noxious Shooter
 Oddly Magical Belt
 Orb of the Darkmoon
 Pyric Caduceus
+Resplendent Boots
+Resplendent Bracelets
+Resplendent Circlet
+Resplendent Epaulets
+Resplendent Robes
+Resplendent Tunic
 Ring of Blackrock
 Ring of Spell Power
 Ring of Swarming Thought
@@ -172,6 +242,7 @@ Sharpened Silithid Femur
 Shivery Handwraps
 Signet Ring of the Bronze Dragonflight
 Snowblind Shoes
+Solstice Staff
 Sorcerer's Belt
 Sorcerer's Bindings
 Sorcerer's Boots

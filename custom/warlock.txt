@@ -1,5 +1,8 @@
 Abyssal Cloth Amice
+Abyssal Cloth Handwraps
 Abyssal Cloth Pants
+Abyssal Cloth Sash
+Abyssal Cloth Slippers
 Abyssal Cloth Wristbands
 Acidic Walkers
 Alcor's Sunrazor
@@ -12,6 +15,12 @@ Amulet of the Dawn
 Amulet of Vek'nilash
 Anastari Heirloom
 Angelista's Grasp
+Arachnidian Armor
+Arachnidian Bracelets
+Arachnidian Circlet
+Arachnidian Footpads
+Arachnidian Pauldrons
+Arachnidian Robes
 Arbiter's Blade
 Archivist Cape
 Arena Wristguards
@@ -48,12 +57,19 @@ Blessed Qiraji Acolyte Staff
 Blisterbane Wrap
 Bloodcaller
 Blood-etched Blade
+Bloodstrike Dagger
 Bloodtinged Gloves
 Bloodtinged Kilt
 Bloodvine Boots
 Bloodvine Goggles
 Bloodvine Leggings
 Bloodvine Vest
+Bonecaster's Bindings
+Bonecaster's Boots
+Bonecaster's Crown
+Bonecaster's Shroud
+Bonecaster's Spaulders
+Bonecaster's Vest
 Bonecreeper Stylus
 Boots of Epiphany
 Bracers of Arcane Accuracy
@@ -69,6 +85,12 @@ Burst of Knowledge
 Cap of the Scarlet Savant
 Cape of the Fire Salamander
 Cape of the Trinity
+Celestial Bindings
+Celestial Crown
+Celestial Pauldrons
+Celestial Silk Robes
+Celestial Slippers
+Celestial Tunic
 Cenarion Reservist's Pants
 Chains of the Lich
 Chan's Imperial Robes
@@ -99,6 +121,11 @@ Cloak of Untold Secrets
 Clutch of Andros
 Coldtouch Phantom Wraps
 Corrupted Blackwood Staff
+Councillor's Boots
+Councillor's Cuffs
+Councillor's Robes
+Councillor's Shoulders
+Councillor's Tunic
 Crimson Felt Hat
 Crimson Shocker
 Crimson Silk Cloak
@@ -122,9 +149,11 @@ Deathmist Robe
 Deathmist Sandals
 Deathmist Wraps
 Deep Woodlands Cloak
+Demon Blade
 Demon's Blood
 Diana's Pearl Necklace
 Dimly Opalescent Ring
+Dire Nail
 Don Mauricio's Band of Domination
 Don Rodrigo's Band
 Doomcaller's Circlet
@@ -134,6 +163,7 @@ Doomcaller's Robes
 Doomcaller's Trousers
 Doomfinger
 Draconic Infused Emblem
+Dragon Finger
 Dragonrider Boots
 Dragon's Blood Cape
 Dragon's Touch
@@ -146,13 +176,24 @@ Dreamweave Circlet
 Dreamweave Gloves
 Dreamweave Vest
 Dryad's Wrist Bindings
+Duskwoven Amice
+Duskwoven Bracers
+Duskwoven Robe
+Duskwoven Sandals
+Duskwoven Tunic
+Duskwoven Turban
 Earth Warder's Gloves
 Earthpower Vest
 Ebony Flame Gloves
 Eidolon Cloak
 Eidolon Talisman
 Elder Magus Pendant
+Elegant Boots
+Elegant Bracers
+Elegant Circlet
 Elegant Mantle
+Elegant Robes
+Elegant Tunic
 Elemental Attuned Blade
 Elemental Circle
 Elemental Focus Band
@@ -161,6 +202,11 @@ Elemental Raiment
 Emberfury Talisman
 Embrace of the Wind Serpent
 Emperor's Seal
+Eternal Bindings
+Eternal Chestguard
+Eternal Crown
+Eternal Spaulders
+Eternal Wraps
 Eye of Diminution
 Eye of Flame
 Eye of Moam
@@ -233,6 +279,7 @@ Gloves of Spell Mastery
 Gloves of the Hypnotic Flame
 Glowing Black Orb
 Glowing Brightwood Staff
+Glowstar Rod
 Goblin Construction Helmet
 Grand Marshal's Mageblade
 Grand Marshal's Stave
@@ -249,6 +296,12 @@ Hands of Power
 Hazza'rah's Charm of Destruction
 Heart of Noxxion
 Heliotrope Cloak
+High Councillor's Boots
+High Councillor's Bracers
+High Councillor's Circlet
+High Councillor's Mantle
+High Councillor's Robe
+High Councillor's Tunic
 High Priestess Boots
 Highlander's Cloth Boots
 Highlander's Cloth Girdle
@@ -292,9 +345,11 @@ Living Root
 Loatheb's Reflection
 Lord Valthalak's Staff of Command
 Lorekeeper's Ring
+Lunar Wand
 Magebane Scion
 Mageflame Cloak
 Magmus Stone
+Magus Long Staff
 Maiden's Circle
 Major Firestone
 Major Spellstone
@@ -311,10 +366,22 @@ Marshal's Dreadweave Boots
 Marshal's Dreadweave Gloves
 Marshal's Dreadweave Leggings
 Master Dragonslayer's Orb
+Master's Boots
+Master's Bracers
+Master's Hat
+Master's Mantle
+Master's Robe
+Master's Vest
 Midnight Haze
 Mind Carver
 Mindtear Band
 Mish'undare, Circlet of the Mind Flayer
+Mystical Armor
+Mystical Boots
+Mystical Bracers
+Mystical Headwrap
+Mystical Mantle
+Mystical Robe
 Nat Pagle's Broken Reel
 Nature's Whisper
 Necklace of Purity
@@ -360,6 +427,12 @@ Ragnaros Core
 Ramaladni's Icy Grasp
 Recomposed Boots
 Renataki's Soul Conduit
+Resplendent Boots
+Resplendent Bracelets
+Resplendent Circlet
+Resplendent Epaulets
+Resplendent Robes
+Resplendent Tunic
 Rime Covered Mantle
 Ring of Binding
 Ring of Blackrock
@@ -429,6 +502,7 @@ Skyshroud Leggings
 Smokey's Drape
 Smoking Heart of the Mountain
 Snowblind Shoes
+Solstice Staff
 Songstone of Ironforge
 Sorcerous Dagger
 Soul Corrupter's Necklace

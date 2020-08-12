@@ -1,0 +1,82 @@
+Abyssal Cloth Amice
+Abyssal Cloth Handwraps
+Abyssal Cloth Pants
+Abyssal Cloth Sash
+Abyssal Cloth Slippers
+Abyssal Cloth Wristbands
+Arachnidian Armor
+Arachnidian Bracelets
+Arachnidian Circlet
+Arachnidian Footpads
+Arachnidian Pauldrons
+Arachnidian Robes
+Bloodstrike Dagger
+Bonecaster's Bindings
+Bonecaster's Boots
+Bonecaster's Crown
+Bonecaster's Shroud
+Bonecaster's Spaulders
+Bonecaster's Vest
+Celestial Bindings
+Celestial Crown
+Celestial Pauldrons
+Celestial Silk Robes
+Celestial Slippers
+Celestial Tunic
+Councillor's Boots
+Councillor's Cuffs
+Councillor's Robes
+Councillor's Shoulders
+Councillor's Tunic
+Demon Blade
+Dire Nail
+Duskwoven Amice
+Duskwoven Bracers
+Duskwoven Robe
+Duskwoven Sandals
+Duskwoven Tunic
+Duskwoven Turban
+Elegant Boots
+Elegant Bracers
+Elegant Circlet
+Elegant Mantle
+Elegant Robes
+Elegant Tunic
+Eternal Bindings
+Eternal Chestguard
+Eternal Crown
+Eternal Spaulders
+Eternal Wraps
+Flameweave Cuffs
+High Councillor's Boots
+High Councillor's Bracers
+High Councillor's Circlet
+High Councillor's Mantle
+High Councillor's Robe
+High Councillor's Tunic
+Magus Long Staff
+Master's Boots
+Master's Bracers
+Master's Hat
+Master's Mantle
+Master's Robe
+Master's Vest
+Mystical Armor
+Mystical Boots
+Mystical Bracers
+Mystical Headwrap
+Mystical Mantle
+Mystical Robe
+Resplendent Boots
+Resplendent Bracelets
+Resplendent Circlet
+Resplendent Epaulets
+Resplendent Robes
+Resplendent Tunic
+Solstice Staff
+Tearfall Bracers
+Atal'ai Gloves
+Dragon Finger
+Glowstar Rod
+Green Lens
+Lunar Wand

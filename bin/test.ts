@@ -2,8 +2,10 @@ import common from '../src/common'
 import fs from 'fs'
 import mkdirp from 'mkdirp'
 import rimraf from 'rimraf'
+import filesize from 'filesize'
 import ItemSuffixType from 'libclassic/src/enum/ItemSuffixType'
 import ItemSuffixJSON from '../src/interface/ItemSuffixJSON'
+import ItemJSON from '../src/interface/ItemJSON'
 import lc from 'libclassic'
 
 const testWowheadItemName = () => {
@@ -104,17 +106,107 @@ const convertTextToBaseItems = async (txtFilePath: string) => {
   }
 }
 
+// generate list of random enchant base items that are usable by all casters
+const casterRandoms = async () => {
+  const itemNameSet: Set<string> = new Set()
+  const itemsMoonkin: ItemJSON[] = JSON.parse(common.stringFromFile(`dist/moonkin/item-random.json`))
+  const itemsWarlock: ItemJSON[] = JSON.parse(common.stringFromFile(`dist/mage/item-random.json`))
+  const itemsMage: ItemJSON[] = JSON.parse(common.stringFromFile(`dist/warlock/item-random.json`))
+  const items: ItemJSON[] = [...itemsMoonkin, ...itemsWarlock, ...itemsMage]
+
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i]
+
+    // not a random enchant
+    if (!item.suffixId) {
+      continue
+    }
+
+    // skip armor pieces that aren't cloth
+    if (item.class == 4 && item.subclass != 1) {
+      continue
+    }
+
+    // skip maces
+    if (item.class == 2 && item.subclass == 4) {
+      continue
+    }
+
+    itemNameSet.add(lc.common.itemBaseName(item.name))
+  }
+
+  const itemNameArr = Array.from(itemNameSet)
+  for (let i = 0; i < itemNameArr.length; i++) {
+    console.log(itemNameArr[i])
+  }
+}
+
+const generateReadmeTable = async () => {
+  const dbs: any[] = []
+  const dbNames = ['full', 'moonkin', 'feral', 'warlock', 'mage']
+
+  dbNames.forEach((dbName) => {
+    dbs.push({
+      name: dbName,
+      mainSize: filesize(fs.statSync(`dist/${dbName}/item.json`).size, { unix: true, round: 0 }),
+      modularSize: filesize(fs.statSync(`dist/${dbName}/item-modular.json`).size, { unix: true, round: 0 }),
+      randomSize: filesize(fs.statSync(`dist/${dbName}/item-random.json`).size, { unix: true, round: 0 }),
+      suffixSize: filesize(fs.statSync(`dist/${dbName}/itemSuffix.json`).size, { unix: true, round: 0 })
+    })
+  })
+
+  console.log('| main | modular | suffix |')
+  console.log('| ---- | ------- | ------ |')
+  dbs.forEach((db) => {
+    console.log(
+      `| [${db.name} (${db.mainSize})][${db.name}-main] | [${db.name} (${db.modularSize})][${db.name}-modular] | [${db.name} (${db.suffixSize})][${db.name}-suffix] |`
+    )
+  })
+
+  /*
+  console.log('| full | moonkin | feral | warlock | mage | description |')
+  console.log('|------|---------| ------|---------|------|-------------|')
+
+  console.log(
+    `| [main (${full.mainSize})][full-main] | [main (${moonkin.mainSize})][moonkin-main] | [main (${feral.mainSize})][feral-main] | [main (${warlock.mainSize})][warlock-main] | [main (${mage.mainSize})][mage-main] | all items |`
+  )
+
+  console.log(
+    `| [modular (${full.modularSize})][full-modular] | [modular (${moonkin.modularSize})][moonkin-modular] | [modular (${feral.modularSize})][feral-modular] | [modular (${warlock.modularSize})][warlock-modular] | [modular (${mage.modularSize})][mage-modular] | no random enchants |`
+  )
+
+  console.log(
+    `| [random (${full.randomSize})][full-random] | [random (${moonkin.randomSize})][moonkin-random] | [random (${feral.randomSize})][feral-random] | [random (${warlock.randomSize})][warlock-random] | [random (${mage.randomSize})][mage-random] | only random enchants |`
+  )
+
+  console.log(
+    `| [suffix (${full.suffixSize})][full-suffix] | [suffix (${moonkin.suffixSize})][moonkin-suffix] | [suffix (${feral.suffixSize})][feral-suffix] | [suffix (${warlock.suffixSize})][warlock-suffix] | [suffix (${mage.suffixSize})][mage-suffix] | used with modular|`
+  )
+  */
+
+  /*
+  | full | moonkin | feral | warlock | mage | description |
+|------|---------| ------|---------|------|-------------|
+| [main (8.8MB)][full-main] | [main (178k)][moonkin-main] | [main (220k)][feral-main] | [main (121k)][warlock-main] | [main (63k)][mage-main] | all items including random enchants |
+| [modular (2MB)][full-modular] | [modular (125k)][moonkin-modular] | [modular (130k)][feral-modular] | [modular (119k)][warlock-modular] | [modular (60k][mage-modular] | all items excluding random enchants |
+| [random (7.3MB)][full-random] | [random (91k)][moonkin-random] | [random (110k)][feral-random] | [random (5k)][warlock-random] | [random (6K)][mage-random] | only random enchants |
+| [itemSuffix (43k)][full-suffix] | [itemSuffix (3k)][moonkin-suffix] | [itemSuffix (7k)][feral-suffix] | [itemSuffix (1k)][warlock-suffix] | [itemSuffix (2K)][mage-suffix] | can be used in conjunction with `modular` to generate random enchants at run-time |
+*/
+}
+
 const doIt = async () => {
   // testWowheadItemName()
   // testCreateItemDb()
   // testShowSuffixTypes()
   // testEluding()
   // testShowSuffixTypes()
-  testParse()
+  // testParse()
   // testCreateDBMoonkin()
   // testCreateDBWarlock()
   // testCreateHTML()
   //convertTextToBaseItems('custom/y')
+  //casterRandoms()
+  generateReadmeTable()
 }
 
 doIt()
