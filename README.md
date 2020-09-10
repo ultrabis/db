@@ -1,12 +1,16 @@
 # @ultrabis/db
 
-JSON item database for World of Warcraft Classic.
+JSON database for World of Warcraft Classic.
 
 The purpose is to provide a database for simulators and/or other tools without requiring a back-end database server. 
+
+Currently supports all items, abilities and icons. More coming soon.
 
 ![build](https://github.com/ultrabis/db/workflows/gh/badge.svg)
 
 ## download
+
+### items
 
 Full contains every item. The others are tailored for a specific class/spec and were derived from various spreadsheets and BiS lists.
 
@@ -20,14 +24,20 @@ Modular and suffix can be combined to generate random enchant items at runtime, 
 | [warlock (172K)][warlock-main] | [warlock (145K)][warlock-modular] | [warlock (2K)][warlock-suffix] |
 | [mage (99K)][mage-main] | [mage (73K)][mage-modular] | [mage (2K)][mage-suffix] |
 
-### typescript interfaces
+### abilities
 
-- [ItemJSON.ts](https://ultrabis.github.io/db/ItemJSON.ts)
-- [ItemSuffixJSON.ts](https://ultrabis.github.io/db/ItemSuffixJSON.ts)
+Full abilities are in `cache/abilityList-master.json`.
+
+Class tailored ability lists coming soon.
 
 ### icons
 
 The icons for all items are included in `cache/icons`
+
+### typescript interfaces
+
+- [ItemJSON.ts](https://ultrabis.github.io/db/ItemJSON.ts)
+- [ItemSuffixJSON.ts](https://ultrabis.github.io/db/ItemSuffixJSON.ts)
 
 #### Credits and thanks
 
