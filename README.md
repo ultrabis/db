@@ -31,7 +31,7 @@ The icons for all items are included in `cache/icons`
 
 #### Credits and thanks
 
-wowhead, classicwow.live, wowwiki.fandom.com, keftenks balance druid spreadsheet, shedo's cat spreadsheet, zephans warlock simulator, ginners mage spreadsheet
+wowhead, warcraftlogs, classicwow.live, wowwiki.fandom.com, keftenks balance druid spreadsheet, shedo's cat spreadsheet, zephans warlock simulator, ginners mage spreadsheet
 
 [full-main]: https://ultrabis.github.io/db/full/item.json
 [full-modular]: https://ultrabis.github.io/db/full/item-modular.json
