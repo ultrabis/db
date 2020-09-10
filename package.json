@@ -3,7 +3,10 @@
   "version": "0.0.1",
   "scripts": {
     "build": "ts-node -T bin/build.ts",
-    "test": "ts-node -T bin/test.ts",
+    "lint": "eslint --fix ./src",
+    "test:node": "ts-node -T tests/node.ts",
+    "test:common": "ts-node -T tests/common.ts",
+    "test:utils": "ts-node -T tests/utils.ts",
     "download": "ts-node -T bin/wowhead-download.ts",
     "getSuffix": "ts-node -T bin/getSuffix.ts"
   },

@@ -1,12 +1,14 @@
-import common from '../src/common'
+import node from '../src/node'
 import fs from 'fs'
 import mkdirp from 'mkdirp'
 import rimraf from 'rimraf'
 import filesize from 'filesize'
-import ItemSuffixType from 'libclassic/src/enum/ItemSuffixType'
+//import ItemSuffixType from 'libclassic/src/enum/ItemSuffixType'
 import ItemSuffixJSON from '../src/interface/ItemSuffixJSON'
 import ItemJSON from '../src/interface/ItemJSON'
 import lc from 'libclassic'
+
+import ItemSuffixType from '../src/enum/ItemSuffixType'
 
 const testWowheadItemName = () => {
   const testItems = [
@@ -18,17 +20,17 @@ const testWowheadItemName = () => {
   console.log(`test wowheadItemName()`)
   console.log(`======================`)
   for (let i = 0; i < testItems.length; i++) {
-    console.log(`${testItems[i]} = ${common.wowheadItemName(testItems[i])}`)
+    console.log(`${testItems[i]} = ${node.wowheadItemName(testItems[i])}`)
   }
   console.log(``)
 }
 
 const testParse = async () => {
-  const masterSuffixes: ItemSuffixJSON[] = JSON.parse(common.stringFromFile(`src/masterItemSuffix.json`))
+  const masterSuffixes: ItemSuffixJSON[] = JSON.parse(node.stringFromFile(`src/masterItemSuffix.json`))
 
   const p = async (id: number, name: string) => {
     console.log(`-- ${name}`)
-    const item = await common.wowheadParseItem(id, name, masterSuffixes)
+    const item = await node.wowheadParseItem(id, name, masterSuffixes)
     console.log(JSON.parse(JSON.stringify(item)))
   }
 
@@ -59,7 +61,7 @@ const testParse = async () => {
 
 const testShowSuffixTypes = async () => {
   const suffixTypeSet: Set<ItemSuffixType> = new Set()
-  const itemSuffixes: ItemSuffixJSON[] = JSON.parse(common.stringFromFile(`dist/full/itemSuffix.json`))
+  const itemSuffixes: ItemSuffixJSON[] = JSON.parse(node.stringFromFile(`dist/full/itemSuffix.json`))
   const usedSuffixTypes: string[] = []
   const unusedSuffixTypes: string[] = []
 
@@ -86,11 +88,11 @@ const testShowSuffixTypes = async () => {
 }
 
 const testCreateDBMoonkin = async () => {
-  common.createDBMoonkin()
+  node.createDBMoonkin()
 }
 
 const testCreateDBWarlock = async () => {
-  common.createDBMoonkin()
+  node.createDBMoonkin()
 }
 
 //const testCreateHTML = async () => {}
@@ -109,9 +111,9 @@ const convertTextToBaseItems = async (txtFilePath: string) => {
 // generate list of random enchant base items that are usable by all casters
 const casterRandoms = async () => {
   const itemNameSet: Set<string> = new Set()
-  const itemsMoonkin: ItemJSON[] = JSON.parse(common.stringFromFile(`dist/moonkin/item-random.json`))
-  const itemsWarlock: ItemJSON[] = JSON.parse(common.stringFromFile(`dist/mage/item-random.json`))
-  const itemsMage: ItemJSON[] = JSON.parse(common.stringFromFile(`dist/warlock/item-random.json`))
+  const itemsMoonkin: ItemJSON[] = JSON.parse(node.stringFromFile(`dist/moonkin/item-random.json`))
+  const itemsWarlock: ItemJSON[] = JSON.parse(node.stringFromFile(`dist/mage/item-random.json`))
+  const itemsMage: ItemJSON[] = JSON.parse(node.stringFromFile(`dist/warlock/item-random.json`))
   const items: ItemJSON[] = [...itemsMoonkin, ...itemsWarlock, ...itemsMage]
 
   for (let i = 0; i < items.length; i++) {
@@ -194,6 +196,11 @@ const generateReadmeTable = async () => {
 */
 }
 
+const testUltraEnum = () => {
+
+
+}
+
 const doIt = async () => {
   // testWowheadItemName()
   // testCreateItemDb()
@@ -206,7 +213,8 @@ const doIt = async () => {
   // testCreateHTML()
   //convertTextToBaseItems('custom/y')
   //casterRandoms()
-  generateReadmeTable()
+  //generateReadmeTable()
+  //testUltraEnum()
 }
 
 doIt()

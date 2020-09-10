@@ -1,8 +1,9 @@
-import common from '../src/common'
+import { wowheadDownloadItems, wowheadDownloadAbilities } from '../src/node'
 import { exit } from 'process'
 
 const main = async () => {
-  await common.wowheadDownloadItems()
+  await wowheadDownloadItems()
+  await wowheadDownloadAbilities()
 }
 
 main()
